@@ -1,0 +1,125 @@
+<!-- DEN HÄR SIDAN ANVÄNDER SIG AV TAILWIND. ENDAST DENNA SIDAN GÖR DET. -->
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
+    <title>Produkter: T-shirts</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="output.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Teko:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sedgwick+Ave+Display&display=swap');
+    </style>     
+</head>
+
+<body>  
+    <header>  
+        <h1 class="text-7xl">T-shirt</h1>
+        <p>Tonya clothing company</p>
+    </header>
+     
+    <nav id="nav" > 
+        <a href="index.html"  title="Startsida">Startsida</a>
+        <a href="kepsar.html"title="Nya kepsar" >Nya kepsar</a>
+        <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+        <a href="jeans.html" title="Jeans">Jeans</a>
+        <a href="tshirt.html" class="current" title="T-shirts">T-shirt</a>
+        <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+    </nav>   
+
+    <div id="mobileNav">
+        <p id="menytext" class="my-3">Meny</p> 
+        <div id="link-container">
+            <a href="index.html" title="Startsida">Startsida</a>
+            <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+            <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+            <a href="jeans.html" title="Jeans">Jeans</a>
+            <a href="tshirt.html" title="T-shirts">T-shirts</a>
+            <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+        </div>
+        
+        <a href="javascript:void(0);" id="icon" onclick="toggleMenu()">
+            <div class="burger">
+                <div class="bun"></div>
+                <div class="meat"></div>
+                <div class="bun"></div>
+            </div>
+        </a>
+    </div>
+
+    <section id="section">
+
+        <main class="bildtröja">
+            <div class="tröjarad">
+                <img  src="tshirt_media/AH-CP-PIGEON-VISION-HERNDON-NTRL-FRONT_1200x-1024x1024.webp" alt="En t-shirt från märket anti hero som heter fågel" width="250" >
+                <p class="text-grön text-3xl">Anti hero</p>
+                <p>"Fågel"</p>
+                <p>549kr</p>
+            </div>
+    
+            <div class="tröjarad"> 
+                <img src="tshirt_media/b2c-scatee-1149.jpg" alt="En t-shirt från märket Santa Cruz som heter Pikachu" width="250" >
+                <p class="text-grön text-3xl">Santa Cruz</p>
+                <p>"Gengar"</p>
+                <p>449kr</p>
+            </div> 
+
+            <div class="tröjarad">
+                <img  src="tshirt_media/b2c-scatee-1147.jpg" alt="En t-shirt från märket Santa Cruz som heter Pikachu" width="250" >
+                <p class="text-grön text-3xl">Santa Cruz</p>
+                <p>"Pikachu"</p>
+                <p>449kr</p>
+            </div>
+    
+            <div class="tröjarad">
+                <img  src="tshirt_media/GONZFILL-WHITE-T-SHIRT-1-1200x1200.webp" alt="En t-shirt från märket Trasher som heter skate" width="250" >
+                <p class="text-grön text-3xl">Trasher</p>
+                <p>"skate"</p>
+                <p>499kr</p>
+            </div>
+    
+            <div class="tröjarad">
+                <img  src="tshirt_media/Polar-Skate-Co-F23-Mitchell-Herringbone-LS-Shirt-Wine-1-1024x1024.png" alt=" En t-shirt från Polar som heter Check surf" width="250" >
+                <p class="text-grön text-3xl"> Polar</p>
+                <p>"Check surf</p>
+                <p>1 649kr</p>
+            </div>
+    
+            <div class="tröjarad"> 
+                <img src="tshirt_media/SCA-JKT-0856.jpg" alt="En t-shirt från Santa cruz som heter Hideout" width="250" >
+                <p class="text-grön text-3xl">Santa Cruz</p>
+                <p>"Hideout"</p>
+                <p>1 099kr</p>
+            </div> 
+        </main>
+    
+    <aside id="text" class= " sm:text-3xl md:text-md lg:text-4xl xl:text-5xl 2xl:text-6xl">
+        <p>Alla våra t-shirt använder organiskt bomull</p>
+        <p class="intevaramed">Hittar du en t-shirt med en färg du inte vill ha? Hör av dig så fixar vi det</p>
+        <p class="intevaramedmobil">Alla våra t-shirts finns i långärmad också</p>
+        <p>Du kan ändra alla våra t-shirts mellan v-neck och crew-neck</p>
+    </aside>
+    
+    </section>
+
+    <footer>
+        <h1>Tonya Info</h1>
+        <br>
+        <a href="karta.html" title="Hitta oss/konatkt">Hitta oss/kontakt</a>
+        <br>
+        <br>
+        <a href="https://www.instagram.com/" title="Instagram">Instagram</a>
+        <br>
+        <br>
+        <a href="https://twitter.com/?lang=sv" title="X">x</a>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="script3.js"></script>
+
+</body>
+</html>

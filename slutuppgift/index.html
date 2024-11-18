@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
+    <title>Startsida</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Teko:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sedgwick+Ave+Display&display=swap');
+    </style>
+    
+</head>
+
+<body>
+    
+    <header>  
+        <h1 id="headertext">Tonya, clothing company</h1>
+    </header>
+       
+    <nav id="nav"> 
+        <a href="index.html" class="current" title="Startsida">Startsida</a>
+        <a href="kepsar.html"title="Nya kepsar" >Nya kepsar</a>
+        <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+        <a href="jeans.html" title="Jeans">Jeans</a>
+        <a href="tshirt.html" title="T-shirts">T-shirt</a>
+        <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+    </nav>
+
+    <div id="mobileNav">
+        <p id="menytext">Meny</p>
+        <div id="link-container">
+            <a href="index.html" title="Startsida">Startsida</a>
+            <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+            <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+            <a href="jeans.html" title="Jeans">Jeans</a>
+            <a href="tshirt.html" title="T-shirts">T-shirts</a>
+            <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+        </div>
+        
+        <a href="javascript:void(0);" id="icon" onclick="toggleMenu()">
+            <div class="burger">
+                <div class="bun"></div>
+                <div class="meat"></div>
+                <div class="bun"></div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Här är det använt srcset -->
+    <img
+        srcset="startsida_media/startsida2.jpg 500w, startsida_media/startsida.jpg 1600w" 
+        sizes="(max-width: 500px) 500px, 1600px"
+        src="startsida_media/startsida.jpg"
+        alt="Generell bild på kläder butiken erbjuder med logga" id="startsidabild"
+        style="width: 100%;"
+        />
+
+    <section id="section">
+
+    <main>
+        <!-- Videon blinkar inte vid något tillfälle 3 gånger per sekund -->
+        <video id="video" loop muted autoplay controls>
+            <source src="startsida_media/streetwear.mp4"  alt="Video på kläder butiken erbjuder" type="video/mp4">
+            <source src="startsida_media/streetwear.webm"  alt="Video på kläder butiken erbjuder" type="video/webm">
+        </video>
+
+    </main>
+
+    <aside >
+        <p class="intevaramed">GQ about I, tonya</p>
+        <p class="intevaramed">AC/DC: "we all love I, tonya, the clothing of course" </p>
+        <p class="intevaramed">Brockhampton have a song about us, it's called tonya and it's awesome </p>
+        <p>EXKLUSIVT ERBJUDANDE NU PÅ <a href="kepsar.html" title="kepsar">KEPSAR</a></p>
+    </aside>
+
+    </section>
+
+    <footer>
+        <h1>Tonya Info</h1>
+        <br>
+        <a href="karta.html" title="Hitta oss/konatkt">Hitta oss/kontakt</a>
+        <br>
+        <br>
+        <a href="https://www.instagram.com/" title="Instagram">Instagram</a>
+        <br>
+        <br>
+        <a href="https://twitter.com/?lang=sv" title="X">x</a>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="script3.js"></script>
+
+    
+</body>
+</html>
