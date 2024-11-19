@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
+    <title>Kundvagn: Adress</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Teko:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sedgwick+Ave+Display&display=swap');
+    </style>
+      
+</head>
+
+<body>
+    <div id="font">
+     <header>  
+        <h1>Kundvagn</h1>
+        <p>Tonya clothing company</p>
+    </header>
+     
+<nav id="nav"> 
+    <a href="index.html" title="Startsida">Startsida</a>
+    <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+    <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+    <a href="jeans.html" title="Jeans">Jeans</a>
+    <a href="tshirt.html" title="T-shirts">T-shirt</a>
+    <a href="kundvagn.html" class="current" title="kundvagn">Kundvagn</a>
+</nav> 
+
+<div id="mobileNav">
+    <p id="menytext">Meny</p>
+    <div id="link-container">
+        <a href="index.html" title="Startsida">Startsida</a>
+        <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+        <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+        <a href="jeans.html" title="Jeans">Jeans</a>
+        <a href="tshirt.html" title="T-shirts">T-shirts</a>
+        <a href="kundvagn.html" class="current" title="Kundvagn">Kundvagn</a>
+    </div>
+    
+    <a href="javascript:void(0);" id="icon" onclick="toggleMenu()">
+        <div class="burger">
+            <div class="bun"></div>
+            <div class="meat"></div>
+            <div class="bun"></div>
+        </div>
+    </a>
+</div>
+
+<section id="section">
+    <main>
+        <form id=textformulär action="slutfor.html"> 
+    
+            <label for="name"> Namn: </label>
+            <input type="text" name="name" id="name" required>
+            <br>
+            <br>
+            <br>
+
+            <label for="adress"> Adress: </label>
+            <input type="text" name="adress" id="adress" required>
+            <br>
+            <br>
+            <br>
+    
+            <label for="email"> Email: </label>
+            <input type="email" name="email" id="email" required>
+            <br>
+            <br>
+            <br>
+    
+            <label for="country"> Land: </label>
+            <select name="country" id="country">
+                <option value="1">Sverige</option>
+                <option value="2">Danmark</option>
+                <option value="3">Island</option>
+                <option value="3">Norge</option>
+                <option value="3">Finland</option>
+            </select>
+            <br>
+            <br>
+            <br>
+
+            <label for="Postalternativ"> Postalternativ: </label>
+            <select name="Postalternativ" id="Postalternativ">
+                <option value="1">Postnord</option>
+                <option value="2">DHL</option>
+                <option value="3">DBSChenker</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            
+            <label for="message"> Meddelande: </label> <br>
+            <textarea name="message" id="message" cols="30" rows="4"
+            maxlength="10"></textarea>
+            <br>
+            <br>
+            <br>
+
+            <div>
+                <h1>Gå vidare till slutföra ditt köp</h1>
+                <input type="submit"  value="Här"/>
+                <br>
+                <br>
+            </div>
+    
+        </form>
+    
+    </main>
+    
+    <aside >
+        <a href="kundvagn.html" title="Kundvagn" class="textkundvagn" >Kundvagn</a>
+        <a href="adress.html" title="Adress" class="textkundvagn current" >Adress</a>
+        <a href="slutfor.html" title="Slutför köp" class="textkundvagn" >Slutför köp</a>
+        <a href="order.html" title="order confirmation" class="textkundvagn" >Order confirmation</a>
+    </aside>
+    </section>
+
+    <footer>
+        <h1>Tonya Info</h1>
+        <br>
+        <a href="karta.html" title="Hitta oss/konatkt">Hitta oss/kontakt</a>
+        <br>
+        <br>
+        <a href="https://www.instagram.com/" title="Instagram">Instagram</a>
+        <br>
+        <br>
+        <a href="https://twitter.com/?lang=sv" title="X">x</a>
+    </footer>
+</div>
+
+    <script src="script.js"></script>
+    <script src="script3.js"></script>
+
+</body>
+</html>

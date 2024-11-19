@@ -1,0 +1,47 @@
+.nav {
+    background-color: #333;
+    padding: 5px 20px;
+    font-family: 'Sedgwick Ave Display';
+    font-size: 30px
+}
+
+.nav > ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    position: relative;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    display: block;
+}
+
+.nav a:hover {
+    background-color: #555;
+}
+
+.dropdown {
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown li {
+    width: 200px;
+}
+
+.nav li:hover .dropdown {
+    display: block;
+}

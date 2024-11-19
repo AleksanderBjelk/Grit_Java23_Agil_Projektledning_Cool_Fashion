@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0,minimum-scale=1"
+        />
+        <title>Kundvagn</title>
+        <link rel="stylesheet" href="style1.css" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Teko:wght@500&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sedgwick+Ave+Display&display=swap");
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Kundvagn</h1>
+            <p>Tonya clothing company</p>
+        </header>
+
+        <nav id="nav">
+            <a href="index.html" title="Startsida">Startsida</a>
+            <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+            <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+            <a href="jeans.html" title="Jeans">Jeans</a>
+            <a href="tshirt.html" title="T-shirts">T-shirt</a>
+            <a href="kundvagn.html" class="current" title="Kundvagn"
+                >Kundvagn</a
+            >
+        </nav>
+
+        <div id="mobileNav">
+            <p id="menytext">Meny</p>
+            <div id="link-container">
+                <a href="index.html" title="Startsida">Startsida</a>
+                <a href="kepsar.html" title="Nya kepsar">Nya kepsar</a>
+                <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+                <a href="jeans.html" title="Jeans">Jeans</a>
+                <a href="tshirt.html" title="T-shirts">T-shirts</a>
+                <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+            </div>
+
+            <a href="javascript:void(0);" id="icon" onclick="toggleMenu()">
+                <div class="burger">
+                    <div class="bun"></div>
+                    <div class="meat"></div>
+                    <div class="bun"></div>
+                </div>
+            </a>
+        </div>
+
+        <section id="section">
+            <main class="bildtröja">
+                <div class="tröjarad">
+                    <img
+                        src="trojor_media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+                        alt="En tröja från märket civilist som heter mini logo hood"
+                        id="klädersänka"
+                    />
+                    <p>Civilist</p>
+                    <p>"Mini Logo Hood - Pristine"</p>
+                    <p>1 199kr</p>
+                </div>
+
+                <div class="tröjarad">
+                    <img
+                        src="jeans_media/42619-8-denim-jean-image-png-file-hd.png"
+                        alt="Byxor från Levis som heter Blue"
+                        id="klädersänka"
+                    />
+                    <p>Levis</p>
+                    <p>"Blue"</p>
+                    <p>1 199kr</p>
+                </div>
+
+                <form id="textformulär" action="adress.html">
+                    <div>
+                        <h1>Jag är nöjd!</h1>
+                        <input type="submit" value="Ta mig vidare" />
+                    </div>
+                </form>
+            </main>
+
+            <aside>
+                <a
+                    href="kundvagn.html"
+                    title="Kundvagn"
+                    class="textkundvagn current"
+                    >Kundvagn</a
+                >
+                <a href="adress.html" title="Adress" class="textkundvagn"
+                    >Adress</a
+                >
+                <a href="slutfor.html" title="Slutför köp" class="textkundvagn"
+                    >Slutför köp</a
+                >
+                <a
+                    href="order.html"
+                    title="order confirmation"
+                    class="textkundvagn"
+                    >Order confirmation</a
+                >
+            </aside>
+        </section>
+
+        <footer>
+            <h1>Tonya Info</h1>
+            <br />
+            <a href="karta.html" title="Hitta oss/konatkt">Hitta oss/kontakt</a>
+            <br />
+            <br />
+            <a href="https://www.instagram.com/" title="Instagram">Instagram</a>
+            <br />
+            <br />
+            <a href="https://twitter.com/?lang=sv" title="X">x</a>
+        </footer>
+
+        <script src="script.js"></script>
+        <script src="script3.js"></script>
+    </body>
+</html>
