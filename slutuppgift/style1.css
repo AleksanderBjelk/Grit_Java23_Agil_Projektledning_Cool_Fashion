@@ -34,7 +34,7 @@ header {
     100% {color:rgb(0, 0, 0); left:0px; top:0px;}
   }
 
-nav {
+/* nav {
     box-sizing: border-box;
     padding: 1%;
     background: black;
@@ -46,7 +46,7 @@ nav {
     z-index: 1000;
     display: flex;
     font-family: 'Sedgwick Ave Display'
-}
+} */
 
 main {
 

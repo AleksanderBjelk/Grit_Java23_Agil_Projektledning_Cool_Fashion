@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
     <title>Startsida</title>
     <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="navbar.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Teko:wght@500&display=swap');
@@ -17,16 +18,48 @@
 <body>
     
     <header>  
-        <h1 id="headertext">Nikolina, clothing company</h1>
+        <h1 id="headertext">Cool Fashion</h1>
     </header>
        
-    <nav id="nav"> 
-        <a href="index.html" class="current" title="Startsida">Startsida</a>
-        <a href="kepsar.html"title="Nya kepsar" >Nya kepsar</a>
-        <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
-        <a href="jeans.html" title="Jeans">Jeans</a>
-        <a href="tshirt.html" title="T-shirts">T-shirt</a>
-        <a href="kundvagn.html" title="Kundvagn">Kundvagn</a>
+    <nav class="nav"> 
+        <ul>
+            <li>
+                <a href="index.html" class="current" title="Startsida">Startsida</a>
+            </li>
+            <li>
+                <a href="kepsar.html"title="Nya kepsar" >Nya kepsar</a>
+                <ul class="dropdown">
+                    <li><a href="">Damer</a></li>
+                    <li><a href="">Herrar</a></li>
+                    <li><a href="">Barn</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="trojor.html" title="Feta tröjor">Feta tröjor</a>
+                <ul class="dropdown">
+                    <li><a href="">Damer</a></li>
+                    <li><a href="">Herrar</a></li>
+                    <li><a href="">Barn</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="jeans.html" title="Jeans">Jeans</a>
+                <ul class="dropdown">
+                    <li><a href="">Damer</a></li>
+                    <li><a href="">Herrar</a></li>
+                    <li><a href="">Barn</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="tshirt.html" title="T-shirts">T-shirt</a>
+                <ul class="dropdown">
+                    <li><a href="">Damer</a></li>
+                    <li><a href="">Herrar</a></li>
+                    <li><a href="">Barn</a></li>
+                </ul>
+            </li>
+            <li><a href="kundvagn.html" title="Kundvagn">Kundvagn</a></li>
+        </ul>
     </nav>
 
     <div id="mobileNav">
