@@ -1,15 +1,18 @@
-import './JSX/header.jsx';
-import './JSX/main.jsx';
-import './JSX/footer.jsx';
-import './JSX/cards.jsx';
-import './JSX/nav.jsx';
+import TestHeader from'./JSX/header.jsx';
+import TestMain from'./JSX/main.jsx';
+import TestFooter from './JSX/footer.jsx';
+import TestCards from './JSX/cards.jsx';
+import TestNav from './JSX/nav.jsx';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       <h1>hejhejtest</h1>
-      </header>
+      <TestHeader/>
+      <TestNav/>
+      <TestMain/>
+      <TestCards/>
+      <TestFooter/>
+      
     </div>
   );
 }

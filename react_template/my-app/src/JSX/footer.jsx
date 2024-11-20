@@ -1,11 +1,12 @@
 import '../CSS/footer.css';
 
-function test () {
+function testFooter () {
     return (
-        <div className="App">
-          <header className="App-header">
+        <div className="textFooter">
+         
            <h1>hejhejtest</h1>
-          </header>
+       
         </div>
       );
     }
+    export default testFooter;

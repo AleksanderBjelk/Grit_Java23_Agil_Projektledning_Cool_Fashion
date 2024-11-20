@@ -1,11 +1,12 @@
 import '../CSS/nav.css';
 
-function test () {
+function testNav () {
 return (
-    <div className="App">
-      <header className="App-header">
+    <div className="textNav">
+    
        <h1>hejhejtest</h1>
-      </header>
+
     </div>
   );
 }
+export default testNav;

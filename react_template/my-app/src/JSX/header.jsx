@@ -1,11 +1,12 @@
 import '../CSS/header.css';
 
-function test () {
+function testHeader () {
     return (
-        <div className="App">
-          <header className="App-header">
+        <div className="textHeader">
+        
            <h1>hejhejtest</h1>
-          </header>
+        
         </div>
       );
     }
+    export default testHeader;

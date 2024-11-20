@@ -1,11 +1,12 @@
 import '../CSS/cards.css';
 
-function test () {
+function testCards () {
     return (
-        <div className="App">
-          <header className="App-header">
+        <div className="textCards">
+       
            <h1>hejhejtest</h1>
-          </header>
+    
         </div>
       );
     }
+    export default testCards;
