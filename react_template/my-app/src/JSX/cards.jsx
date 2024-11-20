@@ -1,3 +1,5 @@
+import '../CSS/cards.css';
+
 function test () {
     return (
         <div className="App">

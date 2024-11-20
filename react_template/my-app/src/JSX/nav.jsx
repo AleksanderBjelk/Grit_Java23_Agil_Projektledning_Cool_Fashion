@@ -1,3 +1,5 @@
+import '../CSS/nav.css';
+
 function test () {
 return (
     <div className="App">

@@ -1,9 +1,3 @@
-import './CSS/header.css';
-import './CSS/main.css';
-import './CSS/footer.css';
-import './CSS/cards.css';
-import './CSS/nav.css';
-
 import './JSX/header.jsx';
 import './JSX/main.jsx';
 import './JSX/footer.jsx';

@@ -1,3 +1,5 @@
+import '../CSS/main.css';
+
 function test () {
     return (
         <div className="App">

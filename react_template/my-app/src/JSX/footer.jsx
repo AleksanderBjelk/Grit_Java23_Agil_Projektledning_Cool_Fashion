@@ -1,3 +1,5 @@
+import '../CSS/footer.css';
+
 function test () {
     return (
         <div className="App">
