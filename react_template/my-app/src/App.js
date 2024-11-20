@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './CSS/App.css';
+import './CSS/header.css';
+import './CSS/main.css';
+import './CSS/footer.css';
+import './CSS/cards.css';
+import './CSS/nav.css';
+
+import './JSX/header.jsx';
+import './JSX/main.jsx';
+import './JSX/footer.jsx';
+import './JSX/cards.jsx';
+import './JSX/nav.jsx';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <h1>hejhejtest</h1>
       </header>
     </div>
   );
