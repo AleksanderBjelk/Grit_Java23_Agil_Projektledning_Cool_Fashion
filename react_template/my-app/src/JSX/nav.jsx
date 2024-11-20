@@ -4,7 +4,7 @@ function testNav () {
 return (
     <div className="textNav">
     
-       <h1>hejhejtest</h1>
+       <h1>hejhejtest nav</h1>
 
     </div>
   );

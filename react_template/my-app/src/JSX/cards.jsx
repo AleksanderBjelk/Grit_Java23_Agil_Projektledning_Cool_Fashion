@@ -4,7 +4,7 @@ function testCards () {
     return (
         <div className="textCards">
        
-           <h1>hejhejtest</h1>
+           <h1>hejhejtest cards</h1>
     
         </div>
       );

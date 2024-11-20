@@ -4,7 +4,7 @@ function testHeader () {
     return (
         <div className="textHeader">
         
-           <h1>hejhejtest</h1>
+           <h1>hejhejtest header</h1>
         
         </div>
       );

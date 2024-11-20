@@ -4,7 +4,7 @@ function testMain () {
     return (
         <div className="textMain">
          
-           <h1>hejhejtest</h1>
+           <h1>hejhejtest main</h1>
      
         </div>
       );

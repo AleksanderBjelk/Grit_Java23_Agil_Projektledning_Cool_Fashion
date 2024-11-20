@@ -4,7 +4,7 @@ function testFooter () {
     return (
         <div className="textFooter">
          
-           <h1>hejhejtest</h1>
+           <h1>hejhejtest footer</h1>
        
         </div>
       );
