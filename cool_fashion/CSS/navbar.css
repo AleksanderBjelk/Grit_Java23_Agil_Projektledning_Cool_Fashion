@@ -1,8 +1,8 @@
 .nav {
     background-color: #333;
 
-    font-family: 'Sedgwick Ave Display';
-    font-size: 30px
+    font-family: "Sedgwick Ave Display";
+    font-size: 30px;
 }
 
 .nav > ul {
@@ -49,13 +49,13 @@
 .content {
     padding: 16px;
 }
-  
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
 }
-  
+
 .sticky + .content {
     padding-top: 60px;
 }
