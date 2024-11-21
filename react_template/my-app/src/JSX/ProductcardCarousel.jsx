@@ -38,6 +38,9 @@ const ProductCardCarousel = ({ name, price, images }) => {
       </div>
       <h3>{name}</h3> {/* Product Name */}
       <p>{price}</p> {/* Product Price */}
+      <div>
+        <button className='cardButton'>Buy</button>
+      </div>
     </div>
   );
 };
