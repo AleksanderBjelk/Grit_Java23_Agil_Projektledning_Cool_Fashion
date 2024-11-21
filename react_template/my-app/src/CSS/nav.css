@@ -1,18 +1,11 @@
-.textNav{
-    background-color: yellow;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
 
 #headertext {
     font-family: "Zen Dots", sans-serif;
     text-align: center;
-    background-color: rgb(79, 57, 55);
-    width: 100%;
     margin: 0;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    
+    padding-top: 1rem;
+    padding-bottom: 0 1rem;
 }
 
 .cool {
@@ -20,7 +13,7 @@
 }
 
 .fashion {
-    color: rgb(79, 57, 55);
+    color: rgb(0, 0, 0);
     text-shadow: -1px -1px 0 rgb(255, 255, 255),
     1px -1px 0 rgb(255, 255, 255),
     -1px 1px 0 white, 
@@ -35,3 +28,71 @@
     60%  {color:rgb(255, 255, 255); left:0px; top:0px;}
     100% {color:rgb(79, 57, 55); left:0px; top:0px;}
   }
+  
+  .nav {
+    background-color: #4d6586;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  
+.nav li {
+  position: relative;
+}
+
+  
+  .nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+  display: block;
+}
+
+.nav a:hover {
+  color: #9fcff1;
+}
+
+.dropdown {
+  list-style: none;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #4d6586;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown li {
+  width: 200px;
+}
+
+
+.nav li:hover .dropdown {
+  display: block;
+}
+
+.content {
+  padding: 16px;
+} */
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
