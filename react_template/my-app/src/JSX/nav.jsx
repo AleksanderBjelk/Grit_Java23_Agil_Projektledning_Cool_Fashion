@@ -1,12 +1,13 @@
 import '../CSS/nav.css';
 
 function testNav () {
-return (
-    <div className="textNav">
-    
-       <h1>hejhejtest nav</h1>
-
-    </div>
+  return (
+    <header>  
+      <h1 id="headertext">
+        <span className="cool">Cool</span>{' '}
+        <span className="fashion">Fashion®</span>
+      </h1>
+    </header>
   );
 }
 export default testNav;
