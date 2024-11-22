@@ -1,5 +1,5 @@
 import "../CSS/main.css";
-import TestCards from "../JSX/ProductCards.jsx";
+import TestCards from "../JSX/ProductGridCarousel.jsx";
 
 
 function testMain() {
