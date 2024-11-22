@@ -33,8 +33,8 @@
     background-color: #4d6586;
     color: white;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-around; */
+    align-items:end;
     gap: 2rem;
     padding: 1rem;
   }
@@ -44,14 +44,14 @@
   position: relative;
 }
 
-  
-  .nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
+.nav > ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
   
 .nav a {
   text-decoration: none;
