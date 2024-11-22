@@ -32,3 +32,9 @@
     width: 100%;
     display: block;
 }
+
+.saleImage img{
+  padding: 0px;
+  width: 100%;
+  display: block;
+}

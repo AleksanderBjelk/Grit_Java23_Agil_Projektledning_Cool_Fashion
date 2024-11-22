@@ -9,7 +9,7 @@ function testMain() {
              <img src="/media/startbild.png" alt="Example" />
             </div>
             <div className="upperMainText">
-                <h1>START OF WINTER WITH NEW HOODIES</h1>
+                <h1>START OFF WINTER WITH NEW HOODIES</h1>
             </div>
             <TestCards />
             <div className="lowerMainTextContainer">
@@ -18,6 +18,11 @@ function testMain() {
                     <h2>FREE DELIVERY TO STORE</h2>
                     <h2>1-4 DAY DELIVERY</h2>
                 </div>
+            </div>
+            <div className="saleImage">
+                <button>
+                    <img src="/media/blackFriday.png" alt="Black Friday Sale" />
+                </button>
             </div>
         </div>
     );
