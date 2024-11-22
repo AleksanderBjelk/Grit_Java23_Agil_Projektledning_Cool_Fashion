@@ -24,11 +24,12 @@
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: calc(100% * antal_bilder);
 }
-
 .carousel-inner img {
+    flex: 0 0 100%; 
     width: 100%;
-    height: 300px;
+    height: auto; 
     object-fit: cover;
 }
 
