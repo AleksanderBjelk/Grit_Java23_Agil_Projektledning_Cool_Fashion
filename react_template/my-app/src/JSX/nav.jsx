@@ -1,4 +1,6 @@
 import '../CSS/nav.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faShoppingCart, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function TestNav() {
   return (
@@ -39,6 +41,15 @@ function TestNav() {
           </ul>
            </li>
           </ul>
+<div className="topRightIcons">
+<FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faShoppingCart} />
+</div>
+         
+
+
       </nav>
   );
 }
