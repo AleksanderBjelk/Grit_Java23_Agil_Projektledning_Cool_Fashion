@@ -52,5 +52,59 @@
       "/media/sweatshirt-crew-kids-dream-grey-front_1024x1024@2x.webp",
       "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
     ]
+  },
+  {
+    "id": 7,
+    "name": "Hoodie 7",
+    "price": "200.00",
+    "images": [
+      "/media/dfssdfdc.jpg",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Hoodie 8",
+    "price": "500.00",
+    "images": [
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Hoodie 9",
+    "price": "650.00",
+    "images": [
+      "/media/Polar-Skate-Co-F23-Default-Zip-Hoodie-Reaper-Black-2-1200x1200.png",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Hoodie 10",
+    "price": "950.00",
+    "images": [
+      "/media/Polar-Skate-Co-SU23-Polar-Gang-Crewneck-Navy-1.png",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Hoodie 11",
+    "price": "350.00",
+    "images": [
+      "/media/Polar-Skate-Co-W22-Patch-Hoodie-Dirty-Black-1_1344x1344.webp",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Hoodie 12",
+    "price": "750.00",
+    "images": [
+      "/media/sweatshirt-crew-kids-dream-grey-front_1024x1024@2x.webp",
+      "/media/Mini_Logo_Hoodie_Creme_1-scaled.jpg"
+    ]
   }
 ]

@@ -4,20 +4,25 @@ import ProductCardCarousel from './ProductcardCarousel.jsx';
 import '../CSS/ProductCards.css';
 
 const ProductGridCarousel = () => {
-  const cardsToShow = 3; // Number of visible cards at a time
+  const cardsToShow = 4; // Number of visible cards at a time (use an integer here)
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  //Move to the next set of cards
   const handleNext = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex + 1) % productData.length
-    );
+    setCurrentIndex((prevIndex) => {
+      //Move to the next index, wrap around when reaching the end
+      const nextIndex = prevIndex + 1;
+      return nextIndex >= productData.length - cardsToShow + 1 ? 0 : nextIndex;
+    });
   };
 
+  //Move to the previous set of cards
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        prevIndex === 0 ? productData.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => {
+      //Move to the previous index, wrap around when going below 0
+      const prevIndexAdjusted = prevIndex - 1;
+      return prevIndexAdjusted < 0 ? productData.length - cardsToShow : prevIndexAdjusted;
+    });
   };
 
   return (
@@ -29,16 +34,17 @@ const ProductGridCarousel = () => {
         <div
           className="carousel-track"
           style={{
-            transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
+            //Har problem med denna uträkningen, där det står 33 vill vi ha 100 men det gör så att den "overshootar" och visar tomma slides, utan produktkort då translateX går till -200% och inte -100%.
+            transform: `translateX(-${currentIndex * (33 / cardsToShow)}%)`,
             transition: 'transform 0.5s ease-in-out',
-            width: `${(productData.length / cardsToShow) * 100}%`,
+            width: `${productData.length * (100 / cardsToShow)}%`, //Ensure the width is based on the number of items
           }}
         >
           {productData.map((product) => (
             <div
               key={product.id}
               className="product-card-wrapper"
-              style={{ width: `${100 / productData.length}%` }}
+              style={{ width: `${100 / productData.length}%` }} //Each card takes up a percentage of the total width
             >
               <ProductCardCarousel
                 name={product.name}
