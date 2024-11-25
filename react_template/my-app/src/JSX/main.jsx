@@ -20,9 +20,9 @@ function testMain() {
                 </div>
             </div>
             <div className="saleImage">
-                <button>
+                <a href="sale.com">
                     <img src="/media/blackFriday.png" alt="Black Friday Sale" />
-                </button>
+                </a>
             </div>
         </div>
     );
