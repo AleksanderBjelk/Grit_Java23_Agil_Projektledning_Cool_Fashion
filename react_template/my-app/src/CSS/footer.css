@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
-.textFooter{
+.textFooter {
     background-color: #4d6586;
     font-family: "Bebas Neue";
     color: white;
     display: flex;
 }
- 
+
 .textFooter span {
     width: 30%;
     margin-bottom: 20px;
@@ -48,23 +48,10 @@
     color: #ddd;
 }
 
-
 /* Aleksander ändringar 25/11 */
 
-a:hover {
-    background-color: #394d69;
-    transition: 0.5s;
-    text-decoration: none;
-   
-}
-
-a:active {
-    box-shadow: 3px 3px 3px rgb(8, 92, 156);
-    text-decoration: none;
-}
-
-a:focus {
-    background: rgb(8, 92, 156);
+.footer a:hover {
+    color: #c3b67b;
     text-decoration: none;
 }
 
@@ -73,7 +60,7 @@ a:visited {
     text-decoration: none;
 }
 
-.textFooter a{
+.textFooter a {
     margin-bottom: 10px;
     margin-left: 10px;
 }
