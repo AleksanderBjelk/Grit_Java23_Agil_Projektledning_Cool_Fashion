@@ -1,13 +1,13 @@
 import "../CSS/contact.css";
 
-function TestContact(){
+function TestContact() {
     return (
         <div className="textContact">
-            <p>hejhej</p>
+            <div className="upperMainTextContact">
+                <h1>Contact</h1>
+            </div>
         </div>
-
-    )
-
+    );
 }
 
 export default TestContact;

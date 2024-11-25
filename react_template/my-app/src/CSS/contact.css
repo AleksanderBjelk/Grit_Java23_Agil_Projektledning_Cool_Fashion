@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.textContact{
+    font-family: "Bebas Neue";
+    margin: 0;
+}
+
+.upperMainTextContact{
+    color: white;
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+.upperMainTextContact h1{
+    margin: 0;
+}
