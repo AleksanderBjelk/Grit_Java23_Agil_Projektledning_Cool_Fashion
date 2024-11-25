@@ -1,3 +1,5 @@
+import "../CSS/contact.css";
+
 function TestContact(){
     return (
         <div className="textContact">
