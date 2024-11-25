@@ -1,12 +1,11 @@
 import "../CSS/main.css";
 import TestCards from "../JSX/ProductGridCarousel.jsx";
 
-
 function testMain() {
     return (
         <div className="main">
             <div className="frontPagePicture">
-             <img src="/media/startbild.png" alt="Example" />
+             <img src="/media/startbild.png" alt="Example"/>
             </div>
             <div className="upperMainText">
                 <h1>START OFF WINTER WITH NEW HOODIES</h1>

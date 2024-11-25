@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
-import productData from '../data/products.json';
+import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../data/firebase.js'; // Adjust path as needed
 import '../CSS/ProductCards.css';
 
 const ProductGridCarousel = () => {
-  const cardsToShow = 4; // Number of visible cards at a time (use an integer here)
+  const [products, setProducts] = useState([]);
+  const cardsToShow = 4; // Number of visible cards at a time
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  //Move to the next set of cards
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const querySnapshot = await getDocs(collection(db, 'products'));
+      const productList = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setProducts(productList);
+    };
+
+    fetchProducts();
+  }, []);
+
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => {
-      //Move to the next index, wrap around when reaching the end
-      const nextIndex = prevIndex + 1;
-      return nextIndex >= productData.length - cardsToShow + 1 ? 0 : nextIndex;
-    });
+    setCurrentIndex(prevIndex =>
+      prevIndex + 1 >= products.length - cardsToShow + 1 ? 0 : prevIndex + 1
+    );
   };
 
-  //Move to the previous set of cards
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => {
-      //Move to the previous index, wrap around when going below 0
-      const prevIndexAdjusted = prevIndex - 1;
-      return prevIndexAdjusted < 0 ? productData.length - cardsToShow : prevIndexAdjusted;
-    });
+    setCurrentIndex(prevIndex =>
+      prevIndex - 1 < 0 ? products.length - cardsToShow : prevIndex - 1
+    );
   };
 
   return (
@@ -34,17 +43,16 @@ const ProductGridCarousel = () => {
         <div
           className="carousel-track"
           style={{
-            //Har problem med denna uträkningen, där det står 33 vill vi ha 100 men det gör så att den "overshootar" och visar tomma slides, utan produktkort då translateX går till -200% och inte -100%.
-            transform: `translateX(-${currentIndex * (33 / cardsToShow)}%)`,
+            transform: `translateX(-${currentIndex * (34 / cardsToShow)}%)`,
             transition: 'transform 0.5s ease-in-out',
-            width: `${productData.length * (100 / cardsToShow)}%`, //Ensure the width is based on the number of items
+            width: `${products.length * (100 / cardsToShow)}%`
           }}
         >
-          {productData.map((product) => (
+          {products.map(product => (
             <div
               key={product.id}
               className="product-card-wrapper"
-              style={{ width: `${100 / productData.length}%` }} //Each card takes up a percentage of the total width
+              style={{ width: `${100 / products.length}%` }}
             >
               <ProductCardCarousel
                 name={product.name}
