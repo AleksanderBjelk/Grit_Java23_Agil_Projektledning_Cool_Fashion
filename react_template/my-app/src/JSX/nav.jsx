@@ -6,7 +6,7 @@ function TestNav() {
   return (
     <nav className="nav">
       <div className="logoImage">
-                <a href="sale.com">
+                <a href="/">
                     <img src="/favicon.png" alt="Cool Fashion Logo" />
                 </a>
             </div>
