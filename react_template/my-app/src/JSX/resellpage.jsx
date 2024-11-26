@@ -1,6 +1,5 @@
 import "../CSS/resell.css";
-import '../CSS/ProductCards.css';
-import ProductCard from "./SecondhandCards.jsx";
+import SecondhandProductCard from "./SecondhandCards.jsx";
 
 function ResellPage() {
     return (
@@ -10,7 +9,7 @@ function ResellPage() {
                 <h3>Keep our planet in mind and while earning money on your old clothes</h3>
             </div>
             <div className="cards">
-                <ProductCard />
+                <SecondhandProductCard />
             </div>
         </div>
     );

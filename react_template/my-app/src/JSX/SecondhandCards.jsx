@@ -3,7 +3,7 @@ import ProductCardCarousel from './ProductcardCarousel.jsx';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../data/firebase.js';
 
-const ProductCard = () => {
+const SecondhandProductCard = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -37,4 +37,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default SecondhandProductCard;
