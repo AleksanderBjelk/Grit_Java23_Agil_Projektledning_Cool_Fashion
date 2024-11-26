@@ -73,3 +73,27 @@ textarea {
     justify-content: center;
 
 }
+
+
+.mainContact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+
+.formContainer {
+    flex: 1; 
+    max-width: 50%; 
+}
+
+.mapContainer {
+    flex: 1; 
+    text-align: center; 
+}
+
+#karta {
+    height: 500px;
+    width: 600px;
+    border-radius: 5px; 
+}
