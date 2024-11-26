@@ -1,48 +1,107 @@
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState} from "react";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "../data/firebase";
-import '../CSS/productList.css'
+import '../CSS/productList.css';
 
+function ProductList() {
+  const [products, setProducts] = useState([]);
+  const [editProductId, setEditProductId] = useState(null);
+  const [newName, setNewName] = useState('');
+  const [newPrice, setNewPrice] = useState('');
+  const [newImages, setNewImages] = useState('');
 
-function ProductList(){
-    const[products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productsCollection = collection(db, "products");
+      const productSnapshot = await getDocs(productsCollection);
+      const productList = productSnapshot.docs.map(doc => ({
+        id: doc.id,
+        name: doc.data().name,
+        price: doc.data().price,
+        images: doc.data().images,
+      }));
+      setProducts(productList);
+    };
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-          const productsCollection = collection(db, "products"); // "products" is your collection name
-          const productSnapshot = await getDocs(productsCollection);
-          const productList = productSnapshot.docs.map(doc => ({
-            id: doc.id,
-            name: doc.data().name
-          }));
-          setProducts(productList);
-        };
-    
-        fetchProducts();
-      }, []);
+    fetchProducts();
+  }, []);
 
-      return(
-        <div className="product-list-container">
-            <h1>Product List</h1>
-            <ul>
-                {products.map((product) => (
-                    <li key={product.id}>
-                    <span>
-                    {"ID: " + product.id + " NAME: " + product.name}
-                    </span>
-                    <button>ÄNDRA</button>
-                    </li>
-                )
-                )}
-            </ul>
+  const handleProductUpdate = async (id) => {
+    if (!newName || !newPrice || !newImages || isNaN(newPrice) || newPrice <= 0) {
+      alert('Lägg till namn, pris och bild');
+      return;
+    }
 
-        </div>
+    const productDoc = doc(db, "products", id);
+    try {
+      await updateDoc(productDoc, {
+        name: newName,
+        price: parseFloat(newPrice),
+        images: newImages,
+      });
 
-      );
+      setProducts(products.map((product) =>
+        product.id === id
+          ? { ...product, name: newName, price: newPrice, images: newImages }
+          : product
+      ));
 
-    
+      setNewName('');
+      setNewPrice('');
+      setNewImages('');
+      setEditProductId(null);
+    } catch (error) {
+      console.error("Error", error);
+      alert("Lyckades inte uppdatera produkten.");
+    }
+  };
+
+  return (
+    <div className="product-list-container">
+      <h1>Product List</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <span>
+              {"ID: " + product.id + " NAME: " + product.name + " PRICE: " + product.price + " IMAGE: " + product.images}
+            </span>
+            {editProductId === product.id ? (
+              <div>
+                {}
+                <input
+                  type="text"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  placeholder="Nytt Namn"
+                />
+                <input
+                  type="number"
+                  value={newPrice}
+                  onChange={(e) => setNewPrice(e.target.value)}
+                  placeholder="Nytt Pris"
+                />
+                <input
+                  type="text"
+                  value={newImages}
+                  onChange={(e) => setNewImages(e.target.value)}
+                  placeholder="Ny bildaddress"
+                />
+                <button onClick={() => handleProductUpdate(product.id)}>Uppdatera Produkten</button>
+              </div>
+            ) : (
+              <button onClick={() => { 
+                //visar vad som redan finns där
+                setEditProductId(product.id);
+                setNewName(product.name);
+                setNewPrice(product.price);
+                setNewImages(product.images);
+              }}>Ändra</button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
+
 export default ProductList;
-
-
-

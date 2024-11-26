@@ -23,7 +23,7 @@
     padding: 20px;
     margin: 0;
     max-height: 600px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .product-list-container li {
