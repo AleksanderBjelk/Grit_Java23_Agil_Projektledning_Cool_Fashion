@@ -53,7 +53,7 @@ textarea {
 }
 
 .submitButton {
-    background-color: #4d6586;
+    background-color: #000000;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -65,7 +65,8 @@ textarea {
 }
 
 .submitButton:hover {
-    color: #c3b67b;
+    background-color: #7e7b6e;
+    transition: 0.3s
 }
 
 .buttonContainer{
