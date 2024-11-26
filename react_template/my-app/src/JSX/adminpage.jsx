@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../data/firebase";
+import CategoryForm from "./addcategories";
 import '../CSS/adminpage.css'
 
 const ProductForm = () => {
@@ -33,7 +34,7 @@ const ProductForm = () => {
     setImageUrls(imageUrls.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (e) => {
+  const handleProductSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -64,7 +65,8 @@ const ProductForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="product-form">
+    <div>
+    <form onSubmit={handleProductSubmit} className="product-form">
       <label>
         Name:
         <input
@@ -172,6 +174,8 @@ const ProductForm = () => {
 
       <button type="submit">Submit</button>
     </form>
+    <CategoryForm/>
+    </div>
   );
 };
 
