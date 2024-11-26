@@ -66,8 +66,9 @@ const ProductForm = () => {
   };
 
   return (
-    <div>
+    <div className="form-wrapper">
     <form onSubmit={handleProductSubmit} className="product-form">
+      <h3>ADD A PRODUCT</h3>
       <label>
         Name:
         <input
