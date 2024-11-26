@@ -10,12 +10,16 @@ const ProductCard = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, 'products'));
-      const productList = querySnapshot.docs.map(doc => ({
-        id: doc,
-        ...doc.data()
-      }));
-      setProducts(productList);
+      try {
+        const querySnapshot = await getDocs(collection(db, 'products'));
+        const productList = querySnapshot.docs.map(doc => ({
+          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the products anymore, will help down the line
+          ...doc.data()
+        }));
+        setProducts(productList);
+      } catch (error) {
+        console.error('Error fetching products: ', error);
+      }
     };
 
     fetchProducts();
