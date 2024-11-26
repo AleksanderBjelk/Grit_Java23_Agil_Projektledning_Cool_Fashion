@@ -4,6 +4,7 @@ import TestFooter from './JSX/footer.jsx';
 import TestNav from './JSX/nav.jsx';
 import TestContact from './JSX/contact.jsx';
 import TestAdmin from './JSX/adminpage.jsx';
+import ProductList from './JSX/ProductList.jsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<TestMain />} />
           <Route path="/contact" element={<TestContact />} /> {/* Contact-route */}
           <Route path="/adminpage" element={<TestAdmin />} />
+          <Route path="/productList" element={<ProductList />} />
         </Routes>
         <TestFooter />
       </div>

@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.product-list-container {
+    font-family: "Arial", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    height: 70vh;
+}
+
+.product-list-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    margin-bottom: 20px;
+}
+
+.product-list-container ul {
+    list-style-type: none;
+    padding: 20px;
+    margin: 0;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.product-list-container li {
+    background-color: #f4f4f4;
+    padding: 12px;
+    margin-right: 20px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.product-list-container li span {
+    font-size: .9rem;
+    color: #555;
+}
+
+.product-list-container button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-list-container button:hover {
+    background-color: #7e7b6e;
+    transform: scale(1.05);
+}
+
+.product-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.product-list-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.product-list-container::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+.product-list-container ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.product-list-container ul::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.product-list-container ul::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
