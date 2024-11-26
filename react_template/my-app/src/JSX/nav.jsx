@@ -7,7 +7,7 @@ function TestNav() {
     <nav className="nav">
       <div className="logoImage">
                 <a href="/">
-                    <img src="/favicon.png" alt="Cool Fashion Logo" />
+                    <img src="/logoLarger.png" alt="Cool Fashion Logo" />
                 </a>
             </div>
       {/*<h1 id="headertext">
