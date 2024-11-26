@@ -1,7 +1,9 @@
+//Step 3 in creating the cards
+
 import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../data/firebase.js'; // Adjust path as needed
+import { db } from '../data/firebase.js';
 import '../CSS/ProductCards.css';
 
 const ProductGridCarousel = () => {
@@ -11,12 +13,16 @@ const ProductGridCarousel = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, 'products'));
-      const productList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setProducts(productList);
+      try {
+        const querySnapshot = await getDocs(collection(db, 'products'));
+        const productList = querySnapshot.docs.map(doc => ({
+          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the products anymore, will help down the line
+          ...doc.data()
+        }));
+        setProducts(productList);
+      } catch (error) {
+        console.error('Error fetching products: ', error);
+      }
     };
 
     fetchProducts();
@@ -55,6 +61,7 @@ const ProductGridCarousel = () => {
               style={{ width: `${100 / products.length}%` }}
             >
               <ProductCardCarousel
+                id={product.id}
                 name={product.name}
                 price={product.price}
                 images={product.images}

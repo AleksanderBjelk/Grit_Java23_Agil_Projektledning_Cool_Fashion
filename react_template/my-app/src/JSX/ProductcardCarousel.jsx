@@ -1,7 +1,8 @@
+//Step 1 in creating the cards
 import React, { useState } from 'react';
 import '../CSS/ProductCards.css';
 
-const ProductCardCarousel = ({ name, price, images }) => {
+const ProductCardCarousel = ({ id, name, price, images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   //Change to next picture in card
   const handleNext = () => {
@@ -14,7 +15,6 @@ const ProductCardCarousel = ({ name, price, images }) => {
     );
   };
 
- //All of the data is taken from the products.json so we can changed whatever we want in there and also it would be easy to add things to the cards and make the app compatible with a database -- Future proofed!
   return (
     <div className="product-card">
       <div className="carousel">
@@ -36,6 +36,7 @@ const ProductCardCarousel = ({ name, price, images }) => {
           &gt;
         </button>
       </div>
+      <h3>{id}</h3> {{/* Mest för att kunna visa id sålänge, ska tas bort sen */}}
       <h3>{name}</h3> {/* Product Name */}
       <p>{price}</p> {/* Product Price */}
       <div>

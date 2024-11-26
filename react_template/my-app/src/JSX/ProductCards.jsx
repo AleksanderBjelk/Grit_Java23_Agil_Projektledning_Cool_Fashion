@@ -1,7 +1,9 @@
+//Step 2 in creating the cards
+
 import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../data/firebase.js'; // Adjust the path based on your project structure
+import { db } from '../data/firebase.js';
 
 const ProductCard = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +12,7 @@ const ProductCard = () => {
     const fetchProducts = async () => {
       const querySnapshot = await getDocs(collection(db, 'products'));
       const productList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
+        id: doc,
         ...doc.data()
       }));
       setProducts(productList);
