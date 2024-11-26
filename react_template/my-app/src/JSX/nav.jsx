@@ -5,12 +5,17 @@ import { faHeart, faShoppingCart, faUser, faMagnifyingGlass } from '@fortawesome
 function TestNav() {
   return (
     <nav className="nav">
-      <h1 id="headertext">
+      <div className="logoImage">
+                <a href="sale.com">
+                    <img src="/favicon.png" alt="Cool Fashion Logo" />
+                </a>
+            </div>
+      {/*<h1 id="headertext">
         <a href="/">
           <span className="cool">Cool</span>{' '}
           <span className="fashion">Fashion®</span>
         </a>
-      </h1>
+      </h1>*/}
       <ul>
         <li>
           <a href="/kepsar">Kepsar</a>

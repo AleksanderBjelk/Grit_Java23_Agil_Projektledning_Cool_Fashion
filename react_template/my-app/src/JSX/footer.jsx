@@ -12,7 +12,6 @@ function TestFooter() {
     return (
         <footer className="footer">
             {" "}
-            {/* Use <footer> for semantic HTML */}
             <div className="textFooter">
                 <span className="location">
                     <h3>Visit our locations</h3>
