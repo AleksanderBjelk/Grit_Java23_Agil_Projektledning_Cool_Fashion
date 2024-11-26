@@ -9,6 +9,7 @@ function TestContact() {
             <div className="mainContact">
                 <div className="formContainer">
                     <form action="" className="contactForm">
+                    <h2>Skriv till oss!</h2>
                         <div className="formGroup">
                             <label htmlFor="name">Name:</label>
                             <input
