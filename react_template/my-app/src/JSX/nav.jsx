@@ -18,7 +18,7 @@ function TestNav() {
       </h1>*/}
       <ul>
         <li>
-          <a href="/kepsar">Kepsar</a>
+          <a href="/resell">Second Hand</a>
           </li>
             <li><a href="/tjejer">Tjejer</a>
             <ul className="dropdown">
