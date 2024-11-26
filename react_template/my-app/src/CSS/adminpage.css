@@ -1,131 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-.form-wrapper {
-  display: flex;
-  gap: 30px; 
-  justify-content: space-between; 
-  margin-top: 30px;
-  width: 100%;
+.admin-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
-
-.product-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 0 auto;
-  font-family: "Bebas Neue";
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 500px;
-  margin-left: 25%;
+.admin-page-container > div {
+    flex: 1 1 30%;
+    min-width: 280px;
+    max-width: 700px;
+    /* padding: 20px; */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
-.product-form label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
+.admin-page-container h1 {
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.product-form input,
-.product-form select,
-.product-form button {
-  padding: 8px;
-  font-size: 16px;
-  font-family: "Bebas Neue";
+button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.product-form .submit-button {
-  background-color: #4d6586;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s ease;
+button:hover {
+    background-color: #7e7b6e;
 }
 
-.product-form .submit-button:hover {
-  color: #c3b67b;
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.category-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 400px;
-  margin: 0 auto;
-  font-family: "Bebas Neue";
-  margin-top: 30px;
-  margin-bottom: 30px;
+input:focus, select:focus, textarea:focus {
+    border-color: #7e7b6e;
+    outline: none;
 }
 
-.category-form label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-}
+@media screen and (max-width: 1024px) {
+    .admin-page-container {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.category-form input,
-.category-form select,
-.category-form button {
-  padding: 8px;
-  font-size: 16px;
-  font-family: "Bebas Neue";
-}
-
-.category-form select {
-  font-size: 16px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.category-form input {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.category-form button {
-  background-color: #4d6586;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.category-form button:hover {
-  color: #c3b67b;
-}
-
-.category-form h3 {
-  font-family: "Bebas Neue";
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.product-form h3 {
-  font-family: "Bebas Neue";
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.category-form .submit-button {
-  padding: 10px 20px;
-  background-color: #4d6586;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.category-form .submit-button:hover {
-  background-color: #3b4b63;
+    .admin-page-container > div {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
 }

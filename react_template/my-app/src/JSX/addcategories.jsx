@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../data/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import '../CSS/adminpage.css'
+import '../CSS/productForm.css'
 
 const AddCategory = () => {
   const [mainCategories, setMainCategories] = useState([]);
