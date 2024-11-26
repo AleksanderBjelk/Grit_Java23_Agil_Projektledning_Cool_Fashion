@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../data/firebase";
 import CategoryForm from "./addcategories";
+import ProductList from "./ProductList";
 import '../CSS/adminpage.css'
 
 const ProductForm = () => {
@@ -175,6 +176,7 @@ const ProductForm = () => {
       <button type="submit" className="submit-button">Submit </button>
     </form>
     <CategoryForm/>
+    <ProductList/>
     </div>
   );
 };
