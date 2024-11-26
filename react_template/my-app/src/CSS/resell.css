@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* resell.css */
+.header {
+    color: #000;
+    font-size: larger;
+    font-family: 'Bebas Neue', sans-serif;
+    padding-left: 2%;
+}
+
+.cards {
+    display: block; 
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamic grid */
+    gap: 20px; 
+    padding: 40px;
+    margin: 0;
+}
+
+.product-card {
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.cardButton {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: visibility 0s, opacity 0.5s ease, max-height 0.5s ease;
+    margin-bottom: 5px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    border: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.product-card:hover .cardButton {
+    visibility: visible;
+    opacity: 1;
+    max-height: 100px;
+}
+
+
