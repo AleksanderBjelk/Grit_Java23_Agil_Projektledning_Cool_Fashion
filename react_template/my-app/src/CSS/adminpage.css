@@ -1,49 +1,131 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+.form-wrapper {
+  display: flex;
+  gap: 30px; 
+  justify-content: space-between; 
+  margin-top: 30px;
+  width: 100%;
+}
+
+
 .product-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 400px;
-    margin: 0 auto;
-    font-family: "Bebas Neue";
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+  font-family: "Bebas Neue";
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 500px;
+  margin-left: 25%;
+}
 
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  
-  .product-form label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-  }
-  
-  .product-form input,
-  .product-form select,
-  .product-form button {
-    padding: 8px;
-    font-size: 16px;
-    font-family: "Bebas Neue";
-  }
-  
-  .image-preview {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .submit-button {
-    background-color: #4d6586;
-    color: white;
+.product-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
 
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .submit-button:hover {
-    color: #c3b67b;
-  }
-  
+.product-form input,
+.product-form select,
+.product-form button {
+  padding: 8px;
+  font-size: 16px;
+  font-family: "Bebas Neue";
+}
+
+.product-form .submit-button {
+  background-color: #4d6586;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.product-form .submit-button:hover {
+  color: #c3b67b;
+}
+
+.category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: "Bebas Neue";
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.category-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.category-form input,
+.category-form select,
+.category-form button {
+  padding: 8px;
+  font-size: 16px;
+  font-family: "Bebas Neue";
+}
+
+.category-form select {
+  font-size: 16px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.category-form input {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.category-form button {
+  background-color: #4d6586;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.category-form button:hover {
+  color: #c3b67b;
+}
+
+.category-form h3 {
+  font-family: "Bebas Neue";
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-form h3 {
+  font-family: "Bebas Neue";
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-form .submit-button {
+  padding: 10px 20px;
+  background-color: #4d6586;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-form .submit-button:hover {
+  background-color: #3b4b63;
+}

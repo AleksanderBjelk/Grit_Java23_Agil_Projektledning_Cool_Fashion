@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../data/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import '../CSS/adminpage.css'
 
 const AddCategory = () => {
   const [mainCategories, setMainCategories] = useState([]);
@@ -82,9 +83,9 @@ const handleAddCategory = async (e) => {
 };
 
   return (
-    <div>
+    <div className="form-wrapper">
+      <form onSubmit={handleAddCategory} className="category-form ">
       <h3>Add a Category</h3>
-      <form onSubmit={handleAddCategory}>
         <label>
           Category Name:
           <input
