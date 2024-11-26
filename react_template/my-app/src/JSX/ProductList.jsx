@@ -63,8 +63,9 @@ function ProductList() {
         {products.map((product) => (
           <li key={product.id}>
             <span>
-              {"ID: " + product.id + " NAME: " + product.name + " PRICE: " + product.price + " IMAGE: " + product.images}
-            </span>
+            {product.name} <br />
+            SEK: {product.price}
+                        </span>
             {editProductId === product.id ? (
               <div>
                 {}
