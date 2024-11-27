@@ -1,4 +1,5 @@
 //Step 2 in creating the cards
+
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
@@ -22,7 +23,7 @@ const ProductCard = () => {
 
             const querySnapshot = await getDocs(q);
             const productList = querySnapshot.docs.map((doc) => ({
-          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the seconhand products anymore, will help down the line
+          id: doc.id, 
           ...doc.data()
         }));
         setProducts(productList);
