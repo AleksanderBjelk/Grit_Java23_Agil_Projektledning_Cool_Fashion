@@ -29,16 +29,17 @@ const ProductGridCarousel = () => {
   }, []);
 
   const handleNext = () => {
-    setCurrentIndex(prevIndex =>
-      prevIndex + 1 >= products.length - cardsToShow + 1 ? 0 : prevIndex + 1
+    setCurrentIndex((prevIndex) =>
+        prevIndex + 1 >= products.length - cardsToShow + 1 ? 0 : prevIndex + 1
     );
-  };
+};
 
-  const handlePrev = () => {
-    setCurrentIndex(prevIndex =>
-      prevIndex - 1 < 0 ? products.length - cardsToShow : prevIndex - 1
+const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+        prevIndex - 1 < 0 ? products.length - cardsToShow : prevIndex - 1
     );
-  };
+};
+  
 
   return (
     <div className="product-carousel-container">
@@ -49,16 +50,15 @@ const ProductGridCarousel = () => {
         <div
           className="carousel-track"
           style={{
-            transform: `translateX(-${currentIndex * (34 / cardsToShow)}%)`,
+            transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
             transition: 'transform 0.5s ease-in-out',
-            width: `${products.length * (100 / cardsToShow)}%`
-          }}
+          }}          
         >
           {products.map(product => (
             <div
               key={product.id}
               className="product-card-wrapper"
-              style={{ width: `${100 / products.length}%` }}
+              style={{ width: `${100 / cardsToShow}%` }}
             >
               <ProductCardCarousel
                 id={product.id}

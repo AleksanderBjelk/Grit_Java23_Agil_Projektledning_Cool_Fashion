@@ -1,5 +1,5 @@
 .product-card {
-    margin: 20px;
+    margin: 0;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -112,8 +112,9 @@
   }
   
   .product-card-wrapper {
-    flex: 0 0 auto;
+    flex: 0 0 25%; 
     box-sizing: border-box;
+    padding: 10px;
   }
   
   .prev-btn,
