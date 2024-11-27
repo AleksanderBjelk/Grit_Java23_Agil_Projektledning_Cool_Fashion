@@ -7,6 +7,7 @@ import Adminpage from './JSX/adminpage.jsx';
 import ProductList from './JSX/ProductList.jsx';
 import ResellPage from "./JSX/resellpage.jsx";
 import Login from "./JSX/Login.jsx";
+import ProductCard from "./JSX/ProductCards.jsx";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/productList" element={<ProductList />} />
           <Route path="/resell" element={<ResellPage />} />
           <Route path="/login" element={<Login />} />
-
+          <Route path="/category/:categoryId" element={<ProductCard />} />
         </Routes>
         <TestFooter />
       </div>

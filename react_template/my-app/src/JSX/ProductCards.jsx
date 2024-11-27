@@ -1,19 +1,28 @@
 //Step 2 in creating the cards
-
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../data/firebase.js';
 
 const ProductCard = () => {
   const [products, setProducts] = useState([]);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productList = querySnapshot.docs.map(doc => ({
-          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the products anymore, will help down the line
+        try {
+            let q = query(collection(db, "products"));
+            if (categoryId) {
+                q = query(
+                    collection(db, "products"),
+                    where("mainCategory", "==", categoryId) // Adjust field as needed
+                );
+            }
+
+            const querySnapshot = await getDocs(q);
+            const productList = querySnapshot.docs.map((doc) => ({
+          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the seconhand products anymore, will help down the line
           ...doc.data()
         }));
         setProducts(productList);
@@ -23,7 +32,7 @@ const ProductCard = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="product-grid">
