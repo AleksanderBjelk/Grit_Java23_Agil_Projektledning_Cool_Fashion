@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import { db } from "../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function TestNav() {
     const [mainCategories, setMainCategories] = useState([]);
@@ -32,6 +33,12 @@ function TestNav() {
 
         fetchMainCategories();
     }, []);
+
+      const navigate = useNavigate();
+    
+      const handleUserIconClick = () => {
+        navigate('/login');
+      };
 
     return (
         <nav className="nav">
@@ -73,10 +80,12 @@ function TestNav() {
                 ))}
             </ul>
             <div className="topRightIcons">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <div><FontAwesomeIcon icon={faMagnifyingGlass} /></div>
+                <div onClick={handleUserIconClick} style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faUser} />
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faShoppingCart} />
+                </div>
+                <div><FontAwesomeIcon icon={faHeart} /></div>
+                <div><FontAwesomeIcon icon={faShoppingCart} /></div>
             </div>
         </nav>
     );
