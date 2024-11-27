@@ -1,62 +1,85 @@
-import '../CSS/nav.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faShoppingCart, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import "../CSS/nav.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faHeart,
+    faShoppingCart,
+    faUser,
+    faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import { db } from "../data/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function TestNav() {
-  return (
-    <nav className="nav">
-      <div className="logoImage">
+    const [mainCategories, setMainCategories] = useState([]);
+
+    //hämtar huvudkategorier från Firebase
+    useEffect(() => {
+        const fetchMainCategories = async () => {
+            try {
+                const categoriesSnapshot = await getDocs(
+                    collection(db, "categories")
+                );
+                const mainCategoriesData = categoriesSnapshot.docs
+                    .map((doc) => ({ id: doc.id, ...doc.data() }))
+                    .filter((category) => category.type === "mainCategory");
+
+                setMainCategories(mainCategoriesData);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+
+        fetchMainCategories();
+    }, []);
+
+    return (
+        <nav className="nav">
+            <div className="logoImage">
                 <a href="/">
                     <img src="/logoLarger.png" alt="Cool Fashion Logo" />
                 </a>
             </div>
-      {/*<h1 id="headertext">
-        <a href="/">
-          <span className="cool">Cool</span>{' '}
-          <span className="fashion">Fashion®</span>
-        </a>
-      </h1>*/}
-      <ul>
-        <li>
-          <a href="/resell">Second Hand</a>
-          </li>
-            <li><a href="/tjejer">Tjejer</a>
-            <ul className="dropdown">
-            <li><a href="/jeans">Jeans</a></li>
-            <li><a href="/shirts">Shirts</a></li>
-            <li><a href="/hoodies">Hoodies</a></li>
-          </ul></li>
-            <li><a href="/killar">Killar</a>
-            <ul className="dropdown">
-            <li><a href="/jeans">Jeans</a></li>
-            <li><a href="/shirts">Shirts</a></li>
-            <li><a href="/hoodies">Hoodies</a></li>
-          </ul></li>
-            <li><a href="/unisex">Unisex</a>
-            <ul className="dropdown">
-            <li><a href="/jeans">Jeans</a></li>
-            <li><a href="/shirts">Shirts</a></li>
-            <li><a href="/hoodies">Hoodies</a></li>
-          </ul></li>
-            <li><a href="/barn">Barn</a>
-            <ul className="dropdown">
-            <li><a href="/jeans">Jeans</a></li>
-            <li><a href="/shirts">Shirts</a></li>
-            <li><a href="/hoodies">Hoodies</a></li>
-          </ul>
-           </li>
-          </ul>
-<div className="topRightIcons">
-<FontAwesomeIcon icon={faMagnifyingGlass} />
-          <FontAwesomeIcon icon={faUser} />
-          <FontAwesomeIcon icon={faHeart} />
-          <FontAwesomeIcon icon={faShoppingCart} />
-</div>
-         
-
-
-      </nav>
-  );
+            <ul>
+                <li>
+                    <a href="/resell">Second Hand</a>
+                </li>
+                {mainCategories.map((mainCategory) => (
+                    <li key={mainCategory.id}>
+                        <a href={`/category/${mainCategory.id}`}>
+                            {mainCategory.name}
+                        </a>
+                        {/* Statiska dropdownmenyer */}
+                        <ul className="dropdown">
+                            <li>
+                                <a href={`/category/${mainCategory.id}/jeans`}>
+                                    Jeans
+                                </a>
+                            </li>
+                            <li>
+                                <a href={`/category/${mainCategory.id}/shirts`}>
+                                    Shirts
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href={`/category/${mainCategory.id}/hoodies`}
+                                >
+                                    Hoodies
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                ))}
+            </ul>
+            <div className="topRightIcons">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <FontAwesomeIcon icon={faUser} />
+                <FontAwesomeIcon icon={faHeart} />
+                <FontAwesomeIcon icon={faShoppingCart} />
+            </div>
+        </nav>
+    );
 }
 
 export default TestNav;
