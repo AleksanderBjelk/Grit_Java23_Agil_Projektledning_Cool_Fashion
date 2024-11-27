@@ -13,32 +13,34 @@ import { useNavigate } from "react-router-dom";
 
 function TestNav() {
     const [mainCategories, setMainCategories] = useState([]);
+    const [intermediateCategories, setIntermediateCategories] = useState([]);
+    const [subCategories, setSubCategories] = useState([]);
 
-    //hämtar huvudkategorier från Firebase
+    //hämtar mainC, intermediateC kategorier och subC från Firebase
     useEffect(() => {
-        const fetchMainCategories = async () => {
+        const fetchCategories = async () => {
             try {
-                const categoriesSnapshot = await getDocs(
-                    collection(db, "categories")
-                );
-                const mainCategoriesData = categoriesSnapshot.docs
-                    .map((doc) => ({ id: doc.id, ...doc.data() }))
-                    .filter((category) => category.type === "mainCategory");
+                const categoriesSnapshot = await getDocs(collection(db, "categories"));
+                const categoriesData = categoriesSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
 
-                setMainCategories(mainCategoriesData);
+                setMainCategories(categoriesData.filter((category) => category.type === "mainCategory"));
+                setIntermediateCategories(categoriesData.filter((category) => category.type === "intermediateCategory"));
+                setSubCategories(categoriesData.filter((category) => category.type === "subCategory"));
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
         };
 
-        fetchMainCategories();
+        fetchCategories();
     }, []);
 
-      const navigate = useNavigate();
-    
-      const handleUserIconClick = () => {
+    const navigate = useNavigate();
+    const handleUserIconClick = () => {
         navigate('/login');
-      };
+    };
 
     return (
         <nav className="nav">
@@ -56,25 +58,32 @@ function TestNav() {
                         <a href={`/category/${mainCategory.id}`}>
                             {mainCategory.name}
                         </a>
-                        {/* Statiska dropdownmenyer */}
+                        {/* Dynamisk dropdown för interC  */}
                         <ul className="dropdown">
-                            <li>
-                                <a href={`/category/${mainCategory.id}/jeans`}>
-                                    Jeans
-                                </a>
-                            </li>
-                            <li>
-                                <a href={`/category/${mainCategory.id}/shirts`}>
-                                    Shirts
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href={`/category/${mainCategory.id}/hoodies`}
-                                >
-                                    Hoodies
-                                </a>
-                            </li>
+                            {intermediateCategories
+                                .filter((intermediateCategory) => intermediateCategory.mainCategoryId === mainCategory.id)
+                                .map((intermediateCategory) => (
+                                    <li key={intermediateCategory.id} className="intermediate-category">
+                                        <a href={`/category/${mainCategory.id}/${intermediateCategory.id}`}>
+                                            {intermediateCategory.name}
+                                        </a>
+                                        {/* subC visas när man hovrar över interC */}
+                                        <ul className="sub-dropdown">
+                                            {subCategories
+                                                .filter(
+                                                    (subCategory) =>
+                                                        subCategory.intermediateCategoryId === intermediateCategory.id
+                                                )
+                                                .map((subCategory) => (
+                                                    <li key={subCategory.id}>
+                                                        <a href={`/category/${mainCategory.id}/${intermediateCategory.id}/${subCategory.id}`}>
+                                                            {subCategory.name}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    </li>
+                                ))}
                         </ul>
                     </li>
                 ))}
@@ -82,7 +91,7 @@ function TestNav() {
             <div className="topRightIcons">
                 <div><FontAwesomeIcon icon={faMagnifyingGlass} /></div>
                 <div onClick={handleUserIconClick} style={{ cursor: 'pointer' }}>
-                <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} />
                 </div>
                 <div><FontAwesomeIcon icon={faHeart} /></div>
                 <div><FontAwesomeIcon icon={faShoppingCart} /></div>
