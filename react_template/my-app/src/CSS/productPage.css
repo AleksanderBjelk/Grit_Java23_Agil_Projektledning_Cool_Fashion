@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.product-page {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: "Bebas Neue";
+}
+
+.product-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #333;
+    text-align: center;
+}
+
+
+.product-images {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; 
+    margin-bottom: 20px;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 350px; 
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+    text-align: center;
+}
+
+.product-page .product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.product-page .product-actions button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.product-page .product-actions button:hover {
+    background-color: #5c5c5c;
+}

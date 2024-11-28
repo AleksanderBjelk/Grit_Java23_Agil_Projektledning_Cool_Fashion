@@ -11,11 +11,17 @@ import { db } from "../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+//normalisera texten för att hantera sökningar med eller utan specialtecken (t.ex. "Levi's" och "Levis")
+const normalizeText = (text) => {
+    return text.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+};
+
 function TestNav() {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
     const [searchQuery, setSearchQuery] = useState(""); //för att hålla koll på vad användaren skriver
+    const [products, setProducts] = useState([]);
 
     //hämtar kategorier från Firebase
     useEffect(() => {
@@ -38,6 +44,23 @@ function TestNav() {
         fetchCategories();
     }, []);
 
+    useEffect(() => {
+      const fetchProducts = async () => {
+          try {
+              const productsSnapshot = await getDocs(collection(db, "products"));
+              const productsData = productsSnapshot.docs.map((doc) => ({
+                  id: doc.id,
+                  ...doc.data(),
+              }));
+              setProducts(productsData);
+          } catch (error) {
+              console.error("Error fetching products:", error);
+          }
+      };
+  
+      fetchProducts();
+  }, []);
+
     const navigate = useNavigate();
 
     //funktion för att hantera sök
@@ -46,32 +69,40 @@ function TestNav() {
     };
 
     const handleSearchSubmit = (event) => {
-        event.preventDefault();
-
-        //sök i mainCategories, interC och subC
-        const matchedMainCategory = mainCategories.find((category) => 
-            category.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        const matchedIntermediateCategory = intermediateCategories.find((category) => 
-            category.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        const matchedSubCategory = subCategories.find((category) => 
-            category.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        //navigera till relevant kategori baserat på resultatet
-        if (matchedMainCategory) {
-            navigate(`/category/${matchedMainCategory.id}`);
-        } else if (matchedIntermediateCategory) {
-            navigate(`/category/${matchedIntermediateCategory.mainCategoryId}/${matchedIntermediateCategory.id}`);
-        } else if (matchedSubCategory) {
-            navigate(`/category/${matchedSubCategory.mainCategoryId}/${matchedSubCategory.intermediateCategoryId}/${matchedSubCategory.id}`);
-        } else {
-            alert("Ingen matchande kategori hittades");
-        }
-    };
+      event.preventDefault();
+  
+      const normalizedSearchQuery = normalizeText(searchQuery); 
+  
+      //sök i mainCategories, interC, subC och products
+      const matchedMainCategory = mainCategories.find((category) =>
+          normalizeText(category.name).includes(normalizedSearchQuery)
+      );
+  
+      const matchedIntermediateCategory = intermediateCategories.find((category) =>
+          normalizeText(category.name).includes(normalizedSearchQuery)
+      );
+  
+      const matchedSubCategory = subCategories.find((category) =>
+          normalizeText(category.name).includes(normalizedSearchQuery)
+      );
+  
+      const matchedProduct = products.find((product) =>
+          normalizeText(product.name).includes(normalizedSearchQuery)
+      );
+  
+      //navigera till relevant kategori eller produkt baserat på resultatet
+      if (matchedProduct) {
+          navigate(`/product/${matchedProduct.id}`); 
+      } else if (matchedMainCategory) {
+          navigate(`/category/${matchedMainCategory.id}`);
+      } else if (matchedIntermediateCategory) {
+          navigate(`/category/${matchedIntermediateCategory.mainCategoryId}/${matchedIntermediateCategory.id}`);
+      } else if (matchedSubCategory) {
+          navigate(`/category/${matchedSubCategory.mainCategoryId}/${matchedSubCategory.intermediateCategoryId}/${matchedSubCategory.id}`);
+      } else {
+          alert("Ingen matchande produkt eller kategori hittades");
+      }
+  };
 
     const handleUserIconClick = () => {
         navigate('/login');

@@ -9,6 +9,7 @@ import ResellPage from "./JSX/resellpage.jsx";
 import Login from "./JSX/Login.jsx";
 import ProductCard from "./JSX/ProductCards.jsx";
 import MyPages from "./JSX/MyPages.jsx"
+import ProductPage from "./JSX/ProductPage.jsx"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/category/:categoryId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId/:subId" element={<ProductCard />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
         <TestFooter />
       </div>
