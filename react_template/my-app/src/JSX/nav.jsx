@@ -15,8 +15,9 @@ function TestNav() {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
+    const [searchQuery, setSearchQuery] = useState(""); //för att hålla koll på vad användaren skriver
 
-    //hämtar mainC, intermediateC kategorier och subC från Firebase
+    //hämtar kategorier från Firebase
     useEffect(() => {
         const fetchCategories = async () => {
             try {
@@ -38,6 +39,40 @@ function TestNav() {
     }, []);
 
     const navigate = useNavigate();
+
+    //funktion för att hantera sök
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value); //uppdatera sökfrågan vid varje tangenttryckning
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+
+        //sök i mainCategories, interC och subC
+        const matchedMainCategory = mainCategories.find((category) => 
+            category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        const matchedIntermediateCategory = intermediateCategories.find((category) => 
+            category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        const matchedSubCategory = subCategories.find((category) => 
+            category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        //navigera till relevant kategori baserat på resultatet
+        if (matchedMainCategory) {
+            navigate(`/category/${matchedMainCategory.id}`);
+        } else if (matchedIntermediateCategory) {
+            navigate(`/category/${matchedIntermediateCategory.mainCategoryId}/${matchedIntermediateCategory.id}`);
+        } else if (matchedSubCategory) {
+            navigate(`/category/${matchedSubCategory.mainCategoryId}/${matchedSubCategory.intermediateCategoryId}/${matchedSubCategory.id}`);
+        } else {
+            alert("Ingen matchande kategori hittades");
+        }
+    };
+
     const handleUserIconClick = () => {
         navigate('/login');
     };
@@ -58,7 +93,6 @@ function TestNav() {
                         <a href={`/category/${mainCategory.id}`}>
                             {mainCategory.name}
                         </a>
-                        {/* Dynamisk dropdown för interC  */}
                         <ul className="dropdown">
                             {intermediateCategories
                                 .filter((intermediateCategory) => intermediateCategory.mainCategoryId === mainCategory.id)
@@ -67,7 +101,6 @@ function TestNav() {
                                         <a href={`/category/${mainCategory.id}/${intermediateCategory.id}`}>
                                             {intermediateCategory.name}
                                         </a>
-                                        {/* subC visas när man hovrar över interC */}
                                         <ul className="sub-dropdown">
                                             {subCategories
                                                 .filter(
@@ -89,7 +122,17 @@ function TestNav() {
                 ))}
             </ul>
             <div className="topRightIcons">
-                <div><FontAwesomeIcon icon={faMagnifyingGlass} /></div>
+                <form onSubmit={handleSearchSubmit}>
+                    <div className="search-container">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        <input 
+                            type="text" 
+                            placeholder="Sök..." 
+                            value={searchQuery} 
+                            onChange={handleSearch} //uppdatera sökquery vid inmatning
+                        />
+                    </div>
+                </form>
                 <div onClick={handleUserIconClick} style={{ cursor: 'pointer' }}>
                     <FontAwesomeIcon icon={faUser} />
                 </div>

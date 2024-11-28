@@ -83,4 +83,14 @@
   .product-list-container ul::-webkit-scrollbar-thumb:hover {
     background: #888;
   }
+
+  /* Searchbar CSS */
+
+  .searchSymbol {
+    gap: 1rem;
+    color: white;
+    font-size: 1rem;
+  }
+
+  
   

@@ -1,14 +1,18 @@
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../data/firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import '../CSS/productList.css';
 
 function ProductList() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); //All products from the database
+  const [productsToShow, setProductsToShow] = useState([]); //Products filtered by search
   const [editProductId, setEditProductId] = useState(null);
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [newImages, setNewImages] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,10 +25,26 @@ function ProductList() {
         images: doc.data().images,
       }));
       setProducts(productList);
+      setProductsToShow(productList);
     };
 
     fetchProducts();
   }, []);
+
+  const deleteFromDb = async (id) => {
+    try {
+      const productDoc = doc(db, "products", id);
+      await deleteDoc(productDoc); //Delete the document
+
+      const updatedProducts = products.filter(product => product.id !== id);
+      setProducts(updatedProducts); //We need to set both here as the "products" need to be up to date with db
+      setProductsToShow(updatedProducts);
+      alert("Produkten har tagits bort.");
+    } catch (error) {
+      console.error("Error deleting product: ", error);
+      alert("Lyckades inte ta bort produkten.");
+    }
+  };
 
   const handleProductUpdate = async (id) => {
     if (!newName || !newPrice || !newImages || isNaN(newPrice) || newPrice <= 0) {
@@ -40,35 +60,63 @@ function ProductList() {
         images: newImages,
       });
 
-      setProducts(products.map((product) =>
+      const updatedProducts = products.map((product) =>
         product.id === id
-          ? { ...product, name: newName, price: newPrice, images: newImages }
+          ? { ...product, name: newName, price: parseFloat(newPrice), images: newImages }
           : product
-      ));
+      );
 
+      setProducts(updatedProducts);
+      setProductsToShow(updatedProducts);
       setNewName('');
       setNewPrice('');
       setNewImages('');
       setEditProductId(null);
+      alert("Produkten har uppdaterats.");
     } catch (error) {
       console.error("Error", error);
       alert("Lyckades inte uppdatera produkten.");
     }
   };
 
+  //Handle search input changes
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (!query) {
+      //If the search is cleared, reset the display
+      setProductsToShow(products);
+    } else {
+      //Filter the products based on the search query
+      const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(query)
+      );
+      setProductsToShow(filteredProducts);
+    }
+  };
+
   return (
     <div className="product-list-container">
       <h1>Product List</h1>
+      <div className="search-container">
+        <FontAwesomeIcon className="searchSymbol" icon={faMagnifyingGlass} />
+        <input
+          type="text"
+          placeholder="Sök..."
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </div>
       <ul>
-        {products.map((product) => (
+        {productsToShow.map((product) => (
           <li key={product.id}>
             <span>
-            {product.name} <br />
-            SEK: {product.price}
-                        </span>
+              {product.name} <br />
+              SEK: {product.price}
+            </span>
             {editProductId === product.id ? (
               <div>
-                {}
                 <input
                   type="text"
                   value={newName}
@@ -90,13 +138,15 @@ function ProductList() {
                 <button onClick={() => handleProductUpdate(product.id)}>Uppdatera Produkten</button>
               </div>
             ) : (
-              <button onClick={() => { 
-                //visar vad som redan finns där
-                setEditProductId(product.id);
-                setNewName(product.name);
-                setNewPrice(product.price);
-                setNewImages(product.images);
-              }}>Ändra</button>
+              <div>
+                <button onClick={() => {
+                  setEditProductId(product.id);
+                  setNewName(product.name);
+                  setNewPrice(product.price);
+                  setNewImages(product.images);
+                }}>Ändra</button>
+                <button onClick={() => deleteFromDb(product.id)}>Radera</button>
+              </div>
             )}
           </li>
         ))}

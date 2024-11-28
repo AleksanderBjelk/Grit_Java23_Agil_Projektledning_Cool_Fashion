@@ -2,31 +2,40 @@
 
 import React, { useEffect, useState } from 'react';
 import ProductCardCarousel from './ProductcardCarousel.jsx';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where, Timestamp } from "firebase/firestore";
 import { db } from '../data/firebase.js';
 import '../CSS/ProductCards.css';
 
 const ProductGridCarousel = () => {
   const [products, setProducts] = useState([]);
-  const cardsToShow = 4; // Number of visible cards at a time
+  const cardsToShow = 4; //Number of visible cards at a time
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productList = querySnapshot.docs.map(doc => ({
-          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the products anymore, will help down the line
-          ...doc.data()
-        }));
-        setProducts(productList);
-      } catch (error) {
-        console.error('Error fetching products: ', error);
-      }
+        try {
+            //Calculate the timestamp for one week ago
+            const oneWeekAgo = Timestamp.fromDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000));
+
+            let q = query(
+                collection(db, "products"),
+                where("createdAt", ">=", oneWeekAgo) //Filter for recent products
+            );
+
+            const querySnapshot = await getDocs(q);
+            const productList = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setProducts(productList);
+        } catch (error) {
+            console.error("Error fetching products: ", error);
+        }
     };
 
     fetchProducts();
-  }, []);
+}, [setProducts]);
+
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
