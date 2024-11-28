@@ -11,31 +11,47 @@ import { db } from "../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-//normalisera texten för att hantera sökningar med eller utan specialtecken (t.ex. "Levi's" och "Levis")
 const normalizeText = (text) => {
-    return text.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s]|_/g, "")
+        .replace(/\s+/g, " ");
 };
 
 function TestNav() {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); //för att hålla koll på vad användaren skriver
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filteredResults, setFilteredResults] = useState([]);
     const [products, setProducts] = useState([]);
 
-    //hämtar kategorier från Firebase
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const categoriesSnapshot = await getDocs(collection(db, "categories"));
+                const categoriesSnapshot = await getDocs(
+                    collection(db, "categories")
+                );
                 const categoriesData = categoriesSnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 }));
 
-                setMainCategories(categoriesData.filter((category) => category.type === "mainCategory"));
-                setIntermediateCategories(categoriesData.filter((category) => category.type === "intermediateCategory"));
-                setSubCategories(categoriesData.filter((category) => category.type === "subCategory"));
+                setMainCategories(
+                    categoriesData.filter(
+                        (category) => category.type === "mainCategory"
+                    )
+                );
+                setIntermediateCategories(
+                    categoriesData.filter(
+                        (category) => category.type === "intermediateCategory"
+                    )
+                );
+                setSubCategories(
+                    categoriesData.filter(
+                        (category) => category.type === "subCategory"
+                    )
+                );
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
@@ -45,67 +61,104 @@ function TestNav() {
     }, []);
 
     useEffect(() => {
-      const fetchProducts = async () => {
-          try {
-              const productsSnapshot = await getDocs(collection(db, "products"));
-              const productsData = productsSnapshot.docs.map((doc) => ({
-                  id: doc.id,
-                  ...doc.data(),
-              }));
-              setProducts(productsData);
-          } catch (error) {
-              console.error("Error fetching products:", error);
-          }
-      };
-  
-      fetchProducts();
-  }, []);
+        const fetchProducts = async () => {
+            try {
+                const productsSnapshot = await getDocs(
+                    collection(db, "products")
+                );
+                const productsData = productsSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setProducts(productsData);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     const navigate = useNavigate();
 
-    //funktion för att hantera sök
     const handleSearch = (event) => {
-        setSearchQuery(event.target.value); //uppdatera sökfrågan vid varje tangenttryckning
+        const query = event.target.value;
+        setSearchQuery(query);
+
+        if (query.trim() === "") {
+            setFilteredResults([]);
+            return;
+        }
+
+        const normalizedQuery = normalizeText(query);
+
+        const filteredProducts = products.filter((product) =>
+            normalizeText(product.name).includes(normalizedQuery)
+        );
+        const filteredMainCategories = mainCategories.filter((category) =>
+            normalizeText(category.name).includes(normalizedQuery)
+        );
+        const filteredIntermediateCategories = intermediateCategories.filter(
+            (category) => normalizeText(category.name).includes(normalizedQuery)
+        );
+        const filteredSubCategories = subCategories.filter((category) =>
+            normalizeText(category.name).includes(normalizedQuery)
+        );
+
+        const combinedResults = [
+            ...filteredProducts,
+            ...filteredMainCategories,
+            ...filteredIntermediateCategories,
+            ...filteredSubCategories,
+        ];
+        setFilteredResults(combinedResults.slice(0, 5));
     };
 
     const handleSearchSubmit = (event) => {
-      event.preventDefault();
-  
-      const normalizedSearchQuery = normalizeText(searchQuery); 
-  
-      //sök i mainCategories, interC, subC och products
-      const matchedMainCategory = mainCategories.find((category) =>
-          normalizeText(category.name).includes(normalizedSearchQuery)
-      );
-  
-      const matchedIntermediateCategory = intermediateCategories.find((category) =>
-          normalizeText(category.name).includes(normalizedSearchQuery)
-      );
-  
-      const matchedSubCategory = subCategories.find((category) =>
-          normalizeText(category.name).includes(normalizedSearchQuery)
-      );
-  
-      const matchedProduct = products.find((product) =>
-          normalizeText(product.name).includes(normalizedSearchQuery)
-      );
-  
-      //navigera till relevant kategori eller produkt baserat på resultatet
-      if (matchedProduct) {
-          navigate(`/product/${matchedProduct.id}`); 
-      } else if (matchedMainCategory) {
-          navigate(`/category/${matchedMainCategory.id}`);
-      } else if (matchedIntermediateCategory) {
-          navigate(`/category/${matchedIntermediateCategory.mainCategoryId}/${matchedIntermediateCategory.id}`);
-      } else if (matchedSubCategory) {
-          navigate(`/category/${matchedSubCategory.mainCategoryId}/${matchedSubCategory.intermediateCategoryId}/${matchedSubCategory.id}`);
-      } else {
-          alert("Ingen matchande produkt eller kategori hittades");
-      }
-  };
+        event.preventDefault();
+        const normalizedSearchQuery = normalizeText(searchQuery);
+
+        const matchedProduct = products.find((product) =>
+            normalizeText(product.name).includes(normalizedSearchQuery)
+        );
+        console.log("Matched Product:", matchedProduct);
+
+        const matchedCategory = [
+            ...mainCategories,
+            ...intermediateCategories,
+            ...subCategories,
+        ].find((category) =>
+            normalizeText(category.name).includes(normalizedSearchQuery)
+        );
+        console.log("Matched Category:", matchedCategory);
+
+        if (matchedProduct) {
+            navigate(`/product/${matchedProduct.id}`);
+        } else if (matchedCategory) {
+            if (matchedCategory.type === "mainCategory") {
+                navigate(`/category/${matchedCategory.id}`);
+            } else if (matchedCategory.type === "intermediateCategory") {
+                navigate(
+                    `/category/${matchedCategory.mainCategoryId}/${matchedCategory.id}`
+                );
+            } else if (matchedCategory.type === "subCategory") {
+                navigate(
+                    `/category/${matchedCategory.mainCategoryId}/${matchedCategory.intermediateCategoryId}/${matchedCategory.id}`
+                );
+            }
+        } else {
+            alert("No matching products or categories found.");
+        }
+    };
+
+    const handleDropdownSelect = (item) => {
+        setSearchQuery(item.name);
+        setFilteredResults([]);
+        handleSearchSubmit({ preventDefault: () => {} });
+    };
 
     const handleUserIconClick = () => {
-        navigate('/login');
+        navigate("/login");
     };
 
     return (
@@ -126,21 +179,33 @@ function TestNav() {
                         </a>
                         <ul className="dropdown">
                             {intermediateCategories
-                                .filter((intermediateCategory) => intermediateCategory.mainCategoryId === mainCategory.id)
+                                .filter(
+                                    (intermediateCategory) =>
+                                        intermediateCategory.mainCategoryId ===
+                                        mainCategory.id
+                                )
                                 .map((intermediateCategory) => (
-                                    <li key={intermediateCategory.id} className="intermediate-category">
-                                        <a href={`/category/${mainCategory.id}/${intermediateCategory.id}`}>
+                                    <li
+                                        key={intermediateCategory.id}
+                                        className="intermediate-category"
+                                    >
+                                        <a
+                                            href={`/category/${mainCategory.id}/${intermediateCategory.id}`}
+                                        >
                                             {intermediateCategory.name}
                                         </a>
                                         <ul className="sub-dropdown">
                                             {subCategories
                                                 .filter(
                                                     (subCategory) =>
-                                                        subCategory.intermediateCategoryId === intermediateCategory.id
+                                                        subCategory.intermediateCategoryId ===
+                                                        intermediateCategory.id
                                                 )
                                                 .map((subCategory) => (
                                                     <li key={subCategory.id}>
-                                                        <a href={`/category/${mainCategory.id}/${intermediateCategory.id}/${subCategory.id}`}>
+                                                        <a
+                                                            href={`/category/${mainCategory.id}/${intermediateCategory.id}/${subCategory.id}`}
+                                                        >
                                                             {subCategory.name}
                                                         </a>
                                                     </li>
@@ -156,19 +221,46 @@ function TestNav() {
                 <form onSubmit={handleSearchSubmit}>
                     <div className="search-container">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        <input 
-                            type="text" 
-                            placeholder="Sök..." 
-                            value={searchQuery} 
-                            onChange={handleSearch} //uppdatera sökquery vid inmatning
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={handleSearch}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    handleSearchSubmit(event);
+                                }
+                            }}
                         />
+                        {filteredResults.length > 0 && (
+                            <div className="dropdown-menu">
+                                {filteredResults.map((result) => (
+                                    <div
+                                        key={result.id}
+                                        className="dropdown-item"
+                                        onClick={() =>
+                                            handleDropdownSelect(result)
+                                        }
+                                    >
+                                        <a href="#">{result.name}</a>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </form>
-                <div onClick={handleUserIconClick} style={{ cursor: 'pointer' }}>
+                <div
+                    onClick={handleUserIconClick}
+                    style={{ cursor: "pointer" }}
+                >
                     <FontAwesomeIcon icon={faUser} />
                 </div>
-                <div><FontAwesomeIcon icon={faHeart} /></div>
-                <div><FontAwesomeIcon icon={faShoppingCart} /></div>
+                <div>
+                    <FontAwesomeIcon icon={faHeart} />
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faShoppingCart} />
+                </div>
             </div>
         </nav>
     );
