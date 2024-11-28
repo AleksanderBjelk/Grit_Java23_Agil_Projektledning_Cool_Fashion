@@ -54,11 +54,13 @@
 }
 
 .button {
-    margin-top: 50px;
+    margin-top: 20px;
+    padding: 10px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
-    padding: 15px 0;
+    padding: 15px;
+    margin: 5px;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;

@@ -8,6 +8,7 @@ import ProductList from './JSX/ProductList.jsx';
 import ResellPage from "./JSX/resellpage.jsx";
 import Login from "./JSX/Login.jsx";
 import ProductCard from "./JSX/ProductCards.jsx";
+import MyPages from "./JSX/MyPages.jsx"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/productList" element={<ProductList />} />
           <Route path="/resell" element={<ResellPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/mypages" element={<MyPages />} />
           <Route path="/category/:categoryId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId/:subId" element={<ProductCard />} />
