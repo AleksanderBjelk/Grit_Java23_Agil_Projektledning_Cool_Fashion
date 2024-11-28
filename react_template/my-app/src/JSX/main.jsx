@@ -5,13 +5,13 @@ function testMain() {
     return (
         <div className="main">
             <div className="frontPagePicture">
-             <img src="/media/startbild.png" alt="Example"/>
+                <img src="/media/startbild.png" alt="Example" />
             </div>
             <div className="upperMainText">
                 <h1>START OFF WINTER WITH NEW HOODIES</h1>
             </div>
             <TestCards />
-            <div className="lowerMainTextContainer">
+              <div className="lowerMainTextContainer">
                 <div className="lowerMainText">
                     <h2>OUTLET SALE UNTIL 24/11</h2>
                     <h2>FREE DELIVERY TO STORE</h2>
