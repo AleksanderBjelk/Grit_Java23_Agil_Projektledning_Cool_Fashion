@@ -36,7 +36,6 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
           &gt;
         </button>
       </div>
-      <h3>{id}</h3> {/* Mest för att kunna visa id sålänge, ska tas bort sen */}
       <h3>{name}</h3> {/* Product Name */}
       <p>{price}</p> {/* Product Price */}
       <div>
