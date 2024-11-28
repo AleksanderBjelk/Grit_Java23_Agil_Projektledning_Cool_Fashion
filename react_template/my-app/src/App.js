@@ -22,6 +22,8 @@ function App() {
           <Route path="/resell" element={<ResellPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/category/:categoryId" element={<ProductCard />} />
+          <Route path="/category/:categoryId/:intermediateId" element={<ProductCard />} />
+          <Route path="/category/:categoryId/:intermediateId/:subId" element={<ProductCard />} />
         </Routes>
         <TestFooter />
       </div>
