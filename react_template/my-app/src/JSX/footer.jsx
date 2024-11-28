@@ -24,11 +24,9 @@ function TestFooter() {
                     <p>coolFashion@email.com</p>
                 </span>
 
-                {/* <span className="contact">
-                    <Link to="/adminpage">AdminPage</Link>
-                    <p>Admin</p>
-                    <p>admin@admin.admin</p>
-                </span> */}
+                 <span className="mypages">
+                    <Link to="/mypages">My Pages</Link>
+                </span>
 
                 <span className="sustainability">
                     <h3>Sustainability</h3>
