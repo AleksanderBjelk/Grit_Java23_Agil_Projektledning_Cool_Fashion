@@ -1,4 +1,4 @@
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../data/firebase";
 import '../CSS/productList.css';
@@ -25,6 +25,19 @@ function ProductList() {
 
     fetchProducts();
   }, []);
+
+  const deleteFromDb = async (id) => {
+    try {
+      const productDoc = doc(db, "products", id);
+      await deleteDoc(productDoc); //Delete the document
+      //Update the local state to remove the deleted product
+      setProducts(products.filter(product => product.id !== id));
+      alert("Produkten har tagits bort.");
+    } catch (error) {
+      console.error("Error deleting product: ", error);
+      alert("Lyckades inte ta bort produkten.");
+    }
+  };
 
   const handleProductUpdate = async (id) => {
     if (!newName || !newPrice || !newImages || isNaN(newPrice) || newPrice <= 0) {
@@ -87,9 +100,11 @@ function ProductList() {
                   onChange={(e) => setNewImages(e.target.value)}
                   placeholder="Ny bildaddress"
                 />
-                <button onClick={() => handleProductUpdate(product.id)}>Uppdatera Produkten</button>
+                
+                <button onClick={() => handleProductUpdate(product.id)}>Uppdatera Produkten</button>              
               </div>
             ) : (
+              <div>
               <button onClick={() => { 
                 //visar vad som redan finns där
                 setEditProductId(product.id);
@@ -97,6 +112,8 @@ function ProductList() {
                 setNewPrice(product.price);
                 setNewImages(product.images);
               }}>Ändra</button>
+              <button onClick={() => deleteFromDb(product.id)}>Radera</button>
+              </div>
             )}
           </li>
         ))}
