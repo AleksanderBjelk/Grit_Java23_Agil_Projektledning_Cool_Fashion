@@ -48,6 +48,7 @@ const ProductCard = () => {
         <div className="product-grid">
             {products.map((product) => (
                 <ProductCardCarousel
+                    key={product.id}
                     id={product.id}
                     name={product.name}
                     price={product.price}
