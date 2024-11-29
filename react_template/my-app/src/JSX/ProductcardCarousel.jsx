@@ -1,9 +1,12 @@
 //Step 1 in creating the cards
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import '../CSS/ProductCards.css';
 
 const ProductCardCarousel = ({ id, name, price, images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
+
   //Change to next picture in card
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -15,8 +18,15 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
     );
   };
 
+  const HandleCardClick = () => {
+    navigate(`/product/${id}`)
+
+  }
+
+
   return (
-    <div className="product-card">
+    <div className="product-card"
+      onClick={HandleCardClick}>
       <div className="carousel">
         <div
           className="carousel-inner"
