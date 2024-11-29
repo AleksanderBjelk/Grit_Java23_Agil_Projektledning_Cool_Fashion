@@ -20,13 +20,11 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
 
   const HandleCardClick = () => {
     navigate(`/product/${id}`)
-
   }
 
 
   return (
-    <div className="product-card"
-      onClick={HandleCardClick}>
+    <div className="product-card">
       <div className="carousel">
         <div
           className="carousel-inner"
@@ -46,10 +44,10 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
           &gt;
         </button>
       </div>
-      <h3>{name}</h3> {/* Product Name */}
+      <h3 onClick={HandleCardClick}>{name}</h3> {/* Product Name Vi vill ha ett finger här*/}
       <p>{price}</p> {/* Product Price */}
       <div>
-        <button className='cardButton'>Buy</button>
+        <button className='cardButton'>Köp</button>
       </div>
     </div>
   );

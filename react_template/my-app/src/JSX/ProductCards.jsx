@@ -1,3 +1,4 @@
+//Step 2 in creating the cards
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ProductCardCarousel from "./ProductcardCarousel.jsx";
@@ -47,7 +48,7 @@ const ProductCard = () => {
         <div className="product-grid">
             {products.map((product) => (
                 <ProductCardCarousel
-                    key={product.id}
+                    id={product.id}
                     name={product.name}
                     price={product.price}
                     images={product.images}
