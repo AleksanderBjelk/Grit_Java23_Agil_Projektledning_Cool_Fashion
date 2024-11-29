@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
+/* 
 #headertext {
     font-family: "Zen Dots", sans-serif;
     margin: 0;
@@ -18,24 +18,30 @@
     1px 1px 0 white;
     animation-name: fashionText;
     animation-duration: 4s;
-}
+} */
 
-.logoImage img{
-  width: 150px;
-  height: auto;
-}
-
+/* 
 @keyframes fashionText {
     0%   {color:#858585; left:0px; top:0px;}
     30%   {color:#777777; left:0px; top:0px;}
     60%  {color:#606060; left:0px; top:0px;}
     100% {color:#2d2d2d; left:0px; top:0px;}
-  }
+  } */
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and borders are included in width/height */
+  }
+  
+  .logoImage img{
+    width: 100px;
+    height: auto;
+  }
   .topRightIcons {
     display: flex;
-    justify-content: right;
-    align-items: flex-end;
+    justify-content: flex-end;;
+    align-items: center;
     gap: 1rem;
     color: white;
     font-size: 1rem;
@@ -58,8 +64,9 @@
     justify-content: space-between;
     align-items:center;
     gap: 2rem;
-    padding: 0 2rem;
+    padding: 0rem 2rem;
     padding-top: 1rem;
+    gap: 1rem;
   }
 
   
@@ -109,12 +116,14 @@
 
 .content {
   padding: 16px;
-} */
+}
 
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000; /* Ensure the sticky nav stays above other content */
+
 }
 
 .sticky + .content {
@@ -122,52 +131,10 @@
 }
 
 .search-container {
+  /* position: relative; */
   display: flex;
   align-items: center;
-  border: 2px solid #ffffff;
-  border-radius: 25px;
-  padding: 5px;
-  background-color: #000000;
-  width: 200px; 
-}
-
-.search-container input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  width: 100%;
-  height: 12px;
-  margin-bottom: 0;
-  background-color: #000000;
-  color: white;
-}
-
-.search-container svg {
-  margin-right: 10px; 
-  cursor: pointer;
-}
-
-.topRightIcons {
-  display: flex;
-  align-items: center;  
-  gap: 1rem;
-  color: white;
-  font-size: 1rem;
-}
-
-.topRightIcons svg {
-  cursor: pointer;
-}
-
-.topRightIcons svg:hover {
-  color: #c3b67b;
-}
-
-.search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border: 2px solid #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 25px;
   padding: 5px;
   background-color: #000000;
@@ -212,4 +179,67 @@
 
 .dropdown-item:hover {
   background-color: #333;
+}
+
+/* Responsive*/
+@media (max-width: 1024px) {
+  .nav {
+    padding: 1rem 1rem;
+  }
+
+  .topRightIcons {
+    font-size: 0.9rem; 
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .logoImage img {
+    width: 120px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    padding: 1rem; 
+  }
+
+  .nav ul {
+    flex-direction: column; /* Stacking menu items vertically instead*/
+    gap: 1rem; /*space between menu items */
+  }
+
+  .search-container {
+    width: 100%; /* search container fills the width */
+    margin-top: 1rem;
+  }
+
+  .topRightIcons {
+    flex-direction: column; /* stacks icons vertically */
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .logoImage img {
+    width: 100px; /* smaller logo for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 0.5rem;
+  }
+
+  .nav a {
+    padding: 8px 12px; 
+  }
+
+  .search-container {
+    width: 100%; /* full width search bar */
+    margin-bottom: 1rem; 
+  }
+
+  .topRightIcons {
+    font-size: 0.8rem; 
+  }
 }
