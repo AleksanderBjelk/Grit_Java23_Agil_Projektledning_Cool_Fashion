@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import "../CSS/login.css";
 
-const Login = () => {
+const Login = ({ setIsAdmin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -16,41 +16,49 @@ const Login = () => {
   const auth = getAuth();
   const navigate = useNavigate();
 
-  //login
+  //login user / admin
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-      console.log(user.email + "is logged in");
+      
+      //login state
+      localStorage.setItem("isLoggedIn", 'true');
       setIsLoggedIn(true);
       setUser(user);
       alert("Välkommen " + user.email);
-      console.log(user.status)
-
+      
+      //fetch user data from Firestore
       const firestore = getFirestore();
       const userDocRef = doc(firestore, "Users", user.uid);
       const userDoc = await getDoc(userDocRef);
-
-      //
+      
       if (userDoc.exists()) {
-        const userStatus = userDoc.data().status; //hämtar status från fs
-        checkStatus(userStatus); //här kollar om user är admin eller user
-        console.log(userStatus)
-
+        const userStatus = userDoc.data().status;
+        
+        //set admin state
+        setIsAdmin(userStatus === 'admin');
+        localStorage.setItem("isAdmin", userStatus === 'admin' ? 'true' : 'false');
+        
+        if (userStatus === 'admin') {
+          navigate('/adminpage');
+        } else {
+          navigate('/');
+        }
+        
+        console.log("Logged in as:", userStatus);
       } else {
         console.error("No user data found in Firestore");
       }
-
     } catch (error) {
       setError(error.message);
       setIsLoggedIn(false);
-      console.error('Login Error', error.message);
+      console.error('Login Error:', error.message);
     }
-  }
-
+  };
+  
   //registering
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -81,14 +89,15 @@ const Login = () => {
     }
   };
 
-  const checkStatus = (status) => {
-    setIsLoggedIn(true);
-    if (status === 'admin') {
-      navigate('/mypages');
-    } else {
-      navigate('/mypages');
-    }
-  };
+  // const checkStatus = (status) => {
+  //   setIsLoggedIn(true);
+  //   if (status === 'admin') {
+  //     navigate('/adminpage'); 
+  //   } else {
+  //     navigate('/'); 
+  //   }
+  // };
+
 
   //byter mellan login och registeringsformen
   const handleRegisterClick = () => {
@@ -97,19 +106,6 @@ const Login = () => {
 
   const handleLoginClick = () => {
     setIsRegistering(false);
-  };
-
-  //log out
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      setIsLoggedIn(false);
-      setUser(null);
-      navigate('/login');
-      alert("You have logged out successfully");
-    } catch (error) {
-      console.error("Logout Error", error.message);
-    }
   };
 
   return (

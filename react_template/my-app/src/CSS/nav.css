@@ -1,61 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-/* 
-#headertext {
-    font-family: "Zen Dots", sans-serif;
-    margin: 0;
-}
-
-.cool {
-    color: rgb(255, 255, 255);
-}
-
-.fashion {
-    color:#000000;
-    text-shadow: -1px -1px 0 rgb(255, 255, 255),
-    1px -1px 0 rgb(255, 255, 255),
-    -1px 1px 0 white, 
-    1px 1px 0 white;
-    animation-name: fashionText;
-    animation-duration: 4s;
-} */
-
-/* 
-@keyframes fashionText {
-    0%   {color:#858585; left:0px; top:0px;}
-    30%   {color:#777777; left:0px; top:0px;}
-    60%  {color:#606060; left:0px; top:0px;}
-    100% {color:#2d2d2d; left:0px; top:0px;}
-  } */
 
   * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Ensure padding and borders are included in width/height */
+    box-sizing: border-box;
   }
-  
+
+
+  /* loggan */
   .logoImage img{
     width: 100px;
     height: auto;
   }
-  .topRightIcons {
-    display: flex;
-    justify-content: flex-end;;
-    align-items: center;
-    gap: 1rem;
-    color: white;
-    font-size: 1rem;
-  }
-  
-  .topRightIcons svg {
-    cursor: pointer;
-  }
-  
-  .topRightIcons svg:hover {
-    color: #c3b67b;
-  }
 
-  
+  /* main stylingen för hela navbaren */
   .nav {
     font-family: "Bebas Neue", sans-serif;
     background-color: #000000;
@@ -66,10 +25,8 @@
     gap: 2rem;
     padding: 0rem 2rem;
     padding-top: 1rem;
-    gap: 1rem;
   }
 
-  
 .nav li {
   position: relative;
 }
@@ -101,12 +58,22 @@
   top: 100%;
   left: 0;
   background-color: #181818;
+  padding-bottom: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
 .dropdown li {
   width: 200px;
+}
+
+/* indent categories i dropdownen */
+.dropdown li ul {
+    list-style-type: none;
+    font-family: "Roboto", sans-serif;
+    /* font-weight: 300; */
+    font-size: 12px;
+    padding-left: 12px; 
 }
 
 
@@ -131,11 +98,12 @@
 }
 
 .search-container {
-  /* position: relative; */
+  position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid #ffffff;
-  border-radius: 25px;
+  border-bottom: 1px solid #999;
+  /* border-radius: 25px; */
+  margin-right: 1rem;
   padding: 5px;
   background-color: #000000;
   width: 200px; 
@@ -156,6 +124,14 @@
   margin-right: 10px;
   cursor: pointer;
 }
+
+input::placeholder {
+    color: #999;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+}
+
 
 .dropdown-menu {
   position: absolute;
@@ -181,65 +157,117 @@
   background-color: #333;
 }
 
-/* Responsive*/
+.topRightIcons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .topRightIcons svg {
+    cursor: pointer;
+  }
+  
+  .topRightIcons svg:hover {
+    color: #c3b67b;
+  }
+
+
+/* Responsive Styles */
 @media (max-width: 1024px) {
-  .nav {
-    padding: 1rem 1rem;
+    .nav {
+      padding: 1rem;
+    }
+  
+    .topRightIcons {
+      font-size: 0.9rem;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+  
+    .logoImage img {
+      width: 120px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      flex-direction: column; /* Stack links vertically */
+      padding: 1rem;
+    }
+  
+    .nav ul {
+      flex-direction: column; /* Stack the list items vertically */
+      gap: 1rem;
+      width: 100%; /* Ensure the list takes up the full width */
+    }
+  
+    .nav li {
+      position: relative; /* Necessary for positioning the dropdowns */
+    }
+  
+    /* Dropdown Menu */
+    .nav li .dropdown {
+      display: none; /* Hide dropdown by default */
+      position: absolute;
+      left: 10%; 
+      top: 0;
+      background-color: #333;
+      min-width: 160px; /* Set a fixed width for the dropdown */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 10;
+    }
+  
+    .nav li:hover .dropdown {
+      display: block; /* Show the dropdown when hovering over the link */
+    }
+  
+    .dropdown a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+    }
+  
+    .dropdown a:hover {
+      background-color: #444;
+    }
+  
+    .search-container {
+      width: 100%; /* Full width search bar */
+      margin-top: 1rem;
+    }
+  
+    .topRightIcons {
+      /* flex-direction: column; */
+      gap: 0.5rem;
+      align-items:first baseline; /* Align icons to the left */
+    }
+  
+    .logoImage img {
+      width: 100px; /* Smaller logo for mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav {
+      padding: 0.5rem;
+    }
+  
+    .nav a {
+      padding: 8px 12px;
+    }
+  
+    .search-container {
+      width: 100%; /* Full width search bar */
+      margin-bottom: 1rem;
+    }
+  
+    .topRightIcons {
+      font-size: 0.8rem;
+    }
   }
 
-  .topRightIcons {
-    font-size: 0.9rem; 
-    justify-content: flex-start;
-    gap: 0.5rem;
-  }
-
-  .logoImage img {
-    width: 120px; 
-  }
-}
-
-@media (max-width: 768px) {
-  .nav {
-    flex-direction: column;
-    padding: 1rem; 
-  }
-
-  .nav ul {
-    flex-direction: column; /* Stacking menu items vertically instead*/
-    gap: 1rem; /*space between menu items */
-  }
-
-  .search-container {
-    width: 100%; /* search container fills the width */
-    margin-top: 1rem;
-  }
-
-  .topRightIcons {
-    flex-direction: column; /* stacks icons vertically */
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
-
-  .logoImage img {
-    width: 100px; /* smaller logo for mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .nav {
-    padding: 0.5rem;
-  }
-
-  .nav a {
-    padding: 8px 12px; 
-  }
-
-  .search-container {
-    width: 100%; /* full width search bar */
-    margin-bottom: 1rem; 
-  }
-
-  .topRightIcons {
-    font-size: 0.8rem; 
-  }
-}

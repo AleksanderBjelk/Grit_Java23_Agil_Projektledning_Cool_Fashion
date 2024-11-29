@@ -18,7 +18,7 @@ const normalizeText = (text) => {
         .replace(/\s+/g, " ");
 };
 
-function TestNav() {
+function TestNav({isAdmin}) {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
@@ -157,9 +157,23 @@ function TestNav() {
         handleSearchSubmit({ preventDefault: () => {} });
     };
 
+    //user gets redirected to my pages if he clicks on the profile icon while logged in
     const handleUserIconClick = () => {
-        navigate("/login");
+        const isAdmin = localStorage.getItem("isAdmin");  //check if 'isAdmin' is stored in localStorage
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === 'true';  //heck if the user is logged in
+    
+        console.log("admin status", isAdmin); 
+        console.log("logged in", isLoggedIn);
+    
+        if (isLoggedIn) {
+                navigate("/mypages");
+        } else {
+            navigate("/login");
+        }
     };
+        console.log("Admin status on page load:", localStorage.getItem("isAdmin")); //if you store admin status in localStorage
+    
+
 
     return (
         <nav className="nav">
@@ -169,6 +183,9 @@ function TestNav() {
                 </a>
             </div>
             <ul>
+            {isAdmin && (
+          <li><a href="/adminpage">Admin Page</a></li>
+        )}
                 <li>
                     <a href="/resell">Second Hand</a>
                 </li>

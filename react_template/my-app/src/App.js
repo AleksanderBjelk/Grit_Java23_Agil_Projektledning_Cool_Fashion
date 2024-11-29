@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import React from "react";
 import TestMain from './JSX/main.jsx';
 import TestFooter from './JSX/footer.jsx';
 import TestNav from './JSX/nav.jsx';
@@ -12,19 +14,21 @@ import MyPages from "./JSX/MyPages.jsx"
 import ProductPage from "./JSX/ProductPage.jsx"
 
 function App() {
+  const [isAdmin, setIsAdmin] = useState(false); //trackar om det är admin el user
+
   return (
     <Router>
       <div className="App">
-        <TestNav />
+        <TestNav isAdmin={isAdmin}/>
         <Routes>
           <Route path="/" element={<TestMain />} />
           <Route path="/contact" element={<TestContact />} /> {/* Contact-route */}
-          <Route path="/adminpage" element={<Adminpage />} />
+          <Route path="/adminpage" element={<Adminpage setIsAdmin={setIsAdmin}/>} />
           <Route path="/productList" element={<ProductList />} />
-          <Route path="/resell" element={<ResellPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/mypages" element={<MyPages />} />
-          <Route path="/category/:categoryId" element={<ProductCard />} />
+          <Route path="/resell" element={<ResellPage setIsAdmin={setIsAdmin}/>} />
+          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} />} />
+          <Route path="/mypages" element={<MyPages setIsAdmin={setIsAdmin}/>} />
+          <Route path="/category/:categoryId" element={<ProductCard setIsAdmin={setIsAdmin}/>} />
           <Route path="/category/:categoryId/:intermediateId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId/:subId" element={<ProductCard />} />
           <Route path="/product/:id" element={<ProductPage />} />

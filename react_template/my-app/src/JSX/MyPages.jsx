@@ -45,6 +45,8 @@ function MyPages() {
       await signOut(auth);  
       setUser(null); 
       setIsAdmin(false); 
+      localStorage.setItem("isLoggedIn", 'false');
+      localStorage.setItem("isAdmin", 'false');
       navigate("/login");
       alert("You have logged out");
     } catch (error) {
@@ -65,14 +67,14 @@ function MyPages() {
           </h1>
         )}
 
-      {user ? (
+       {user ? (
         <div>
           <p>Welcome, {user.displayName || user.email}</p>
           <button onClick={handleLogout} className="logout-button">Log Out</button>
         </div>
       ) : (
         <p>Please log in to access your profile.</p>
-      )}
+      )} 
     </div>
   );
 }
