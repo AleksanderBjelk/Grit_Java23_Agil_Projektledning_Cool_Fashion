@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+25&family=Zen+Dots&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 
 .main{
     margin: 0;
@@ -43,3 +45,34 @@
   filter: brightness(1.3);
   transition: 0.5s;
 }
+
+.slogan-text { 
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(135, 32, 32); 
+  font-size: 6vw;
+  position: absolute; 
+  top: 60%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    text-align: center; 
+    z-index: 10; 
+    white-space: nowrap; /* Prevent text from wrapping into multiple lines */
+
+  }
+
+
+    @media (max-width: 768px) {
+      .slogan-text {
+        font-size: 4vw; /* Smaller font size for tablets and mobile devices */
+        top: 80%; /* Adjust the vertical position */
+        left: 30%; /* Adjust the horizontal position */
+      }
+    }
+    
+    /* For even smaller screens (mobile phones in portrait mode) */
+    @media (max-width: 480px) {
+      .slogan-text {
+        font-size: 4vw; /* Smaller font size for mobile phones */
+        top: 80%; /* Adjust vertical position for smaller screens */
+        left: 10%; /* Adjust the horizontal position */
+      }
+    }

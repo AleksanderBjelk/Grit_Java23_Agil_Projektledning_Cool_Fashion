@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth"; 
 import { getFirestore, doc, getDoc } from "firebase/firestore"; 
 import '../CSS/mypages.css'; 
+import Logout from "./Logout";
 
 function MyPages() {
   const [user, setUser] = useState(null); 
@@ -40,19 +41,7 @@ function MyPages() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);  
-      setUser(null); 
-      setIsAdmin(false); 
-      localStorage.setItem("isLoggedIn", 'false');
-      localStorage.setItem("isAdmin", 'false');
-      navigate("/login");
-      alert("You have logged out");
-    } catch (error) {
-      console.error("Logout Error", error.message);
-    }
-  };
+
 
   return (
     <div className="page-container">
@@ -69,8 +58,7 @@ function MyPages() {
 
        {user ? (
         <div>
-          <p>Welcome, {user.displayName || user.email}</p>
-          <button onClick={handleLogout} className="logout-button">Log Out</button>
+          <Logout></Logout>
         </div>
       ) : (
         <p>Please log in to access your profile.</p>

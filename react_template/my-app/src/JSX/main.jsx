@@ -5,7 +5,10 @@ function testMain() {
     return (
         <div className="main">
             <div className="frontPagePicture">
-                <img src="/media/startbild.png" alt="Example" />
+                <img src="/media/startbild4.png" alt="Example" />
+                <div>
+                    <h1 className="slogan-text">Make a statement out of yourself</h1>
+                </div>
             </div>
             <div className="upperMainText">
                 <h1>START OFF WINTER WITH NEW HOODIES</h1>
