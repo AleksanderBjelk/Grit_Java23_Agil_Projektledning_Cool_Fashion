@@ -22,9 +22,9 @@
     display: flex;
     justify-content: space-between;
     align-items:center;
-    gap: 2rem;
+    gap: 0rem;
     padding: 0rem 2rem;
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
   }
 
 .nav li {
@@ -74,6 +74,8 @@
     /* font-weight: 300; */
     font-size: 12px;
     padding-left: 12px; 
+    z-index: 1000;
+
 }
 
 
@@ -179,8 +181,16 @@ input::placeholder {
 @media (max-width: 1024px) {
     .nav {
       padding: 1rem;
+      gap: 0rem;
     }
-  
+
+    .nav ul {
+        font-size: 14px;
+       z-index: 1000;
+      }
+
+      
+
     .topRightIcons {
       font-size: 0.9rem;
       flex-direction: row;
@@ -188,24 +198,25 @@ input::placeholder {
     }
   
     .logoImage img {
-      width: 120px;
+      /* width: 120px; */
     }
   }
   
   @media (max-width: 768px) {
     .nav {
       flex-direction: column; /* Stack links vertically */
-      padding: 1rem;
+      /* padding: 1rem; */
     }
   
     .nav ul {
       flex-direction: column; /* Stack the list items vertically */
       gap: 1rem;
-      width: 100%; /* Ensure the list takes up the full width */
+     width: 100%;
+     
     }
   
     .nav li {
-      position: relative; /* Necessary for positioning the dropdowns */
+      position: relative; 
     }
   
     /* Dropdown Menu */
@@ -218,7 +229,7 @@ input::placeholder {
       min-width: 160px; /* Set a fixed width for the dropdown */
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
-      z-index: 10;
+      z-index: 1000;
     }
   
     .nav li:hover .dropdown {
