@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../data/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
@@ -6,6 +6,7 @@ import "../CSS/productPage.css";
 
 function ProductPage() {
     const { id } = useParams();
+    const navigate = useNavigate(); // För att hantera navigering
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -29,6 +30,12 @@ function ProductPage() {
 
     return (
         <div className="product-page">
+            <img
+                src="/media/back-undo-return-button-png-5.png"
+                alt="Tillbaka"
+                className="backButton"
+                onClick={() => navigate(-1)} 
+            />
             <h1>{product.name}</h1>
 
             <div className="product-images">
