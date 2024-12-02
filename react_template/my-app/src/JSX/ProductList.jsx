@@ -1,4 +1,4 @@
-import { collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../data/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,20 +16,27 @@ function ProductList() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productsCollection = collection(db, "products");
-      const productSnapshot = await getDocs(productsCollection);
-      const productList = productSnapshot.docs.map(doc => ({
-        id: doc.id,
-        name: doc.data().name,
-        price: doc.data().price,
-        images: doc.data().images,
-      }));
-      setProducts(productList);
-      setProductsToShow(productList);
+      try {
+        const productsCollection = collection(db, "products");
+        const productsQuery = query(productsCollection, orderBy("createdAt", "desc"));
+        const productSnapshot = await getDocs(productsQuery);
+        const productList = productSnapshot.docs.map(doc => ({
+          id: doc.id,
+          name: doc.data().name,
+          price: doc.data().price,
+          images: doc.data().images,
+          createdAt: doc.data().createdAt, // Include this if needed
+        }));
+        setProducts(productList);
+        setProductsToShow(productList);
+      } catch (error) {
+        console.error("Error fetching products: ", error);
+      }
     };
-
+  
     fetchProducts();
   }, []);
+  
 
   const deleteFromDb = async (id) => {
     try {
