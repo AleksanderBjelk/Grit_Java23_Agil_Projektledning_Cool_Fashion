@@ -11,7 +11,7 @@ function testMain() {
                 </div>
             </div>
             <div className="upperMainText">
-                <h1>START OFF WINTER WITH NEW HOODIES</h1>
+                <h1>NEW IN WINTER SEASON</h1>
             </div>
             <TestCards />
               <div className="lowerMainTextContainer">
