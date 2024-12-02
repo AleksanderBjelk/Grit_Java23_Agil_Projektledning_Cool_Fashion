@@ -59,7 +59,6 @@ const ContactForm = () => {
                                 required
                             />
                         </div>
-
                         <div className="formGroup">
                             <label htmlFor="email">Email:</label>
                             <input
@@ -71,7 +70,6 @@ const ContactForm = () => {
                                 required
                             />
                         </div>
-
                         <div className="formGroup">
                             <label htmlFor="message">Message:</label>
                             <textarea
@@ -82,7 +80,6 @@ const ContactForm = () => {
                                 required
                             ></textarea>
                         </div>
-
                         <div className="buttonContainer">
                             <button type="submit" className="submitButton">
                                 Send Message
@@ -90,7 +87,6 @@ const ContactForm = () => {
                         </div>
                     </form>
                 </div>
-
                 <div className="mapContainer">
                     <h1>Här finns vi:</h1>
                     <iframe

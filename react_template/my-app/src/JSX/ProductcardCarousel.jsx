@@ -22,7 +22,6 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
     navigate(`/product/${id}`)
   }
 
-
   return (
     <div className="product-card">
       <div className="carousel">
@@ -44,7 +43,7 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
           &gt;
         </button>
       </div>
-      <h3 onClick={HandleCardClick}>{name}</h3> {/* Product Name Vi vill ha ett finger här*/}
+      <h3 onClick={HandleCardClick}>{name}</h3>
       <p>{price}</p> {/* Product Price */}
       <div>
         <button className='cardButton'>Köp</button>

@@ -19,50 +19,44 @@ const Login = ({ setIsAdmin }) => {
   //login user / admin
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
-      //login state
-      //Denna borde kanske också läggga om till useState
+
       localStorage.setItem("isLoggedIn", 'true');
       setIsLoggedIn(true);
       setUser(user);
       alert("Välkommen " + user.email);
-      
+
       //fetch user data from Firestore
       const firestore = getFirestore();
       const userDocRef = doc(firestore, "Users", user.uid);
       const userDoc = await getDoc(userDocRef);
-      
+
       if (userDoc.exists()) {
         const userStatus = userDoc.data().status;
-        
+
         //set admin state
-        if (userStatus === 'admin'){
+        if (userStatus === 'admin') {
           setIsAdmin(true)
         }
-        //Setta ett useState här istället
         localStorage.setItem("isAdmin", userStatus === 'admin' ? 'true' : 'false');
-        
+
         if (userStatus === 'admin') {
           navigate('/adminpage');
         } else {
           navigate('/');
         }
-        
-        console.log("Logged in as:", userStatus);
       } else {
         console.error("No user data found in Firestore");
       }
     } catch (error) {
       setError(error.message);
-      setIsLoggedIn(false);
       console.error('Login Error:', error.message);
     }
   };
-  
+
   //registering
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -77,31 +71,18 @@ const Login = ({ setIsAdmin }) => {
         firstName,
         lastName,
         email,
-        status: 'user' //default status är user
+        status: 'user'
       });
 
       setIsLoggedIn(true);
       setUser(user);
       alert("Välkommen " + user.email);
       navigate('/');
-      console.log('User registered:', user.email);
-
     } catch (error) {
       setError(error.message);
-      setIsLoggedIn(false);
       console.error('Register Error:', error.message);
     }
   };
-
-  // const checkStatus = (status) => {
-  //   setIsLoggedIn(true);
-  //   if (status === 'admin') {
-  //     navigate('/adminpage'); 
-  //   } else {
-  //     navigate('/'); 
-  //   }
-  // };
-
 
   //byter mellan login och registeringsformen
   const handleRegisterClick = () => {
@@ -116,16 +97,11 @@ const Login = ({ setIsAdmin }) => {
     <div className="background">
       {isLoggedIn ? (
         <div className="logout-button-container">
-          {/* <button className="logout-button" onClick={handleLogout}>
-            Log Out
-          </button> */}
         </div>
       ) : (
         <form onSubmit={isRegistering ? handleRegister : handleLogin}>
           <h3>{isRegistering ? 'Register Here' : 'Login Here'}</h3>
-
           {error && <div className="error-message">{error}</div>}
-
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -134,7 +110,6 @@ const Login = ({ setIsAdmin }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -143,7 +118,6 @@ const Login = ({ setIsAdmin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
           {isRegistering && (
             <>
               <label htmlFor="firstName">First Name</label>
@@ -154,7 +128,6 @@ const Login = ({ setIsAdmin }) => {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
-
               <label htmlFor="lastName">Last Name</label>
               <input
                 type="text"
@@ -165,9 +138,7 @@ const Login = ({ setIsAdmin }) => {
               />
             </>
           )}
-
           <button type="submit">{isRegistering ? 'Register' : 'Log In'}</button>
-
           {/* Toggle between login and register - ( : ) som används i hela returnen är som ett "if else" */}
           {!isRegistering ? (
             <div>

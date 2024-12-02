@@ -18,13 +18,14 @@ const normalizeText = (text) => {
         .replace(/\s+/g, " ");
 };
 
-function NavBar({isAdmin}) {
+function NavBar() {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
     const [products, setProducts] = useState([]);
+    const isAdmin = localStorage.getItem("isAdmin")
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -154,26 +155,18 @@ function NavBar({isAdmin}) {
     const handleDropdownSelect = (item) => {
         setSearchQuery(item.name);
         setFilteredResults([]);
-        handleSearchSubmit({ preventDefault: () => {} });
+        handleSearchSubmit({ preventDefault: () => { } });
     };
 
     //user gets redirected to my pages if he clicks on the profile icon while logged in
     const handleUserIconClick = () => {
-        const isAdmin = localStorage.getItem("isAdmin");  //check if 'isAdmin' is stored in localStorage
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === 'true';  //heck if the user is logged in
-    
-        console.log("admin status", isAdmin); 
-        console.log("logged in", isLoggedIn);
-    
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === 'true';
         if (isLoggedIn) {
-                navigate("/mypages");
+            navigate("/mypages");
         } else {
             navigate("/login");
         }
     };
-        console.log("Admin status on page load:", localStorage.getItem("isAdmin")); //if you store admin status in localStorage
-    
-        console.log(isAdmin)
 
     return (
         <nav className="nav">
@@ -183,9 +176,9 @@ function NavBar({isAdmin}) {
                 </a>
             </div>
             <ul>
-            {localStorage.getItem("isAdmin") && (
-          <li><a href="/adminpage">Admin Page</a></li>
-        )}
+                {isAdmin && (
+                    <li><a href="/adminpage">Admin Page</a></li>
+                )}
                 <li>
                     <a href="/resell">Second Hand</a>
                 </li>

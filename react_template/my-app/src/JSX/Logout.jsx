@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth"; 
-import { getFirestore, doc, getDoc } from "firebase/firestore"; 
-import '../CSS/mypages.css'; 
+import { getAuth, signOut } from "firebase/auth";
+import '../CSS/mypages.css';
 
 function Logout() {
-  const [user, setUser] = useState(null); 
-  const [isAdmin, setIsAdmin] = useState(false);  
-  const navigate = useNavigate();  
-  const auth = getAuth();   
-   const firestore = getFirestore();
+  const navigate = useNavigate();
+  const auth = getAuth();
 
-   const handleLogout = async () => {
+  const handleLogout = async () => {
     try {
-      await signOut(auth);  
-      setUser(null); 
-      setIsAdmin(false); 
-      //useStates?
+      await signOut(auth);
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("isAdmin");
       navigate("/login");
@@ -29,8 +21,8 @@ function Logout() {
 
   return (
     <div>
-          <button onClick={handleLogout} className="logout-button">Log Out</button>
-        </div>
+      <button onClick={handleLogout} className="logout-button">Log Out</button>
+    </div>
   )
 };
 

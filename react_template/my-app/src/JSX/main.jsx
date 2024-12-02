@@ -1,5 +1,5 @@
 import "../CSS/main.css";
-import TestCards from "../JSX/ProductGridCarousel.jsx";
+import ProductGridCarousel from "../JSX/ProductGridCarousel.jsx";
 
 function MainPage() {
     return (
@@ -13,7 +13,7 @@ function MainPage() {
             <div className="upperMainText">
                 <h1>NEW IN WINTER SEASON</h1>
             </div>
-            <TestCards />
+            <ProductGridCarousel />
               <div className="lowerMainTextContainer">
                 <div className="lowerMainText">
                     <h2>OUTLET SALE UNTIL 24/11</h2>

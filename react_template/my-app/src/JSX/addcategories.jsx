@@ -65,7 +65,7 @@ const AddCategory = () => {
                 categoryData.intermediateCategoryId = intermediateCategory;
             }
 
-            //sspara till Firestore
+            //spara till Firestore
             const categoryRef = collection(db, "categories");
             const newCategory = await addDoc(categoryRef, {
                 ...categoryData,
@@ -111,7 +111,6 @@ const AddCategory = () => {
                         required
                     />
                 </label>
-
                 <label>
                     Category Type:
                     <select
@@ -126,8 +125,6 @@ const AddCategory = () => {
                         <option value="subCategory">Sub Category</option>
                     </select>
                 </label>
-
-                {/* Dropdown för Main Category */}
                 <label>
                     Main Category:
                     <select
@@ -143,8 +140,6 @@ const AddCategory = () => {
                         ))}
                     </select>
                 </label>
-
-                {/* Dropdown för Intermediate Category */}
                 <label>
                     Intermediate Category:
                     <select
@@ -164,7 +159,6 @@ const AddCategory = () => {
                             ))}
                     </select>
                 </label>
-
                 <button type="submit">Add Category</button>
             </form>
         </div>

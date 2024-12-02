@@ -11,7 +11,7 @@ const SecondhandProductCard = () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'secondhand'));
         const productList = querySnapshot.docs.map(doc => ({
-          id: doc.id, //The id is now set to the firebase-generated id, not using id "inside" the seconhand products anymore, will help down the line
+          id: doc.id,
           ...doc.data()
         }));
         setProducts(productList);

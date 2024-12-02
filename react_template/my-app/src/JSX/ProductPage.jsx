@@ -6,7 +6,7 @@ import "../CSS/productPage.css";
 
 function ProductPage() {
     const { id } = useParams();
-    const navigate = useNavigate(); // För att hantera navigering
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function ProductPage() {
                 src="/media/back-undo-return-button-png-5.png"
                 alt="Tillbaka"
                 className="backButton"
-                onClick={() => navigate(-1)} 
+                onClick={() => navigate(-1)}
             />
             <h1>{product.name}</h1>
 

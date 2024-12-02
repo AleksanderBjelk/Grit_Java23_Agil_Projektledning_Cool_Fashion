@@ -108,7 +108,6 @@ const ProductForm = () => {
                         required
                     />
                 </label>
-
                 <label>
                     Price:
                     <input
@@ -119,7 +118,6 @@ const ProductForm = () => {
                         required
                     />
                 </label>
-
                 <label>
                     Image URL:
                     <div>
@@ -134,7 +132,6 @@ const ProductForm = () => {
                         </button>
                     </div>
                 </label>
-
                 {imageUrls.length > 0 && (
                     <div className="image-preview">
                         <h4>Added Images:</h4>
@@ -159,7 +156,6 @@ const ProductForm = () => {
                         ))}
                     </div>
                 )}
-
                 <label>
                     Main Category:
                     <select
@@ -176,7 +172,6 @@ const ProductForm = () => {
                         ))}
                     </select>
                 </label>
-
                 <label>
                     Intermediate Category:
                     <select
@@ -197,7 +192,6 @@ const ProductForm = () => {
                             ))}
                     </select>
                 </label>
-
                 <label>
                     Sub Category:
                     <select
@@ -219,7 +213,6 @@ const ProductForm = () => {
                             ))}
                     </select>
                 </label>
-
                 <label>
                     Created By:
                     <input
@@ -230,7 +223,6 @@ const ProductForm = () => {
                         required
                     />
                 </label>
-
                 <button type="submit">Submit</button>
             </form>
         </div>
