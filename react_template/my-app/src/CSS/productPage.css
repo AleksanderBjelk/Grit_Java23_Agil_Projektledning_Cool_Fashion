@@ -59,3 +59,18 @@
 .product-page .product-actions button:hover {
     background-color: #5c5c5c;
 }
+
+.backButton {
+    position: absolute;
+    top: 140px; 
+    left: 80px;
+    width: 62px; 
+    height: 62px; 
+    cursor: pointer;
+    z-index: 10; 
+    transition: transform 0.2s ease; 
+}
+
+.backButton:hover {
+    transform: scale(110%);
+}
