@@ -54,9 +54,11 @@ const ProductForm = () => {
     };
 
     const handleImageAdd = () => {
-        if (imageUrl) {
+        if (imageUrls.length <= 4) {
             setImageUrls([...imageUrls, imageUrl]);
             setImageUrl("");
+        }else {
+            alert("Cant add more than 5 images");
         }
     };
 
