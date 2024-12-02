@@ -11,7 +11,7 @@ const ProductForm = () => {
         mainCategory: "",
         intermediateCategory: "",
         subCategory: "",
-        createdBy: "user",
+        createdBy: "admin",
     });
 
     const [imageUrl, setImageUrl] = useState("");
