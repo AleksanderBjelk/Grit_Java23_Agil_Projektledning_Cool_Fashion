@@ -16,6 +16,10 @@ const AddCategory = () => {
     //hämta kategorier från Firestore
     useEffect(() => {
         const fetchCategories = async () => {
+            if(allCategories.length){
+                //Kollar om den redan är populerad
+                return;
+            }
             const categoriesSnapshot = await getDocs(
                 collection(db, "categories")
             );

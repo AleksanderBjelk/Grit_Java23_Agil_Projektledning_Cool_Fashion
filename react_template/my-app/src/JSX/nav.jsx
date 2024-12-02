@@ -29,56 +29,55 @@ function NavBar() {
 
     useEffect(() => {
         const fetchCategories = async () => {
-            try {
-                const categoriesSnapshot = await getDocs(
-                    collection(db, "categories")
-                );
-                const categoriesData = categoriesSnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-
-                setMainCategories(
-                    categoriesData.filter(
-                        (category) => category.type === "mainCategory"
-                    )
-                );
-                setIntermediateCategories(
-                    categoriesData.filter(
-                        (category) => category.type === "intermediateCategory"
-                    )
-                );
-                setSubCategories(
-                    categoriesData.filter(
-                        (category) => category.type === "subCategory"
-                    )
-                );
-            } catch (error) {
-                console.error("Error fetching categories:", error);
-            }
+          if (mainCategories.length && intermediateCategories.length && subCategories.length) {
+            //Kollar om denna redan är populerad
+            return;
+          }
+          try {
+            const categoriesSnapshot = await getDocs(collection(db, "categories"));
+            const categoriesData = categoriesSnapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+      
+            setMainCategories(
+              categoriesData.filter((category) => category.type === "mainCategory")
+            );
+            setIntermediateCategories(
+              categoriesData.filter((category) => category.type === "intermediateCategory")
+            );
+            setSubCategories(
+              categoriesData.filter((category) => category.type === "subCategory")
+            );
+          } catch (error) {
+            console.error("Error fetching categories:", error);
+          }
         };
-
+      
         fetchCategories();
-    }, []);
-
-    useEffect(() => {
+      }, [mainCategories, intermediateCategories, subCategories]);
+      
+      useEffect(() => {
         const fetchProducts = async () => {
-            try {
-                const productsSnapshot = await getDocs(
-                    collection(db, "products")
-                );
-                const productsData = productsSnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setProducts(productsData);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
+          if (products.length) {
+            //Kollar om denna redan är populerad
+            return;
+          }
+          try {
+            const productsSnapshot = await getDocs(collection(db, "products"));
+            const productsData = productsSnapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setProducts(productsData);
+          } catch (error) {
+            console.error("Error fetching products:", error);
+          }
         };
-
+      
         fetchProducts();
-    }, []);
+      }, [products]);
+      
 
     const navigate = useNavigate();
 
