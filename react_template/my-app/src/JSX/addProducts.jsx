@@ -85,7 +85,7 @@ const ProductForm = () => {
                 mainCategory: "",
                 intermediateCategory: "",
                 subCategory: "",
-                createdBy: "user",
+                createdBy: "admin",
             });
             setImageUrls([]);
         } catch (error) {
