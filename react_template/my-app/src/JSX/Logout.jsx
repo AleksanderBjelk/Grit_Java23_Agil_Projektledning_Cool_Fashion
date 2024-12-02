@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth"; 
-import { getFirestore } from "firebase/firestore"; 
+import { getFirestore, doc, getDoc } from "firebase/firestore"; 
 import '../CSS/mypages.css'; 
 
 function Logout() {
@@ -28,7 +28,7 @@ function Logout() {
 
 
   return (
-    <div className="page-container">
+    <div>
           <button onClick={handleLogout} className="logout-button">Log Out</button>
         </div>
   )
