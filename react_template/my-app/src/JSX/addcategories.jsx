@@ -7,7 +7,6 @@ const AddCategory = () => {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
-
     const [mainCategory, setMainCategory] = useState("");
     const [intermediateCategory, setIntermediateCategory] = useState("");
     const [categoryName, setCategoryName] = useState("");
@@ -16,7 +15,7 @@ const AddCategory = () => {
     //hämta kategorier från Firestore
     useEffect(() => {
         const fetchCategories = async () => {
-            if(allCategories.length){
+            if(mainCategories.length && intermediateCategories.length){
                 //Kollar om den redan är populerad
                 return;
             }
