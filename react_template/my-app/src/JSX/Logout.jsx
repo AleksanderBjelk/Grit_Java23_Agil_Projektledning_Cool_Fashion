@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth"; 
-import { getFirestore, doc, getDoc } from "firebase/firestore"; 
+import { getFirestore } from "firebase/firestore"; 
 import '../CSS/mypages.css'; 
 
 function Logout() {
@@ -16,6 +16,7 @@ function Logout() {
       await signOut(auth);  
       setUser(null); 
       setIsAdmin(false); 
+      //useStates?
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("isAdmin");
       navigate("/login");

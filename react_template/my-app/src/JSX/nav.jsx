@@ -18,7 +18,7 @@ const normalizeText = (text) => {
         .replace(/\s+/g, " ");
 };
 
-function TestNav({isAdmin}) {
+function NavBar({isAdmin}) {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
@@ -173,7 +173,7 @@ function TestNav({isAdmin}) {
     };
         console.log("Admin status on page load:", localStorage.getItem("isAdmin")); //if you store admin status in localStorage
     
-
+        console.log(isAdmin)
 
     return (
         <nav className="nav">
@@ -183,7 +183,7 @@ function TestNav({isAdmin}) {
                 </a>
             </div>
             <ul>
-            {isAdmin && (
+            {localStorage.getItem("isAdmin") && (
           <li><a href="/adminpage">Admin Page</a></li>
         )}
                 <li>
@@ -283,4 +283,4 @@ function TestNav({isAdmin}) {
     );
 }
 
-export default TestNav;
+export default NavBar;

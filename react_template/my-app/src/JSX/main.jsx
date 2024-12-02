@@ -1,7 +1,7 @@
 import "../CSS/main.css";
 import TestCards from "../JSX/ProductGridCarousel.jsx";
 
-function testMain() {
+function MainPage() {
     return (
         <div className="main">
             <div className="frontPagePicture">
@@ -29,4 +29,4 @@ function testMain() {
         </div>
     );
 }
-export default testMain;
+export default MainPage;

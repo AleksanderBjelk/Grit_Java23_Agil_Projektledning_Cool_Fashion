@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import "../CSS/login.css";
@@ -25,6 +25,7 @@ const Login = ({ setIsAdmin }) => {
       const user = userCredential.user;
       
       //login state
+      //Denna borde kanske också läggga om till useState
       localStorage.setItem("isLoggedIn", 'true');
       setIsLoggedIn(true);
       setUser(user);
@@ -39,7 +40,10 @@ const Login = ({ setIsAdmin }) => {
         const userStatus = userDoc.data().status;
         
         //set admin state
-        setIsAdmin(userStatus === 'admin');
+        if (userStatus === 'admin'){
+          setIsAdmin(true)
+        }
+        //Setta ett useState här istället
         localStorage.setItem("isAdmin", userStatus === 'admin' ? 'true' : 'false');
         
         if (userStatus === 'admin') {
