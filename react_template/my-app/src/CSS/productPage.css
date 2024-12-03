@@ -78,3 +78,36 @@
 .product-page :hover img{
     cursor: cell;
 }
+
+.product-images {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start; 
+}
+
+.main-image {
+    flex-shrink: 0; 
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.product-image.large-image {
+    max-width:450px; 
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image.small-image {
+    max-width: 100px; 
+    height: auto;
+    cursor: pointer; 
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
