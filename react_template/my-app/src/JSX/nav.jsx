@@ -25,8 +25,7 @@ function NavBar() {
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
     const [products, setProducts] = useState([]);
-    const isAdmin = localStorage.getItem("isAdmin")
-
+    
     /* useEffect(() => {
         const fetchCategories = async () => {
           if (mainCategories.length && intermediateCategories.length && subCategories.length) {
@@ -176,7 +175,7 @@ function NavBar() {
                 </a>
             </div>
             <ul>
-                {isAdmin && (
+                {localStorage.getItem("isAdmin") === "true" && (
                     <li><a href="/adminpage">Admin Page</a></li>
                 )}
                 <li>

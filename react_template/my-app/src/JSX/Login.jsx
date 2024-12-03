@@ -41,9 +41,8 @@ const Login = ({ setIsAdmin }) => {
 
         //set admin state
         if (userStatus === 'admin') {
-          setIsAdmin(true)
+            localStorage.setItem("isAdmin", 'true');
         }
-        localStorage.setItem("isAdmin", userStatus === 'admin' ? 'true' : 'false');
 
         if (userStatus === 'admin') {
           navigate('/adminpage');

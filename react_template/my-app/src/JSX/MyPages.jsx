@@ -3,15 +3,13 @@ import Logout from "./Logout";
 import '../CSS/mypages.css'; 
 
 function MyPages() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn")
-  const isAdmin = localStorage.getItem("isAdmin")
 
   return (
     <div className="page-container">
       <h1>Mina Sidor</h1>
 
         {/*visar bara länken om admin är inloggad */}
-        {isAdmin && (
+        {localStorage.getItem("isAdmin") === "true" && (
             <h1>
           <Link to="/adminpage" className="admin-link">
            Click here for Product Management
@@ -19,7 +17,7 @@ function MyPages() {
           </h1>
         )}
 
-       {isLoggedIn ? (
+       {localStorage.getItem("isLoggedIn") === "true" ? (
         <div>
           <Logout></Logout>
         </div>
