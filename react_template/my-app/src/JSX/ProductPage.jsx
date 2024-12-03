@@ -57,26 +57,22 @@ function ProductPage() {
             <div className="product-images">
                 <div className="main-image">
                     <img
-                        src={product.images[0]}
+                        src={product.images[currentIndex]} 
                         alt={`${product.name} - Huvudbild`}
                         className="product-image large-image"
-                        onClick={() => {
-                            setCurrentIndex(0);
-                            setLightboxOpen(true);
-                        }}
+                        onClick={() => setLightboxOpen(true)} 
                     />
                 </div>
                 <div className="thumbnail-images">
-                    {product.images.slice(1).map((image, index) => (
+                    {product.images.map((image, index) => (
                         <img
                             key={index}
                             src={image}
                             alt={`${product.name} - Thumbnail ${index + 1}`}
-                            className="product-image small-image"
-                            onClick={() => {
-                                setCurrentIndex(index + 1); 
-                                setLightboxOpen(true);
-                            }}
+                            className={`product-image small-image ${
+                                index === currentIndex ? "selected" : ""
+                            }`} 
+                            onClick={() => setCurrentIndex(index)} 
                         />
                     ))}
                 </div>
