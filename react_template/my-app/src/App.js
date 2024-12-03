@@ -12,6 +12,7 @@ import ProductCard from "./JSX/ProductCards.jsx";
 import MyPages from "./JSX/MyPages.jsx"
 import ProductPage from "./JSX/ProductPage.jsx"
 import ContactForm from "./JSX/contact.jsx";
+import WishlistPage from "./JSX/wishlist.jsx";
 
 function App() {
   //Vi vill setta denna på /login och kolla den i TestNav(/nav.jsx) kanske även på /mypages? Kollar man med Mats så tycker han man ska använda nån slags kombination.. Setta den i localStorage vid inloggning
@@ -30,6 +31,7 @@ function App() {
           <Route path="/resell" element={<ResellPage/>} />
           <Route path="/login" element={<Login setIsAdmin={setIsAdmin}/>} />
           <Route path="/mypages" element={<MyPages isAdmin={isAdmin}/>} />
+          <Route path="/wishlist" element={<WishlistPage/>} />
           <Route path="/category/:categoryId" element={<ProductCard/>} />
           <Route path="/category/:categoryId/:intermediateId" element={<ProductCard />} />
           <Route path="/category/:categoryId/:intermediateId/:subId" element={<ProductCard />} />
