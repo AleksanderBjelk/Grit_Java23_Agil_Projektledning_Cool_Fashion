@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import { db } from "../data/firebase";
 import "../CSS/productForm.css";
 
@@ -26,29 +26,37 @@ const ProductForm = () => {
     //hämta kategorier från Firestore
     useEffect(() => {
         const fetchCategories = async () => {
-            const categoriesSnapshot = await getDocs(
-                collection(db, "categories")
-            );
-            const allCategories = categoriesSnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-
-            setMainCategories(
-                allCategories.filter((cat) => cat.type === "mainCategory")
-            );
-            setIntermediateCategories(
-                allCategories.filter(
-                    (cat) => cat.type === "intermediateCategory"
-                )
-            );
-            setSubCategories(
-                allCategories.filter((cat) => cat.type === "subCategory")
-            );
+            try {
+                const mainCategoryQuery = collection(db, "categories");
+                const mainCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "mainCategory")));
+                const mainCategories = mainCategorySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+    
+                const intermediateCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "intermediateCategory")));
+                const intermediateCategories = intermediateCategorySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+    
+                const subCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "subCategory")));
+                const subCategories = subCategorySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+    
+                setMainCategories(mainCategories);
+                setIntermediateCategories(intermediateCategories);
+                setSubCategories(subCategories);
+            } catch (error) {
+                console.error("Error fetching categories: ", error);
+            }
         };
-
+    
         fetchCategories();
     }, []);
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
