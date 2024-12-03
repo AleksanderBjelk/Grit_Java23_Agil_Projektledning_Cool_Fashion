@@ -3,16 +3,16 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
-import wishlistIcon from '../CSS/wishlistIcon.css'
 import { db } from '../data/firebase'
+import '../CSS/wishlistIcon.css'
+
 
 const AddToWishlist = ({ productId }) => {
     const [isInWishlist, setIsInWishlist] = useState(false)
 
     //get userId from local storage (is first saved in login.jsx)
     const userId = localStorage.getItem('userId');
-
-    console.log(userId)
+    // console.log(userId)
 
     if (!userId) {
         console.log("no user is logged in to save an item to wishlist")
@@ -55,8 +55,9 @@ const AddToWishlist = ({ productId }) => {
     }
 
     return (
-        <div className='wishListIcon' onClick={handleAddToWishList}>
-            <FontAwesomeIcon icon={faHeart} />
+        <div className='wishlistIcon' onClick={handleAddToWishList}>
+            <FontAwesomeIcon icon={faHeart}
+            />
         </div>
     )
 }

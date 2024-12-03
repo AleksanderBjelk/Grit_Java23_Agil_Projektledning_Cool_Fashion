@@ -1,8 +1,16 @@
 
-.wishListIcon {
+.wishlistIcon {
     display: flex;
     justify-content: flex-end;
     padding-right: 3%;
     padding-bottom: 3%;
     font-size: 130%;
+    cursor: pointer;
+    color:gray;
+
   }
+
+  .wishlistIcon:hover {
+    /* transform: scale(1);  */
+    color: red;
+}
