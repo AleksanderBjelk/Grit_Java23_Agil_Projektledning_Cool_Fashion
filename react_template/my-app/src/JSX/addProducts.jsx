@@ -67,16 +67,16 @@ const ProductForm = () => {
         const updatedImages = imageUrls.filter((_, i) => i !== index);
         setImageUrls(updatedImages);
 
-        // Adjust firstImageIndex if necessary
+        //Adjust firstImageIndex if necessary
         if (index === firstImageIndex) {
-            setFirstImageIndex(0); // Reset to the first image by default
+            setFirstImageIndex(0); //Reset to the first image by default
         } else if (index < firstImageIndex) {
             setFirstImageIndex(firstImageIndex - 1);
         }
     };
 
     const handleSetAsFirst = (index) => {
-        setFirstImageIndex(index); // Update the first image index
+        setFirstImageIndex(index); //Update the first image index
     };
 
     const handleProductSubmit = async (e) => {

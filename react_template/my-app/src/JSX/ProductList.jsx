@@ -53,9 +53,41 @@ function ProductList() {
     }
   };
 
+  const handleSetAsFirst = async (productId, index) => {
+    //Reorder images, putting the selected one at the beginning
+    const updatedProducts = products.map((product) => {
+      if (product.id === productId) {
+        const updatedImages = [
+          product.images[index], //Move the selected image to the first position
+          ...product.images.filter((_, i) => i !== index), //Add the remaining images
+        ];
+        return {
+          ...product,
+          images: updatedImages, //Update the images array
+        };
+      }
+      return product;
+    });
+
+    setProducts(updatedProducts);
+    setProductsToShow(updatedProducts);
+
+    //Update Firestore with the new image order
+    const productDoc = doc(db, "products", productId);
+    try {
+      await updateDoc(productDoc, {
+        images: updatedProducts.find((product) => product.id === productId).images,
+      });
+      alert("Produktbild har uppdaterats.");
+    } catch (error) {
+      console.error("Error updating product image order: ", error);
+      alert("Kunde inte uppdatera produktbild.");
+    }
+  };
+
   const handleProductUpdate = async (id) => {
     if (!newName || !newPrice || !newImages || isNaN(newPrice) || newPrice <= 0) {
-      alert('Lägg till namn, pris och bild');
+      alert("Lägg till namn, pris och bild");
       return;
     }
 
@@ -64,20 +96,25 @@ function ProductList() {
       await updateDoc(productDoc, {
         name: newName,
         price: parseFloat(newPrice),
-        images: newImages,
+        images: newImages.split(",").map((url) => url.trim()),
       });
 
       const updatedProducts = products.map((product) =>
         product.id === id
-          ? { ...product, name: newName, price: parseFloat(newPrice), images: newImages }
+          ? {
+              ...product,
+              name: newName,
+              price: parseFloat(newPrice),
+              images: newImages.split(",").map((url) => url.trim()),
+            }
           : product
       );
 
       setProducts(updatedProducts);
       setProductsToShow(updatedProducts);
-      setNewName('');
-      setNewPrice('');
-      setNewImages('');
+      setNewName("");
+      setNewPrice("");
+      setNewImages("");
       setEditProductId(null);
       alert("Produkten har uppdaterats.");
     } catch (error) {
@@ -174,13 +211,25 @@ function ProductList() {
                 </button>
                 {product.showImages && (
                   <div className="image-gallery">
-                    {product.images.map((image, idx) => (
-                      <img
-                        key={idx}
-                        src={image}
-                        alt={`Product Image ${idx + 1}`}
-                        style={{ width: "50px", height: "50px", marginRight: "10px" }}
-                      />
+                    {product.images.map((image, index) => (
+                      <div key={index} className="image-item">
+                        <img
+                          src={image}
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            border: index === 0 ? "2px solid blue" : "none", //Highlight the first image
+                          }}
+                        />
+                        <input
+                          type="radio"
+                          name={`firstImage-${product.id}`}
+                          id={`firstImage-${index}`}
+                          checked={index === 0}
+                          onChange={() => handleSetAsFirst(product.id, index)}
+                        />
+                        <label htmlFor={`firstImage-${index}`}>Huvudbild</label>
+                      </div>
                     ))}
                   </div>
                 )}
