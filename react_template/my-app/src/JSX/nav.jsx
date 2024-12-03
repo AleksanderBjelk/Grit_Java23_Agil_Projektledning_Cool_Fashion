@@ -26,7 +26,7 @@ function NavBar() {
     const [filteredResults, setFilteredResults] = useState([]);
     const [products, setProducts] = useState([]);
     
-    /* useEffect(() => {
+    useEffect(() => {
         const fetchCategories = async () => {
           if (mainCategories.length && intermediateCategories.length && subCategories.length) {
             //Kollar om denna redan är populerad
@@ -77,7 +77,7 @@ function NavBar() {
         fetchProducts();
       }, [products]);
       
-      */
+
 
     const navigate = useNavigate();
 
@@ -165,6 +165,16 @@ function NavBar() {
         } else {
             navigate("/login");
         }
+    };
+
+        const handleHeartIconClick = () => {
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === 'true';
+            if (isLoggedIn) {
+                navigate("/wishlist");
+            } else {
+                alert("Log in to see your wishlist!")
+            }
+    
     };
 
     return (
@@ -258,14 +268,16 @@ function NavBar() {
                         )}
                     </div>
                 </form>
+
                 <div
                     onClick={handleUserIconClick}
                     style={{ cursor: "pointer" }}
                 >
                     <FontAwesomeIcon icon={faUser} />
                 </div>
-                <div>
-                    <FontAwesomeIcon icon={faHeart} />
+
+                <div onClick={handleHeartIconClick} style={{ cursor: "pointer" }}> <FontAwesomeIcon icon={faHeart} 
+                    />
                 </div>
                 <div>
                     <FontAwesomeIcon icon={faShoppingCart} />
