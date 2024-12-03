@@ -8,6 +8,10 @@
     flex-direction: column;
     gap: 16px;
   }
+
+  .counter-container h3{
+    font-family: "Roboto Condensed";
+  }
   
   .product-list-container h1 {
     text-align: center;
@@ -39,6 +43,7 @@
   .product-list-container li span {
     font-size: .9rem;
     color: #555;
+    padding: 1vh;
   }
   
   .product-list-container button {

@@ -105,12 +105,12 @@ function ProductList() {
       const updatedProducts = products.map((product) =>
         product.id === id
           ? {
-              ...product,
-              name: newName,
-              price: parseFloat(newPrice),
-              stock: parseInt(newStock),
-              images: newImages.split(",").map((url) => url.trim()),
-            }
+            ...product,
+            name: newName,
+            price: parseFloat(newPrice),
+            stock: parseInt(newStock),
+            images: newImages.split(",").map((url) => url.trim()),
+          }
           : product
       );
 
@@ -157,12 +157,22 @@ function ProductList() {
           onChange={handleSearch}
         />
       </div>
+      <div className="counter-container">
+        <h3>Total Products: {productsToShow.length}</h3>
+      </div>
       <ul>
-        {productsToShow.map((product) => (
+        {productsToShow.map((product, index) => (
           <li key={product.id}>
             <span>
-              {product.name} <br />
-              SEK: {product.price}
+              {index + 1}. {product.name} <br />
+              SEK: {product.price} <br />
+              <span
+                style={{
+                  color: product.stock < 2 ? "red" : "inherit",
+                }}
+              >
+                Saldo: {product.stock}
+              </span>
             </span>
             {editProductId === product.id ? (
               <div>
