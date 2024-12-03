@@ -1,0 +1,8 @@
+
+.wishListIcon {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    font-size: 130%;
+  }

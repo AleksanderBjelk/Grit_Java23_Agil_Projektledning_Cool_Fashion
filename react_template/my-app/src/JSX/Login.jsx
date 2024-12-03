@@ -25,6 +25,8 @@ const Login = ({ setIsAdmin }) => {
       const user = userCredential.user;
 
       localStorage.setItem("isLoggedIn", 'true');
+      localStorage.setItem("userId", user.uid);
+
       setIsLoggedIn(true);
       setUser(user);
       alert("Välkommen " + user.email);

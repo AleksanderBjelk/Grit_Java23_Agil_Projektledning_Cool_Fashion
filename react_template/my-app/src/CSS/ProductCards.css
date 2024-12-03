@@ -72,6 +72,12 @@
     margin: 0;
 }
 
+.buyAndHeartContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cardButton {
     visibility: hidden;
     opacity: 0;
@@ -94,6 +100,8 @@
     opacity: 1;
     max-height: 100px;
 }
+
+
 
 /* CSS for the carousel wrapper of the productcards */
 

@@ -1,12 +1,14 @@
 //Step 1 in creating the cards
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import AddToWishlist from './AddToWishlist';
 import '../CSS/ProductCards.css';
 
 const ProductCardCarousel = ({ id, name, price, images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
-
   //Change to next picture in card
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -47,7 +49,8 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
       <p>{price}</p> {/* Product Price */}
       <div>
         <button className='cardButton'>Köp</button>
-      </div>
+    </div>
+<AddToWishlist productId={id}></AddToWishlist>
     </div>
   );
 };
