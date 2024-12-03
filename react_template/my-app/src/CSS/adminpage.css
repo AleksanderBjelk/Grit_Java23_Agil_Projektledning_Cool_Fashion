@@ -1,31 +1,25 @@
 .admin-page-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-    flex-wrap: wrap;
 }
 
-.admin-page-container > div {
-    flex: 1 1 30%;
-    min-width: 280px;
-    max-width: 700px;
-    /* padding: 20px; */
-    border-radius: 8px;
+.admin-section {
     background-color: #f9f9f9;
+    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    
 }
 
-.admin-page-container h1 {
-    text-align: center;
+.admin-section h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 button {
@@ -57,12 +51,11 @@ input:focus, select:focus, textarea:focus {
 
 @media screen and (max-width: 1024px) {
     .admin-page-container {
-        flex-direction: column;
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 
-    .admin-page-container > div {
-        flex: 1 1 100%;
-        max-width: 100%;
+    .admin-section {
+        flex: 1 1 100%; 
     }
 }
