@@ -121,3 +121,17 @@
 .category-form .submit-button:hover {
   background-color: #000000;
 }
+
+.image-preview div {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add spacing between child elements */
+}
+
+.image-preview img {
+  margin-right: 10px; /* Add space next to the image */
+}
+
+.image-preview button {
+  margin-left: auto; /* Push the button to the right (if needed) */
+}

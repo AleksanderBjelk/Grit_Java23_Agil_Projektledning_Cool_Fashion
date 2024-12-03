@@ -74,3 +74,45 @@
 .backButton:hover {
     transform: scale(110%);
 }
+
+
+
+.product-images {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start; 
+    padding: 20px;
+}
+
+.main-image {
+    flex-shrink: 0; 
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.product-image.large-image {
+    max-width:525px; 
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: cell;
+}
+
+.product-image.small-image {
+    max-width: 100px; 
+    height: auto;
+    cursor: pointer; 
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-image.small-image.selected {
+    border: 2px solid #000000;
+    transform: scale(110%); 
+    transition: transform 0.2s ease;
+}

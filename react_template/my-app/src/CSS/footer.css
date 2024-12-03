@@ -17,6 +17,7 @@ body, html {
 
 .content {
     flex: 1;
+    bottom: 0%;
 }
 
 .textFooter {

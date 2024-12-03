@@ -7,6 +7,7 @@ const ProductForm = () => {
     const [formData, setFormData] = useState({
         name: "",
         price: "",
+        stock: "",
         images: [],
         mainCategory: "",
         intermediateCategory: "",
@@ -16,6 +17,7 @@ const ProductForm = () => {
 
     const [imageUrl, setImageUrl] = useState("");
     const [imageUrls, setImageUrls] = useState([]);
+    const [firstImageIndex, setFirstImageIndex] = useState(0);
 
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
@@ -57,23 +59,40 @@ const ProductForm = () => {
         if (imageUrls.length <= 5) {
             setImageUrls([...imageUrls, imageUrl]);
             setImageUrl("");
-        }else {
+        } else {
             alert("Cant add more than 5 images");
         }
     };
 
     const handleImageRemove = (index) => {
-        setImageUrls(imageUrls.filter((_, i) => i !== index));
+        const updatedImages = imageUrls.filter((_, i) => i !== index);
+        setImageUrls(updatedImages);
+
+        //Adjust firstImageIndex if necessary
+        if (index === firstImageIndex) {
+            setFirstImageIndex(0); //Reset to the first image by default
+        } else if (index < firstImageIndex) {
+            setFirstImageIndex(firstImageIndex - 1);
+        }
+    };
+
+    const handleSetAsFirst = (index) => {
+        setFirstImageIndex(index); //Update the first image index
     };
 
     const handleProductSubmit = async (e) => {
         e.preventDefault();
 
+        const rearrangedImages = [
+            imageUrls[firstImageIndex],
+            ...imageUrls.filter((_, i) => i !== firstImageIndex),
+        ];
+
         try {
             const productData = {
                 ...formData,
                 price: parseFloat(formData.price),
-                images: imageUrls,
+                images: rearrangedImages,
                 createdAt: new Date(),
             };
 
@@ -83,6 +102,7 @@ const ProductForm = () => {
             setFormData({
                 name: "",
                 price: "",
+                stock: "",
                 images: [],
                 mainCategory: "",
                 intermediateCategory: "",
@@ -90,6 +110,7 @@ const ProductForm = () => {
                 createdBy: "admin",
             });
             setImageUrls([]);
+            setFirstImageIndex(0);
         } catch (error) {
             console.error("Error uploading product: ", error);
             alert("Error uploading product. Please try again.");
@@ -116,6 +137,16 @@ const ProductForm = () => {
                         type="number"
                         name="price"
                         value={formData.price}
+                        onChange={handleChange}
+                        required
+                    />
+                </label>
+                <label>
+                    Stock:
+                    <input
+                        type="number"
+                        name="stock"
+                        value={formData.stock}
                         onChange={handleChange}
                         required
                     />
@@ -148,12 +179,25 @@ const ProductForm = () => {
                                         marginRight: "10px",
                                     }}
                                 />
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        name={`firstIndex-${index}`}
+                                        id={`firstIndex-${index}`}
+                                        checked={index === firstImageIndex}
+                                        onChange={() => handleSetAsFirst(index)}
+                                    />
+                                    <label for={`firstIndex-${index}`}>
+                                        Huvudbild
+                                    </label>
+                                </div>
                                 <button
                                     type="button"
                                     onClick={() => handleImageRemove(index)}
                                 >
                                     Remove
                                 </button>
+
                             </div>
                         ))}
                     </div>
