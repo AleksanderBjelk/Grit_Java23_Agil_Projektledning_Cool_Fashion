@@ -32,6 +32,19 @@ function ProductPage() {
 
     if (!product) return <div>Laddar produkt...</div>;
 
+    
+    const getStock = () => {
+        if (product.stock === 0) {
+            return { text: "Tyvärr är denna produkten restad", color: "red" };
+        } else if (product.stock === 1) {
+            return { text: "En kvar i lager", color: "orange" };
+        } else {
+            return { text: "Finns i lager", color: "green" };
+        }
+    };
+
+    const stockStatus = getStock();
+
     return (
         <div className="product-page">
             <img
@@ -61,7 +74,10 @@ function ProductPage() {
                 <p>{product.description}</p>
                 <p className="product-price">{product.price} SEK</p>
                 <div className="product-actions">
-                    <button>Buy</button>
+                    <button disabled={product.stock === 0}>Buy</button>
+                    <p style={{ color: stockStatus.color }} className="stock-status">
+                        {stockStatus.text}
+                    </p>
                 </div>
             </div>
 
