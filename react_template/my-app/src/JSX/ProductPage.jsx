@@ -2,12 +2,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../data/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import "../CSS/productPage.css";
 
 function ProductPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -45,6 +49,10 @@ function ProductPage() {
                         src={image}
                         alt={`${product.name} - Bild ${index + 1}`}
                         className="product-image"
+                        onClick={() => {
+                            setCurrentIndex(index);
+                            setLightboxOpen(true);
+                        }}
                     />
                 ))}
             </div>
@@ -56,6 +64,19 @@ function ProductPage() {
                     <button>Buy</button>
                 </div>
             </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <Lightbox
+                    open={lightboxOpen}
+                    close={() => setLightboxOpen(false)}
+                    slides={product.images.map((image) => ({
+                        src: image,
+                        alt: `${product.name}`,
+                    }))}
+                    index={currentIndex}
+                />
+            )}
         </div>
     );
 }
