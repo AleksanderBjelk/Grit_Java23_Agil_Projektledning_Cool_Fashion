@@ -32,7 +32,6 @@ function ProductPage() {
 
     if (!product) return <div>Laddar produkt...</div>;
 
-    
     const getStock = () => {
         if (product.stock === 0) {
             return { text: "Tyvärr är denna produkten restad", color: "red" };
@@ -56,18 +55,31 @@ function ProductPage() {
             <h1>{product.name}</h1>
 
             <div className="product-images">
-                {product.images.map((image, index) => (
+                <div className="main-image">
                     <img
-                        key={index}
-                        src={image}
-                        alt={`${product.name} - Bild ${index + 1}`}
-                        className="product-image"
+                        src={product.images[0]}
+                        alt={`${product.name} - Huvudbild`}
+                        className="product-image large-image"
                         onClick={() => {
-                            setCurrentIndex(index);
+                            setCurrentIndex(0);
                             setLightboxOpen(true);
                         }}
                     />
-                ))}
+                </div>
+                <div className="thumbnail-images">
+                    {product.images.slice(1).map((image, index) => (
+                        <img
+                            key={index}
+                            src={image}
+                            alt={`${product.name} - Thumbnail ${index + 1}`}
+                            className="product-image small-image"
+                            onClick={() => {
+                                setCurrentIndex(index + 1); 
+                                setLightboxOpen(true);
+                            }}
+                        />
+                    ))}
+                </div>
             </div>
 
             <div className="product-details">
@@ -75,7 +87,10 @@ function ProductPage() {
                 <p className="product-price">{product.price} SEK</p>
                 <div className="product-actions">
                     <button disabled={product.stock === 0}>Buy</button>
-                    <p style={{ color: stockStatus.color }} className="stock-status">
+                    <p
+                        style={{ color: stockStatus.color }}
+                        className="stock-status"
+                    >
                         {stockStatus.text}
                     </p>
                 </div>
