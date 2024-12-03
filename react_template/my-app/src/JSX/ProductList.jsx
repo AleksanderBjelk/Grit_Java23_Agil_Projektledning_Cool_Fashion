@@ -11,6 +11,7 @@ function ProductList() {
   const [editProductId, setEditProductId] = useState(null);
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
+  const [newStock, setNewStock] = useState('');
   const [newImages, setNewImages] = useState('');
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -24,6 +25,7 @@ function ProductList() {
           id: doc.id,
           name: doc.data().name,
           price: doc.data().price,
+          stock: doc.data().stock,
           images: doc.data().images,
           createdAt: doc.data().createdAt, // Include this if needed
         }));
@@ -86,7 +88,7 @@ function ProductList() {
   };
 
   const handleProductUpdate = async (id) => {
-    if (!newName || !newPrice || !newImages || isNaN(newPrice) || newPrice <= 0) {
+    if (!newName || !newPrice || !newStock || !newImages || isNaN(newPrice) || newPrice <= 0) {
       alert("Lägg till namn, pris och bild");
       return;
     }
@@ -96,6 +98,7 @@ function ProductList() {
       await updateDoc(productDoc, {
         name: newName,
         price: parseFloat(newPrice),
+        stock: parseInt(newStock),
         images: newImages.split(",").map((url) => url.trim()),
       });
 
@@ -105,6 +108,7 @@ function ProductList() {
               ...product,
               name: newName,
               price: parseFloat(newPrice),
+              stock: parseInt(newStock),
               images: newImages.split(",").map((url) => url.trim()),
             }
           : product
@@ -114,6 +118,7 @@ function ProductList() {
       setProductsToShow(updatedProducts);
       setNewName("");
       setNewPrice("");
+      setNewStock("");
       setNewImages("");
       setEditProductId(null);
       alert("Produkten har uppdaterats.");
@@ -174,6 +179,12 @@ function ProductList() {
                   placeholder="Nytt Pris"
                 />
                 <input
+                  type="number"
+                  value={newStock}
+                  onChange={(e) => setNewStock(e.target.value)}
+                  placeholder="Nytt Saldo"
+                />
+                <input
                   type="text"
                   value={newImages}
                   onChange={(e) => setNewImages(e.target.value)}
@@ -190,6 +201,7 @@ function ProductList() {
                     setEditProductId(product.id);
                     setNewName(product.name);
                     setNewPrice(product.price);
+                    setNewStock(product.stock);
                     setNewImages(product.images.join(", "));
                   }}
                 >
