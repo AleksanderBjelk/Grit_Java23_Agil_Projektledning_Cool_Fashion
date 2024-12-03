@@ -2,12 +2,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../data/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import "../CSS/productPage.css";
 
 function ProductPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -28,6 +32,19 @@ function ProductPage() {
 
     if (!product) return <div>Laddar produkt...</div>;
 
+    
+    const getStock = () => {
+        if (product.stock === 0) {
+            return { text: "Tyvärr är denna produkten restad", color: "red" };
+        } else if (product.stock === 1) {
+            return { text: "En kvar i lager", color: "orange" };
+        } else {
+            return { text: "Finns i lager", color: "green" };
+        }
+    };
+
+    const stockStatus = getStock();
+
     return (
         <div className="product-page">
             <img
@@ -45,6 +62,10 @@ function ProductPage() {
                         src={image}
                         alt={`${product.name} - Bild ${index + 1}`}
                         className="product-image"
+                        onClick={() => {
+                            setCurrentIndex(index);
+                            setLightboxOpen(true);
+                        }}
                     />
                 ))}
             </div>
@@ -53,9 +74,25 @@ function ProductPage() {
                 <p>{product.description}</p>
                 <p className="product-price">{product.price} SEK</p>
                 <div className="product-actions">
-                    <button>Buy</button>
+                    <button disabled={product.stock === 0}>Buy</button>
+                    <p style={{ color: stockStatus.color }} className="stock-status">
+                        {stockStatus.text}
+                    </p>
                 </div>
             </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <Lightbox
+                    open={lightboxOpen}
+                    close={() => setLightboxOpen(false)}
+                    slides={product.images.map((image) => ({
+                        src: image,
+                        alt: `${product.name}`,
+                    }))}
+                    index={currentIndex}
+                />
+            )}
         </div>
     );
 }

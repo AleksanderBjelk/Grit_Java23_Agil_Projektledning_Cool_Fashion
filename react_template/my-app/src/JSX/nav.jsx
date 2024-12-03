@@ -26,7 +26,7 @@ function NavBar() {
     const [filteredResults, setFilteredResults] = useState([]);
     const [products, setProducts] = useState([]);
     const isAdmin = localStorage.getItem("isAdmin")
-
+ /*
     useEffect(() => {
         const fetchCategories = async () => {
           if (mainCategories.length && intermediateCategories.length && subCategories.length) {
@@ -77,7 +77,7 @@ function NavBar() {
       
         fetchProducts();
       }, [products]);
-      
+      */
 
     const navigate = useNavigate();
 

@@ -74,3 +74,7 @@
 .backButton:hover {
     transform: scale(110%);
 }
+
+.product-page :hover img{
+    cursor: cell;
+}
