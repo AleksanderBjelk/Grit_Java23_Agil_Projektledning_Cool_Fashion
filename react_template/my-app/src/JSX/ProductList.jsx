@@ -33,10 +33,10 @@ function ProductList() {
         console.error("Error fetching products: ", error);
       }
     };
-  
+
     fetchProducts();
   }, []);
-  
+
 
   const deleteFromDb = async (id) => {
     try {
@@ -142,17 +142,48 @@ function ProductList() {
                   onChange={(e) => setNewImages(e.target.value)}
                   placeholder="Ny bildaddress"
                 />
-                <button onClick={() => handleProductUpdate(product.id)}>Uppdatera Produkten</button>
+                <button onClick={() => handleProductUpdate(product.id)}>
+                  Uppdatera Produkten
+                </button>
               </div>
             ) : (
               <div>
-                <button onClick={() => {
-                  setEditProductId(product.id);
-                  setNewName(product.name);
-                  setNewPrice(product.price);
-                  setNewImages(product.images);
-                }}>Ändra</button>
+                <button
+                  onClick={() => {
+                    setEditProductId(product.id);
+                    setNewName(product.name);
+                    setNewPrice(product.price);
+                    setNewImages(product.images.join(", "));
+                  }}
+                >
+                  Ändra
+                </button>
                 <button onClick={() => deleteFromDb(product.id)}>Radera</button>
+                <button
+                  onClick={() =>
+                    setProductsToShow((prev) =>
+                      prev.map((p) =>
+                        p.id === product.id
+                          ? { ...p, showImages: !p.showImages }
+                          : p
+                      )
+                    )
+                  }
+                >
+                  {product.showImages ? "Hide Images" : "Show Images"}
+                </button>
+                {product.showImages && (
+                  <div className="image-gallery">
+                    {product.images.map((image, idx) => (
+                      <img
+                        key={idx}
+                        src={image}
+                        alt={`Product Image ${idx + 1}`}
+                        style={{ width: "50px", height: "50px", marginRight: "10px" }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </li>
