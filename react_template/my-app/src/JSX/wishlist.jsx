@@ -5,7 +5,7 @@ function WishlistPage() {
     return (
         <div className="resell">
             <div className="header">
-                <h1>Your Wishlist</h1>
+                <h1>Din Wishlist</h1>
             </div>
             <div className="cards">
                 <WishlistCard />

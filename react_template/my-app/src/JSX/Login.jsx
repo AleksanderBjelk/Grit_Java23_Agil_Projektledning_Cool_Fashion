@@ -101,53 +101,53 @@ const Login = ({ setIsAdmin }) => {
         </div>
       ) : (
         <form onSubmit={isRegistering ? handleRegister : handleLogin}>
-          <h3>{isRegistering ? 'Register Here' : 'Login Here'}</h3>
+          <h3>{isRegistering ? 'Registrera Här' : 'Logga In Här'}</h3>
           {error && <div className="error-message">{error}</div>}
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Mailadress</label>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Mailadress"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Lösenord</label>
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Lösenord"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {isRegistering && (
             <>
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName">Förnamn</label>
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder="Förnamn"
                 id="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName">Efternamn</label>
               <input
                 type="text"
-                placeholder="Last Name"
+                placeholder="Efternamn"
                 id="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </>
           )}
-          <button type="submit">{isRegistering ? 'Register' : 'Log In'}</button>
+          <button type="submit">{isRegistering ? 'Registrera' : 'Logga In'}</button>
           {/* Toggle between login and register - ( : ) som används i hela returnen är som ett "if else" */}
           {!isRegistering ? (
             <div>
-              <button type="button" onClick={handleRegisterClick}>Don't have an account? Register</button>
+              <button type="button" onClick={handleRegisterClick}>Har du inget konto? Registrera</button>
             </div>
           ) : (
             <div>
-              <button type="button" onClick={handleLoginClick}>Already have an account? Log In</button>
+              <button type="button" onClick={handleLoginClick}>Har du redan ett konto? Logga In</button>
             </div>
           )}
         </form>

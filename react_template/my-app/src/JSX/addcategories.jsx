@@ -54,7 +54,7 @@ const AddCategory = () => {
         e.preventDefault();
 
         if (!categoryName.trim()) {
-            alert("Please enter a category name.");
+            alert("Var snäll och skriv ett kategorinamn.");
             return;
         }
 
@@ -94,19 +94,19 @@ const AddCategory = () => {
             setCategoryName("");
             setMainCategory("");
             setIntermediateCategory("");
-            alert(`${categoryType} category added successfully!`);
+            alert(`${categoryType} Kategori lade till lyckat!`);
         } catch (error) {
             console.error("Error adding category:", error);
-            alert("Failed to add category. Please try again.");
+            alert("Misslyckades med att lägga till kategori. Var snäll att prova igen.");
         }
     };
 
     return (
         <div className="form-wrapper">
             <form onSubmit={handleAddCategory} className="category-form">
-                <h3>Add a Category</h3>
+                <h3>lägg till en kategori</h3>
                 <label>
-                    Category Name:
+                    Kategorinamn:
                     <input
                         type="text"
                         value={categoryName}
@@ -115,27 +115,27 @@ const AddCategory = () => {
                     />
                 </label>
                 <label>
-                    Category Type:
+                    Kategorityp:
                     <select
                         value={categoryType}
                         onChange={handleCategoryTypeChange}
                         required
                     >
-                        <option value="mainCategory">Main Category</option>
+                        <option value="mainCategory">Huvudkategori</option>
                         <option value="intermediateCategory">
-                            Intermediate Category
+                            Mellanliggande Kategori
                         </option>
-                        <option value="subCategory">Sub Category</option>
+                        <option value="subCategory">Underkategori</option>
                     </select>
                 </label>
                 <label>
-                    Main Category:
+                    Huvudkategori:
                     <select
                         value={mainCategory}
                         onChange={handleMainCategoryChange}
                         disabled={categoryType === "mainCategory"}
                     >
-                        <option value="">Select Main Category</option>
+                        <option value="">Välj Huvudkategori</option>
                         {mainCategories.map((cat) => (
                             <option key={cat.id} value={cat.id}>
                                 {cat.name}
@@ -144,13 +144,13 @@ const AddCategory = () => {
                     </select>
                 </label>
                 <label>
-                    Intermediate Category:
+                    Mellanliggande Kategori:
                     <select
                         value={intermediateCategory}
                         onChange={handleIntermediateCategoryChange}
                         disabled={categoryType !== "subCategory"}
                     >
-                        <option value="">Select Intermediate Category</option>
+                        <option value="">Välj Mellanliggande Kategori</option>
                         {intermediateCategories
                             .filter(
                                 (cat) => cat.mainCategoryId === mainCategory
@@ -162,7 +162,7 @@ const AddCategory = () => {
                             ))}
                     </select>
                 </label>
-                <button type="submit">Add Category</button>
+                <button type="submit">Lägg till kategori</button>
             </form>
         </div>
     );

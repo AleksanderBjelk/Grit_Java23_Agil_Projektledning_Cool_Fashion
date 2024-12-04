@@ -12,7 +12,7 @@ function MyPages() {
         {localStorage.getItem("isAdmin") === "true" && (
             <h1>
           <Link to="/adminpage" className="admin-link">
-           Click here for Product Management
+           Klicka Här För Produkt Hantering
           </Link>
           </h1>
         )}
@@ -22,7 +22,7 @@ function MyPages() {
           <Logout></Logout>
         </div>
       ) : (
-        <p>Please log in to access your profile.</p>
+        <p>Var Snäll Och Logga In För Att Komma Åt Din Profil.</p>
       )} 
     </div>
   );

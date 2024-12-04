@@ -12,7 +12,7 @@ function Logout() {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("isAdmin");
       navigate("/login");
-      alert("You have logged out");
+      alert("Du har loggat ut");
     } catch (error) {
       console.error("Logout Error", error.message);
     }
@@ -21,7 +21,7 @@ function Logout() {
 
   return (
     <div>
-      <button onClick={handleLogout} className="logout-button">Log Out</button>
+      <button onClick={handleLogout} className="logout-button">Logga Ut</button>
     </div>
   )
 };

@@ -5,8 +5,8 @@ function ResellPage() {
     return (
         <div className="resell">
             <div className="header">
-                <h1>Re-sell your clothes to our second hand community</h1>
-                <h3>Keep our planet in mind and while earning money on your old clothes</h3>
+                <h1>Sälj dina kläder till våran second hand community</h1>
+                <h3>Håll vår planet i åtanke samtidigt som du tjänar pengar på dina gamla kläder</h3>
             </div>
             <div className="cards">
                 <SecondhandProductCard />

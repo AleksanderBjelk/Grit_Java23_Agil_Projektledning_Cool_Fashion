@@ -147,7 +147,7 @@ function NavBar() {
                 );
             }
         } else {
-            alert("No matching products or categories found.");
+            alert("Ingen match på kategorier eller produkter");
         }
     };
 
@@ -172,7 +172,7 @@ function NavBar() {
             if (isLoggedIn) {
                 navigate("/wishlist");
             } else {
-                alert("Log in to see your wishlist!")
+                alert("Logga in för att se din wishlist!")
             }
     
     };
@@ -242,7 +242,7 @@ function NavBar() {
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                         <input
                             type="text"
-                            placeholder="Search..."
+                            placeholder="Sök..."
                             value={searchQuery}
                             onChange={handleSearch}
                             onKeyDown={(event) => {

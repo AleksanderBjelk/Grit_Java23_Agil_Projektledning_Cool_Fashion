@@ -33,7 +33,7 @@ const AddToWishlist = ({ productId }) => {
 
                 //check if productId already exists in the wishlist
                 if (wishlist.includes(productId)) {
-                    alert("This product is already in your wishlist!");
+                    alert("Den här produkten finns redan i din wishlist!");
                     return; //wont if the item is already in the wishlist
                 }
 
@@ -41,7 +41,7 @@ const AddToWishlist = ({ productId }) => {
                 await updateDoc(userDocRef, { wishlist })
 
                 setIsInWishlist(true) //updating the state to true when an item is added to wishlist
-                alert('Woho!! Product added to your wishlist')
+                alert('Woho!! Produkt lades till i din wishlist!')
                 console.log("added product weith id " + productId)
 
             } else {
@@ -50,7 +50,7 @@ const AddToWishlist = ({ productId }) => {
 
         } catch (error) {
             console.error("error adding item to wishlist", error);
-            alert('We are sorry.. an error occurred while adding the product to your wishlist.');
+            alert('Vi ber om ursäkt... Ett fel har skett med att lägga till produkten i din wishlist.');
         }
     }
 

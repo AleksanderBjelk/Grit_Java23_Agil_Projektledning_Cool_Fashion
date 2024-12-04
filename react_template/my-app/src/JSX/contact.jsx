@@ -27,7 +27,7 @@ const ContactForm = () => {
 
             await addDoc(collection(db, "contactform"), productData);
 
-            alert("Product successfully uploaded!");
+            alert("Meddelandet är skickat!");
             setFormData({
                 name: "",
                 email: "",
@@ -49,40 +49,40 @@ const ContactForm = () => {
                     <form action="" className="contactForm" onSubmit={handleFormSubmit}>
                         <h2>Skriv till oss!</h2>
                         <div className="formGroup">
-                            <label htmlFor="name">Name:</label>
+                            <label htmlFor="name">Namn:</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
-                                placeholder="Enter your name"
+                                placeholder="Skriv ditt namn"
                                 onChange={handleChange}
                                 required
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="email">Email:</label>
+                            <label htmlFor="email">Mailadress:</label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Enter your email"
+                                placeholder="Skriv din mailadres"
                                 onChange={handleChange}
                                 required
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="message">Message:</label>
+                            <label htmlFor="message">Meddelande:</label>
                             <textarea
                                 id="message"
                                 name="message"
-                                placeholder="Write your message"
+                                placeholder="Skriv ditt meddelande"
                                 onChange={handleChange}
                                 required
                             ></textarea>
                         </div>
                         <div className="buttonContainer">
                             <button type="submit" className="submitButton">
-                                Send Message
+                                Skicka Meddelande
                             </button>
                         </div>
                     </form>

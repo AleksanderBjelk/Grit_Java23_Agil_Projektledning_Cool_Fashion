@@ -147,7 +147,7 @@ function ProductList() {
 
   return (
     <div className="product-list-container">
-      <h1>Product List</h1>
+      <h1>Produktlista</h1>
       <div className="search-container">
         <FontAwesomeIcon className="searchSymbol" icon={faMagnifyingGlass} />
         <input
@@ -158,7 +158,7 @@ function ProductList() {
         />
       </div>
       <div className="counter-container">
-        <h3>Total Products: {productsToShow.length}</h3>
+        <h3>Antal Produkter: {productsToShow.length}</h3>
       </div>
       <ul>
         {productsToShow.map((product, index) => (
@@ -229,7 +229,7 @@ function ProductList() {
                     )
                   }
                 >
-                  {product.showImages ? "Hide Images" : "Show Images"}
+                  {product.showImages ? "Göm Bilder" : "Visa Bilder"}
                 </button>
                 {product.showImages && (
                   <div className="image-gallery">

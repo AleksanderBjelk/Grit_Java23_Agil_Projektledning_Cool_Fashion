@@ -39,7 +39,7 @@ const ContactMessages = () => {
                             <strong>Namn:</strong> {message.name}
                         </p>
                         <p>
-                            <strong>Email:</strong> {message.email}
+                            <strong>Mailadress:</strong> {message.email}
                         </p>
                         <p>
                             <strong>Meddelande:</strong> {message.message}

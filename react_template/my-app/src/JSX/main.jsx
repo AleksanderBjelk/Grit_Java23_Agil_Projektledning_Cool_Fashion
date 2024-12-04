@@ -6,9 +6,9 @@ function MainPage() {
         <div className="main">
             <div className="mainVideo">
                 <p>
-                    <span>celebrate christmas with levi's</span>
-                    <span>30% off all jeans</span>
-                    <span>notjoel banned from site </span>
+                    <span>fira julen med Levi's</span>
+                    <span>30% rabatt på alla jeans</span>
+                    <span>notjoel bannad från denna sidan </span>
                 </p>
 
                 <video id="video" loop muted autoPlay controls>
@@ -31,14 +31,14 @@ function MainPage() {
                 </div>
             </div>  */}
             <div className="upperMainText">
-                <h1>NEW IN WINTER SEASON</h1>
+                <h1>NYTT IN FÖR VINTERN</h1>
             </div>
             <ProductGridCarousel />
             <div className="lowerMainTextContainer">
                 <div className="lowerMainText">
-                    <h2>OUTLET SALE UNTIL 24/12</h2>
-                    <h2>FREE DELIVERY TO STORE</h2>
-                    <h2>1-4 DAY DELIVERY</h2>
+                    <h2>OUTLET SALE TILL 24/12</h2>
+                    <h2>GRATIS LEVERANS TILL BUTIK</h2>
+                    <h2>1-4 DAGAR FÖR LEVERANS</h2>
                 </div>
             </div>
             <div className="saleImage">

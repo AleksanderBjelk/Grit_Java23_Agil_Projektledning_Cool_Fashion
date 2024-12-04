@@ -82,7 +82,7 @@ function ProductPage() {
                 <p>{product.description}</p>
                 <p className="product-price">{product.price} SEK</p>
                 <div className="product-actions">
-                    <button disabled={product.stock === 0}>Buy</button>
+                    <button disabled={product.stock === 0}>Köp</button>
                     <p
                         style={{ color: stockStatus.color }}
                         className="stock-status"

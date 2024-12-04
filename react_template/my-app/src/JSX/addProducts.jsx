@@ -106,7 +106,7 @@ const ProductForm = () => {
 
             await addDoc(collection(db, "products"), productData);
 
-            alert("Product successfully uploaded!");
+            alert("Produkt lyckades läggas till!");
             setFormData({
                 name: "",
                 price: "",
@@ -121,16 +121,16 @@ const ProductForm = () => {
             setFirstImageIndex(0);
         } catch (error) {
             console.error("Error uploading product: ", error);
-            alert("Error uploading product. Please try again.");
+            alert("Misslyckades lägga till produkt. Var snäll och prova igen.");
         }
     };
 
     return (
         <div className="form-wrapper">
             <form onSubmit={handleProductSubmit} className="product-form">
-                <h3>ADD A PRODUCT</h3>
+                <h3>LÄGG TILL EN PRODUKT</h3>
                 <label>
-                    Name:
+                    Namn:
                     <input
                         type="text"
                         name="name"
@@ -140,7 +140,7 @@ const ProductForm = () => {
                     />
                 </label>
                 <label>
-                    Price:
+                    Pris:
                     <input
                         type="number"
                         name="price"
@@ -150,7 +150,7 @@ const ProductForm = () => {
                     />
                 </label>
                 <label>
-                    Stock:
+                    Lagersaldo:
                     <input
                         type="number"
                         name="stock"
@@ -160,7 +160,7 @@ const ProductForm = () => {
                     />
                 </label>
                 <label>
-                    Image URL:
+                    Bild URL:
                     <div>
                         <input
                             type="text"
@@ -169,13 +169,13 @@ const ProductForm = () => {
                             placeholder="Enter image URL"
                         />
                         <button type="button" onClick={handleImageAdd}>
-                            Add Image
+                            Lägg till bild
                         </button>
                     </div>
                 </label>
                 {imageUrls.length > 0 && (
                     <div className="image-preview">
-                        <h4>Added Images:</h4>
+                        <h4>Bilder tillagda:</h4>
                         {imageUrls.map((url, index) => (
                             <div key={index} style={{ marginBottom: "10px" }}>
                                 <img
@@ -203,7 +203,7 @@ const ProductForm = () => {
                                     type="button"
                                     onClick={() => handleImageRemove(index)}
                                 >
-                                    Remove
+                                    Ta bort
                                 </button>
 
                             </div>
@@ -211,14 +211,14 @@ const ProductForm = () => {
                     </div>
                 )}
                 <label>
-                    Main Category:
+                    Huvudkategori:
                     <select
                         name="mainCategory"
                         value={formData.mainCategory}
                         onChange={handleChange}
                         required
                     >
-                        <option value="">Select Main Category</option>
+                        <option value="">Välj Huvudkategori</option>
                         {mainCategories.map((cat) => (
                             <option key={cat.id} value={cat.id}>
                                 {cat.name}
@@ -227,13 +227,13 @@ const ProductForm = () => {
                     </select>
                 </label>
                 <label>
-                    Intermediate Category:
+                    Mellanliggande Kategori:
                     <select
                         name="intermediateCategory"
                         value={formData.intermediateCategory}
                         onChange={handleChange}
                     >
-                        <option value="">Select Intermediate Category</option>
+                        <option value="">Välj Mellanliggande Kategori</option>
                         {intermediateCategories
                             .filter(
                                 (cat) =>
@@ -247,13 +247,13 @@ const ProductForm = () => {
                     </select>
                 </label>
                 <label>
-                    Sub Category:
+                    Underkategori:
                     <select
                         name="subCategory"
                         value={formData.subCategory}
                         onChange={handleChange}
                     >
-                        <option value="">Select Sub Category</option>
+                        <option value="">Välj Underkategori</option>
                         {subCategories
                             .filter(
                                 (cat) =>
@@ -268,7 +268,7 @@ const ProductForm = () => {
                     </select>
                 </label>
                 <label>
-                    Created By:
+                    Skapad av:
                     <input
                         type="text"
                         name="createdBy"
@@ -277,7 +277,7 @@ const ProductForm = () => {
                         required
                     />
                 </label>
-                <button type="submit">Submit</button>
+                <button type="submit">Skapa produkt</button>
             </form>
         </div>
     );

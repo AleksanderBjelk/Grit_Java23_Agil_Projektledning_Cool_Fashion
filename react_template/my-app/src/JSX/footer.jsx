@@ -13,23 +13,23 @@ function TestFooter() {
         <footer className="footer">
             <div className="textFooter">
                 <span className="location">
-                    <h3>Visit our locations</h3>
-                    <p>Check out our store</p>
+                    <h3>Besök oss!</h3>
+                    <p>Checka ut vår butik</p>
                 </span>
                 <span className="contact">
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/contact">Kontakt</Link>
                     <p>070 123 123</p>
                     <p>coolFashion@email.com</p>
                 </span>
                 <span className="mypages">
-                    <Link to="/mypages">My Pages</Link>
+                    <Link to="/mypages">Mina Sidor</Link>
                 </span>
                 <span className="sustainability">
-                    <h3>Sustainability</h3>
-                    <p>Read more about how we stay sustainable</p>
+                    <h3>Hållbarhet</h3>
+                    <p>Läs mer om hur vi håller oss hållbara</p>
                 </span>
                 <div className="footer-social">
-                    <h4>Follow Us</h4>
+                    <h4>Följ Oss</h4>
                     <div className="social-icons">
                         <a
                             href="https://facebook.com"

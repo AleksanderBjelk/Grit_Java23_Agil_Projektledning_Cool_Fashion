@@ -69,7 +69,7 @@ const WishlistProducts = () => {
   return (
     <div className="product-grid">
       {products.length === 0 ? (
-        <p>Your wishlist is empty.</p>
+        <p>Din wishlist är tom.</p>
       ) : (
         products.map((product) => (
           <ProductCardCarousel
