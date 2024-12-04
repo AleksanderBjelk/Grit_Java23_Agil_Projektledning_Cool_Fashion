@@ -123,8 +123,27 @@
   }
 }
 
-video{
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
+.mainVideo {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  gap: 20px; 
+  background-color: black;
+  align-items: center;
+}
+
+.mainVideo p {
+  display: flex; 
+  flex-direction: column; 
+  height: 100%;
+  margin: 0;
+  font-size: 26px;
+  color: rgb(255, 255, 255);
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.mainVideo video {
+  margin-left: auto; 
+  height: 650px;
+  background-color: black;
 }
