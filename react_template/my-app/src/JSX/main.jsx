@@ -28,7 +28,7 @@ function MainPage() {
             <ProductGridCarousel />
             <div className="lowerMainTextContainer">
                 <div className="lowerMainText">
-                    <h2>OUTLET SALE UNTIL 24/11</h2>
+                    <h2>OUTLET SALE UNTIL 24/12</h2>
                     <h2>FREE DELIVERY TO STORE</h2>
                     <h2>1-4 DAY DELIVERY</h2>
                 </div>
