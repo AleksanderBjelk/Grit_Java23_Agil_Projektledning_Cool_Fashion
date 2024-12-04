@@ -122,3 +122,9 @@
     /* Adjust image container height for smaller mobile devices */
   }
 }
+
+video{
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+}
