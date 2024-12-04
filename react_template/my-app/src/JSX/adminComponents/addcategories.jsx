@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../data/firebase";
+import { db } from "../../data/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import "../CSS/productForm.css";
+import "../../CSS/productForm.css";
+
 
 const AddCategory = () => {
     const [mainCategories, setMainCategories] = useState([]);
@@ -15,7 +16,7 @@ const AddCategory = () => {
     //hämta kategorier från Firestore
     useEffect(() => {
         const fetchCategories = async () => {
-            if(mainCategories.length && intermediateCategories.length){
+            if (mainCategories.length && intermediateCategories.length) {
                 //Kollar om den redan är populerad
                 return;
             }
@@ -97,7 +98,9 @@ const AddCategory = () => {
             alert(`${categoryType} Kategori lade till lyckat!`);
         } catch (error) {
             console.error("Error adding category:", error);
-            alert("Misslyckades med att lägga till kategori. Var snäll att prova igen.");
+            alert(
+                "Misslyckades med att lägga till kategori. Var snäll att prova igen."
+            );
         }
     };
 

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ProductCardCarousel from "./ProductcardCarousel.jsx";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../data/firebase.js";
+import { db } from "../../data/firebase.js";
 
 const ProductCard = () => {
     const [products, setProducts] = useState([]);

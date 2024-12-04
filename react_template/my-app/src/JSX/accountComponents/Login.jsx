@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import "../CSS/login.css";
+import "../../CSS/login.css";
 
 const Login = ({ setIsAdmin }) => {
   const [email, setEmail] = useState('');

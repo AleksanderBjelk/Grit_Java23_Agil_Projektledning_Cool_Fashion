@@ -1,4 +1,4 @@
-import "../CSS/resell.css";
+import "../../CSS/resell.css";
 import WishlistCard from "./wishlistCard.jsx";
 
 function WishlistPage() {
@@ -12,6 +12,5 @@ function WishlistPage() {
             </div>
         </div>
     );
-
 }
 export default WishlistPage;

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import '../CSS/mypages.css';
+import '../../CSS/mypages.css';
 
 function Logout() {
   const navigate = useNavigate();

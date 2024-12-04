@@ -1,4 +1,4 @@
-import "../CSS/footer.css";
+import "../../CSS/footer.css";
 import "font-awesome/css/font-awesome.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

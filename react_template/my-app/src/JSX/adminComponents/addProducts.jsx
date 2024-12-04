@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
-import { db } from "../data/firebase";
-import "../CSS/productForm.css";
+import { db } from "../../data/firebase";
+import "../../CSS/productForm.css";
 
 const ProductForm = () => {
     const [formData, setFormData] = useState({
@@ -28,24 +28,37 @@ const ProductForm = () => {
         const fetchCategories = async () => {
             try {
                 const mainCategoryQuery = collection(db, "categories");
-                const mainCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "mainCategory")));
+                const mainCategorySnapshot = await getDocs(
+                    query(
+                        mainCategoryQuery,
+                        where("type", "==", "mainCategory")
+                    )
+                );
                 const mainCategories = mainCategorySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 }));
-    
-                const intermediateCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "intermediateCategory")));
-                const intermediateCategories = intermediateCategorySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-    
-                const subCategorySnapshot = await getDocs(query(mainCategoryQuery, where("type", "==", "subCategory")));
+
+                const intermediateCategorySnapshot = await getDocs(
+                    query(
+                        mainCategoryQuery,
+                        where("type", "==", "intermediateCategory")
+                    )
+                );
+                const intermediateCategories =
+                    intermediateCategorySnapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+
+                const subCategorySnapshot = await getDocs(
+                    query(mainCategoryQuery, where("type", "==", "subCategory"))
+                );
                 const subCategories = subCategorySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 }));
-    
+
                 setMainCategories(mainCategories);
                 setIntermediateCategories(intermediateCategories);
                 setSubCategories(subCategories);
@@ -53,10 +66,9 @@ const ProductForm = () => {
                 console.error("Error fetching categories: ", error);
             }
         };
-    
+
         fetchCategories();
     }, []);
-    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -205,7 +217,6 @@ const ProductForm = () => {
                                 >
                                     Ta bort
                                 </button>
-
                             </div>
                         ))}
                     </div>

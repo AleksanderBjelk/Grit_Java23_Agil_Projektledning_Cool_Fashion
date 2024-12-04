@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../data/firebase";
+import { db } from "../../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import "../CSS/contactMessages.css";
+import "../../CSS/contactMessages.css";
 
 const ContactMessages = () => {
     const [messages, setMessages] = useState([]);

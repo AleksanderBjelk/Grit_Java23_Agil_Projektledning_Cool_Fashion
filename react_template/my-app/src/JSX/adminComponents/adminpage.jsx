@@ -2,10 +2,9 @@ import CategoryForm from "./addcategories";
 import ProductList from "./ProductList";
 import ProductForm from "./addProducts";
 import ContactMessages from "./ContactMessages";
-import '../CSS/adminpage.css'
+import "../../CSS/adminpage.css";
 
 export function Adminpage() {
-
     return (
         <div className="admin-page-container">
             <div className="admin-section">
@@ -21,7 +20,7 @@ export function Adminpage() {
                 <ContactMessages />
             </div>
         </div>
-    )
-};
+    );
+}
 
 export default Adminpage;

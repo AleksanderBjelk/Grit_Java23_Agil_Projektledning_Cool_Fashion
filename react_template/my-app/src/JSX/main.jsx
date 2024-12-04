@@ -1,5 +1,5 @@
 import "../CSS/main.css";
-import ProductGridCarousel from "../JSX/ProductGridCarousel.jsx";
+import ProductGridCarousel from "./productComponents/ProductGridCarousel.jsx";
 
 function MainPage() {
     return (

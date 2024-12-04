@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { db } from "../data/firebase";
+import { db } from "../../data/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import "../CSS/productPage.css";
+import "../../CSS/productPage.css";
 
 function ProductPage() {
     const { id } = useParams();
@@ -57,10 +57,10 @@ function ProductPage() {
             <div className="product-images">
                 <div className="main-image">
                     <img
-                        src={product.images[currentIndex]} 
+                        src={product.images[currentIndex]}
                         alt={`${product.name} - Huvudbild`}
                         className="product-image large-image"
-                        onClick={() => setLightboxOpen(true)} 
+                        onClick={() => setLightboxOpen(true)}
                     />
                 </div>
                 <div className="thumbnail-images">
@@ -71,8 +71,8 @@ function ProductPage() {
                             alt={`${product.name} - Thumbnail ${index + 1}`}
                             className={`product-image small-image ${
                                 index === currentIndex ? "selected" : ""
-                            }`} 
-                            onClick={() => setCurrentIndex(index)} 
+                            }`}
+                            onClick={() => setCurrentIndex(index)}
                         />
                     ))}
                 </div>

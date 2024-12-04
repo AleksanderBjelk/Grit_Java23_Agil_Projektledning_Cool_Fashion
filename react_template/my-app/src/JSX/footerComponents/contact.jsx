@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../data/firebase";
-import "../CSS/contact.css";
+import { db } from "../../data/firebase";
+import "../../CSS/contact.css";
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -9,7 +9,6 @@ const ContactForm = () => {
         email: "",
         message: "",
     });
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,7 +45,11 @@ const ContactForm = () => {
             </div>
             <div className="mainContact">
                 <div className="formContainer">
-                    <form action="" className="contactForm" onSubmit={handleFormSubmit}>
+                    <form
+                        action=""
+                        className="contactForm"
+                        onSubmit={handleFormSubmit}
+                    >
                         <h2>Skriv till oss!</h2>
                         <div className="formGroup">
                             <label htmlFor="name">Namn:</label>
@@ -102,5 +105,5 @@ const ContactForm = () => {
             </div>
         </div>
     );
-}
+};
 export default ContactForm;
