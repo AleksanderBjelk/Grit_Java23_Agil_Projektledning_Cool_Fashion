@@ -35,7 +35,7 @@ function MainPage() {
             </div>
             <div className="saleImage">
                 <a href="sale.com">
-                    <img src="/media/blackFriday.png" alt="Black Friday Sale" />
+                    <img src="/media/christmas.png" alt="Christmas Banner" />
                 </a>
             </div>
         </div>
