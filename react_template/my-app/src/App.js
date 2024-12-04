@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import MainPage from "./JSX/main.jsx";
 import TestFooter from "./JSX/footerComponents/footer.jsx";
-import NavBar from "./JSX/nav.jsx";
+import NavBar from "./JSX/navComponents/NavBar.jsx";
 import Adminpage from "./JSX/adminComponents/adminpage.jsx";
 import ProductList from "./JSX/adminComponents/ProductList.jsx";
 import ResellPage from "./JSX/seconhandComponents/resellpage.jsx";

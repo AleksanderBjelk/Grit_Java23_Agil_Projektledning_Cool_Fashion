@@ -1,4 +1,4 @@
-import "../CSS/nav.css";
+/*import "../CSS/nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHeart,
@@ -288,3 +288,4 @@ function NavBar() {
 }
 
 export default NavBar;
+ */
