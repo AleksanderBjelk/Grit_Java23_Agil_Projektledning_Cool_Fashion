@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import AddToWishlist from "../accountComponents/AddToWishlist";
+import WishlistLogic from "../accountComponents/WishlistLogic";
 import "../../CSS/ProductCards.css";
 
 const ProductCardCarousel = ({ id, name, price, images }) => {
@@ -54,7 +54,7 @@ const ProductCardCarousel = ({ id, name, price, images }) => {
             <div>
                 <button className="cardButton">Köp</button>
             </div>
-            <AddToWishlist productId={id}></AddToWishlist>
+            <WishlistLogic productId={id}></WishlistLogic>
         </div>
     );
 };

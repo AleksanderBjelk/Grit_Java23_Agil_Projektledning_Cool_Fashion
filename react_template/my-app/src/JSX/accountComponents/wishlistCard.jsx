@@ -14,7 +14,7 @@ import { db } from "../../data/firebase.js";
 //och sen jämför mot productId i products i DB och
 //stoppar in i product cards
 
-const WishlistProducts = () => {
+const WishlistCard = () => {
     const [products, setProducts] = useState([]);
     const userId = localStorage.getItem("userId");
 
@@ -95,4 +95,4 @@ const WishlistProducts = () => {
     );
 };
 
-export default WishlistProducts;
+export default WishlistCard;

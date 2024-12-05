@@ -12,7 +12,7 @@ import ProductCard from "./JSX/productComponents/ProductCards.jsx";
 import MyPages from "./JSX/footerComponents/MyPages.jsx";
 import ProductPage from "./JSX/productComponents/ProductPage.jsx";
 import ContactForm from "./JSX/footerComponents/contact.jsx";
-import WishlistPage from "./JSX/accountComponents/wishlist.jsx";
+import WishlistPage from "./JSX/accountComponents/WishlistPage.jsx";
 
     function App() {
         const [isAdmin, setIsAdmin] = useState(() => {

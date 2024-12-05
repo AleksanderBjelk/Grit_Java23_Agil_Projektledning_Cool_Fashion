@@ -7,10 +7,28 @@
     font-size: 130%;
     cursor: pointer;
     color:gray;
+  }
 
+  .wishlistIcon.wishlistIcon-active{
+    color:red;
+  }
+
+  .wishlistIcon.wishlistIcon-inactive{
+    color:red;
   }
 
   .wishlistIcon:hover {
     /* transform: scale(1);  */
     color: red;
 }
+
+.heartIcon.red {
+  color: red;
+}
+
+.wishlist {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+

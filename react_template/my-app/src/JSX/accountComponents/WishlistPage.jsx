@@ -1,5 +1,5 @@
 import "../../CSS/resell.css";
-import WishlistCard from "./wishlistCard.jsx";
+import WishlistCard from "./WishlistCard";
 
 function WishlistPage() {
     return (
@@ -8,7 +8,7 @@ function WishlistPage() {
                 <h1>Din Wishlist</h1>
             </div>
             <div className="cards">
-                <WishlistCard />
+                <WishlistCard/>
             </div>
         </div>
     );
