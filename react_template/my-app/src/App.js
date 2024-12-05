@@ -23,43 +23,45 @@ import WishlistPage from "./JSX/accountComponents/wishlist.jsx";
             localStorage.setItem("isAdmin", isAdmin); //Save to localStorage whenever it changes
         }, [isAdmin]);
 
-    return (
-        <Router>
-            <div className="App">
-                <NavBar isAdmin={isAdmin} />
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/contact" element={<ContactForm />} />
-                    <Route path="/adminpage" element={<Adminpage />} />
-                    <Route path="/productList" element={<ProductList />} />
-                    <Route path="/resell" element={<ResellPage />} />
-                    <Route
-                        path="/login"
-                        element={<Login setIsAdmin={setIsAdmin} />}
-                    />
-                    <Route
-                        path="/mypages"
-                        element={<MyPages isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}
-                    />
-                    <Route path="/wishlist" element={<WishlistPage />} />
-                    <Route
-                        path="/category/:categoryId"
-                        element={<ProductCard />}
-                    />
-                    <Route
-                        path="/category/:categoryId/:intermediateId"
-                        element={<ProductCard />}
-                    />
-                    <Route
-                        path="/category/:categoryId/:intermediateId/:subId"
-                        element={<ProductCard />}
-                    />
-                    <Route path="/product/:id" element={<ProductPage />} />
-                </Routes>
-                <TestFooter />
-            </div>
-        </Router>
-    );
-}
-
-export default App;
+        return (
+            <Router>
+                <div className="app">
+                    <NavBar isAdmin={isAdmin} />
+                    <div className="content">
+                        <Routes>
+                            <Route path="/" element={<MainPage />} />
+                            <Route path="/contact" element={<ContactForm />} />
+                            <Route path="/adminpage" element={<Adminpage />} />
+                            <Route path="/productList" element={<ProductList />} />
+                            <Route path="/resell" element={<ResellPage />} />
+                            <Route
+                                path="/login"
+                                element={<Login setIsAdmin={setIsAdmin} />}
+                            />
+                            <Route
+                                path="/mypages"
+                                element={<MyPages isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}
+                            />
+                            <Route path="/wishlist" element={<WishlistPage />} />
+                            <Route
+                                path="/category/:categoryId"
+                                element={<ProductCard />}
+                            />
+                            <Route
+                                path="/category/:categoryId/:intermediateId"
+                                element={<ProductCard />}
+                            />
+                            <Route
+                                path="/category/:categoryId/:intermediateId/:subId"
+                                element={<ProductCard />}
+                            />
+                            <Route path="/product/:id" element={<ProductPage />} />
+                        </Routes>
+                    </div>
+                    <TestFooter />
+                </div>
+            </Router>
+        );
+    }
+    
+    export default App;
