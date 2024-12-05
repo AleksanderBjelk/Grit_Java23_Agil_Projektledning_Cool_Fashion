@@ -7,7 +7,6 @@
     box-sizing: border-box;
   }
 
-
   /* loggan */
   .logoImage img{
     width: 100px;
@@ -20,6 +19,11 @@
     background-color: #000000;
     color: white;
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 20px;
+    z-index: 100000;
     justify-content: space-between;
     align-items:center;
     gap: 0rem;
