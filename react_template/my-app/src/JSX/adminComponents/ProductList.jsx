@@ -113,16 +113,33 @@ function ProductList() {
             alert("Lägg till namn, pris och bild");
             return;
         }
-
+    
+        //Fetch the existing images for the product
+        const product = products.find((product) => product.id === id);
+        if (!product) {
+            alert("Produkten hittades inte.");
+            return;
+        }
+    
+        const existingImages = product.images || [];
+        const newImagesArray = newImages.split(",").map((url) => url.trim());
+    
+        //Combine and limit to a maximum of 5 images
+        let updatedImages = [...existingImages, ...newImagesArray];
+        if (updatedImages.length > 5) {
+            alert("Kan bara ha max 5 bilder.");
+            updatedImages = updatedImages.slice(0, 5);
+        }
+    
         const productDoc = doc(db, "products", id);
         try {
             await updateDoc(productDoc, {
                 name: newName,
                 price: parseFloat(newPrice),
                 stock: parseInt(newStock),
-                images: newImages.split(",").map((url) => url.trim()),
+                images: updatedImages,
             });
-
+    
             const updatedProducts = products.map((product) =>
                 product.id === id
                     ? {
@@ -130,11 +147,11 @@ function ProductList() {
                           name: newName,
                           price: parseFloat(newPrice),
                           stock: parseInt(newStock),
-                          images: newImages.split(",").map((url) => url.trim()),
+                          images: updatedImages,
                       }
                     : product
             );
-
+    
             setProducts(updatedProducts);
             setProductsToShow(updatedProducts);
             setNewName("");
@@ -148,6 +165,8 @@ function ProductList() {
             alert("Lyckades inte uppdatera produkten.");
         }
     };
+    
+    
 
     //Handle search input changes
     const handleSearch = (event) => {
