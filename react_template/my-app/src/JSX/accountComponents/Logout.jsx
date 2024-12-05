@@ -12,6 +12,7 @@ function Logout({setIsAdmin}) {
       await signOut(auth);
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("isAdmin");
+      localStorage.removeItem('userId')
       setIsAdmin("")
       navigate("/login");
       alert("Du har loggat ut");
