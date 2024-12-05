@@ -34,7 +34,7 @@ const TopRightIcons = () => {
   return (
     <div className="topRightIcons">
       <FontAwesomeIcon icon={faUser} onClick={handleUserIconClick} />
-      <FontAwesomeIcon icon={faHeart} onClick={handleHeartIconClick} />
+      <FontAwesomeIcon icon={faHeart} onClick={handleHeartIconClick} className="heart-icon" />
       <FontAwesomeIcon icon={faShoppingCart} onClick={handleCartIconClick} />
     </div>
   );

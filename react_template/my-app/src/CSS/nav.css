@@ -184,17 +184,21 @@ input::placeholder {
     color: #c3b67b;
   }
 
+  .topRightIcons .heart-icon:hover {
+    color: red; 
+}
+
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
     .nav {
-      padding: 1rem;
+      /* padding: 1rem; */
       gap: 0rem;
     }
 
     .nav ul {
         font-size: 14px;
-       z-index: 1000;
+        z-index: 1000;
       }
 
       
@@ -213,7 +217,7 @@ input::placeholder {
   @media (max-width: 768px) {
     .nav {
       flex-direction: column; /* Stack links vertically */
-      /* padding: 1rem; */
+      padding: 1rem;
     }
   
     .nav ul {
@@ -257,7 +261,7 @@ input::placeholder {
   
     .search-container {
       width: 100%; /* Full width search bar */
-      margin-top: 1rem;
+      margin: 1rem;
     }
   
     .topRightIcons {
