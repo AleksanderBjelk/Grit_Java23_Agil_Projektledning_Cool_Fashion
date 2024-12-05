@@ -147,3 +147,7 @@
   height: 650px;
   background-color: black;
 }
+
+.content {
+  padding-top: 60px; /*samma som höjden på navbaren för att skjuta upp den*/
+}
