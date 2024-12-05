@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import MainPage from "./JSX/main.jsx";
 import TestFooter from "./JSX/footerComponents/footer.jsx";
 import NavBar from "./JSX/navComponents/NavBar.jsx";
-//import NavBar from "./JSX/nav.jsx";
 import Adminpage from "./JSX/adminComponents/adminpage.jsx";
 import ProductList from "./JSX/adminComponents/ProductList.jsx";
 import ResellPage from "./JSX/seconhandComponents/resellpage.jsx";
@@ -15,10 +14,14 @@ import ProductPage from "./JSX/productComponents/ProductPage.jsx";
 import ContactForm from "./JSX/footerComponents/contact.jsx";
 import WishlistPage from "./JSX/accountComponents/wishlist.jsx";
 
-function App() {
-    //Vi vill setta denna på /login och kolla den i TestNav(/nav.jsx) kanske även på /mypages? Kollar man med Mats så tycker han man ska använda nån slags kombination.. Setta den i localStorage vid inloggning
-    //och sen använda och setta usetstates i de komponenter där vi behöver använda isAdmin.
-    const [isAdmin, setIsAdmin] = useState(false); //trackar om det är admin el user
+    function App() {
+        const [isAdmin, setIsAdmin] = useState(() => {
+            return localStorage.getItem("isAdmin") || ""; //Retrieve from localStorage on load
+        });
+    
+        useEffect(() => {
+            localStorage.setItem("isAdmin", isAdmin); //Save to localStorage whenever it changes
+        }, [isAdmin]);
 
     return (
         <Router>
@@ -36,7 +39,7 @@ function App() {
                     />
                     <Route
                         path="/mypages"
-                        element={<MyPages isAdmin={isAdmin} />}
+                        element={<MyPages isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}
                     />
                     <Route path="/wishlist" element={<WishlistPage />} />
                     <Route

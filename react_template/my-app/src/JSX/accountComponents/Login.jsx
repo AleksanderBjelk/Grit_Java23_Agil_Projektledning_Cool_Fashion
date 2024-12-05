@@ -41,7 +41,7 @@ const Login = ({ setIsAdmin }) => {
 
         //set admin state
         if (userStatus === 'admin') {
-            localStorage.setItem("isAdmin", 'true');
+            setIsAdmin("true")
         }
 
         if (userStatus === 'admin') {

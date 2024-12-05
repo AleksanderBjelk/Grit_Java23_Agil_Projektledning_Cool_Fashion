@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import Logout from "../accountComponents/Logout";
 import "../../CSS/mypages.css";
 
-function MyPages() {
+function MyPages({ isAdmin, setIsAdmin }) {
     return (
         <div className="page-container">
             <h1>Mina Sidor</h1>
 
             {/*visar bara länken om admin är inloggad */}
-            {localStorage.getItem("isAdmin") === "true" && (
+            {isAdmin === "true" && (
                 <h1>
                     <Link to="/adminpage" className="admin-link">
                         Klicka här för produkt hantering
@@ -18,7 +18,7 @@ function MyPages() {
 
             {localStorage.getItem("isLoggedIn") === "true" ? (
                 <div>
-                    <Logout></Logout>
+                    <Logout setIsAdmin={setIsAdmin}></Logout>
                 </div>
             ) : (
                 <p>Var snäll och logga in för att komma åt din profil.</p>

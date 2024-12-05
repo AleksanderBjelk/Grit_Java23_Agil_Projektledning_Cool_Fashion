@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar.jsx";
 import TopRightIcons from "./TopRightIcons.jsx";
 import "../../CSS/nav.css";
 
-const NavBar = () => {
+const NavBar = ({ isAdmin }) => {
     const [mainCategories, setMainCategories] = useState([]);
     const [intermediateCategories, setIntermediateCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
@@ -59,7 +59,7 @@ const NavBar = () => {
             </div>
 
             <ul>
-                {localStorage.getItem("isAdmin") === "true" && (
+                {isAdmin === "true" && (
                     <li>
                         <a href="/adminpage">Admin Page</a>
                     </li>
