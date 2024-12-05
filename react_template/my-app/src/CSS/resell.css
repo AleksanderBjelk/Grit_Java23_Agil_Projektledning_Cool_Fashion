@@ -59,4 +59,6 @@
     max-height: 100px;
 }
 
-
+.content {
+    padding-top: 60px; /*samma som höjden på navbaren för att skjuta upp den*/
+  }

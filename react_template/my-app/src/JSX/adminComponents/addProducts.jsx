@@ -76,7 +76,7 @@ const ProductForm = () => {
     };
 
     const handleImageAdd = () => {
-        if (imageUrls.length <= 5) {
+        if (imageUrls.length < 5) {
             setImageUrls([...imageUrls, imageUrl]);
             setImageUrl("");
         } else {

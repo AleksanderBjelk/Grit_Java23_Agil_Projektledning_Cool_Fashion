@@ -1,10 +1,11 @@
 import "../../CSS/resell.css";
-import WishlistCard from "./WishlistCard";
+import WishlistCard from "../WishlistCard";
 
 function WishlistPage() {
     return (
         <div className="resell">
             <div className="header">
+                <div className="content">
                 <h1>Din Wishlist</h1>
             </div>
             <div className="cards">

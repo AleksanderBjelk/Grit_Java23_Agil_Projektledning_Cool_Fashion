@@ -98,3 +98,7 @@ textarea {
     width: 600px;
     border-radius: 5px; 
 }
+
+.content {
+    padding-top: 60px; /*samma som höjden på navbaren för att skjuta upp den*/
+  }
