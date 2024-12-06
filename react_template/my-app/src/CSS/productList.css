@@ -130,3 +130,6 @@
     transform: scale(1.1);
   }
   
+  .delete-image-button {
+    padding: 5px;
+}

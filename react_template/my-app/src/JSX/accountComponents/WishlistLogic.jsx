@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../data/firebase";
 import "../../CSS/wishlistIcon.css";
 
@@ -59,36 +59,36 @@ const AddToWishlist = ({ productId }) => {
                     } else {
                         console.log("Produkten inte borttagen");
                     }
-                    }else {
-                        //kollar om produckt redan finns i wishlist
-                        if (wishlist.includes(productId)) {
-                            alert("Den här produkten finns redan i din wishlist!");
-                            return;
-                        }
-
-                        wishlist.push(productId);
-                        await updateDoc(userDocRef, { wishlist });
-
-                        setIsInWishlist(true); //uppdaterar till sant on den är i wishlistan
-                        alert("Woho!! Produkten lades till i din wishlist!");
-                    }
                 } else {
-                    console.error("Hittade inte användare i firestore");
-                }
-            } catch (error) {
-                console.error("det gick inte att lägga till item i wishlistan", error);
-                alert(
-                    "Vi ber om ursäkt... Ett fel har skett med att lägga till produkten i din wishlist."
-                );
-            }
-        };
+                    //kollar om produckt redan finns i wishlist
+                    if (wishlist.includes(productId)) {
+                        alert("Den här produkten finns redan i din wishlist!");
+                        return;
+                    }
 
-        return (
-            <div className={`wishlistIcon ${isInWishlist ? "wishlistIcon-active" : ""}`} //aktiv eller ej aktiv state ändrar css style på hjärtat
-                onClick={handleWishListClick}
-            >            <FontAwesomeIcon icon={isInWishlist ? faHeartSolid : faHeartRegular} />
-            </div>
-        );
+                    wishlist.push(productId);
+                    await updateDoc(userDocRef, { wishlist });
+
+                    setIsInWishlist(true); //uppdaterar till sant on den är i wishlistan
+                    alert("Woho!! Produkten lades till i din wishlist!");
+                }
+            } else {
+                console.error("Hittade inte användare i firestore");
+            }
+        } catch (error) {
+            console.error("det gick inte att lägga till item i wishlistan", error);
+            alert(
+                "Vi ber om ursäkt... Ett fel har skett med att lägga till produkten i din wishlist."
+            );
+        }
     };
 
-    export default AddToWishlist;
+    return (
+        <div className={`wishlistIcon ${isInWishlist ? "wishlistIcon-active" : ""}`} //aktiv eller ej aktiv state ändrar css style på hjärtat
+            onClick={handleWishListClick}
+        >            <FontAwesomeIcon icon={isInWishlist ? faHeartSolid : faHeartRegular} />
+        </div>
+    );
+};
+
+export default AddToWishlist;

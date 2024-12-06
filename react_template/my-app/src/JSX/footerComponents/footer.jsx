@@ -14,7 +14,7 @@ function TestFooter() {
             <div className="textFooter">
                 <span className="location">
                     <h3>Besök oss!</h3>
-                    <p>Checka ut vår butik</p>
+                    <p>Checka in vår butik</p>
                 </span>
                 <span className="contact">
                     <Link to="/contact">Kontakt</Link>
@@ -22,7 +22,10 @@ function TestFooter() {
                     <p>coolFashion@email.com</p>
                 </span>
                 <span className="mypages">
-                    <Link to="/mypages">Mina Sidor</Link>
+                    {localStorage.getItem("isLoggedIn") === "true" ?
+                        (<Link to="/mypages">Mina Sidor</Link>) : (
+                            <Link to="/login">Mina Sidor</Link>
+                        )}
                 </span>
                 <span className="sustainability">
                     <h3>Hållbarhet</h3>

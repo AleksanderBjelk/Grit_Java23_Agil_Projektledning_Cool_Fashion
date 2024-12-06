@@ -38,7 +38,7 @@ function ProductList() {
                     price: doc.data().price,
                     stock: doc.data().stock,
                     images: doc.data().images,
-                    createdAt: doc.data().createdAt, // Include this if needed
+                    createdAt: doc.data().createdAt,
                 }));
                 setProducts(productList);
                 setProductsToShow(productList);
@@ -101,57 +101,94 @@ function ProductList() {
         }
     };
 
+    const handleDeleteImage = async (productId, imageIndex) => {
+        try {
+            //Find the product by ID
+            const product = products.find((product) => product.id === productId);
+            if (!product) {
+                alert("Produkten hittades inte.");
+                return;
+            }
+
+            //Remove the selected image
+            const updatedImages = product.images.filter((_, index) => index !== imageIndex);
+
+            //Update the database
+            const productDoc = doc(db, "products", productId);
+            await updateDoc(productDoc, {
+                images: updatedImages,
+            });
+
+            //Update the local state
+            const updatedProducts = products.map((prod) =>
+                prod.id === productId ? { ...prod, images: updatedImages } : prod
+            );
+
+            setProducts(updatedProducts);
+            setProductsToShow(updatedProducts);
+            alert("Bilden har tagits bort.");
+        } catch (error) {
+            console.error("Error deleting image: ", error);
+            alert("Kunde inte ta bort bilden.");
+        }
+    };
+
+
     const handleProductUpdate = async (id) => {
-        if (
-            !newName ||
-            !newPrice ||
-            !newStock ||
-            !newImages ||
-            isNaN(newPrice) ||
-            newPrice <= 0
-        ) {
-            alert("Lägg till namn, pris och bild");
+        if (!newName && !newPrice && !newStock && !newImages) {
+            alert("Inga ändringar har gjorts.");
             return;
         }
-    
-        //Fetch the existing images for the product
+
         const product = products.find((product) => product.id === id);
         if (!product) {
             alert("Produkten hittades inte.");
             return;
         }
-    
-        const existingImages = product.images || [];
-        const newImagesArray = newImages.split(",").map((url) => url.trim());
-    
-        //Combine and limit to a maximum of 5 images
-        let updatedImages = [...existingImages, ...newImagesArray];
-        if (updatedImages.length > 5) {
-            alert("Kan bara ha max 5 bilder.");
-            updatedImages = updatedImages.slice(0, 5);
+
+        const updates = {};
+        if (newName && newName !== product.name) {
+            updates.name = newName;
         }
-    
+        if (newPrice && parseFloat(newPrice) !== product.price) {
+            const priceValue = parseFloat(newPrice);
+            if (isNaN(priceValue) || priceValue <= 0) {
+                alert("Priset måste vara ett positivt nummer.");
+                return;
+            }
+            updates.price = priceValue;
+        }
+        if (newStock && parseInt(newStock) !== product.stock) {
+            const stockValue = parseInt(newStock);
+            if (isNaN(stockValue)) {
+                alert("Lagret måste vara ett nummer.");
+                return;
+            }
+            updates.stock = stockValue;
+        }
+        if (newImages) {
+            const existingImages = product.images || [];
+            const newImagesArray = newImages.split(",").map((url) => url.trim());
+            const combinedImages = [...existingImages, ...newImagesArray].slice(0, 5);
+
+            if (JSON.stringify(combinedImages) !== JSON.stringify(existingImages)) {
+                updates.images = combinedImages;
+            }
+        }
+
+        if (Object.keys(updates).length === 0) {
+            alert("Inga fält ändrades.");
+            return;
+        }
+
         const productDoc = doc(db, "products", id);
         try {
-            await updateDoc(productDoc, {
-                name: newName,
-                price: parseFloat(newPrice),
-                stock: parseInt(newStock),
-                images: updatedImages,
-            });
-    
+            await updateDoc(productDoc, updates);
+
             const updatedProducts = products.map((product) =>
-                product.id === id
-                    ? {
-                          ...product,
-                          name: newName,
-                          price: parseFloat(newPrice),
-                          stock: parseInt(newStock),
-                          images: updatedImages,
-                      }
-                    : product
+                product.id === id ? { ...product, ...updates } : product
             );
-    
+
             setProducts(updatedProducts);
             setProductsToShow(updatedProducts);
             setNewName("");
@@ -165,8 +202,9 @@ function ProductList() {
             alert("Lyckades inte uppdatera produkten.");
         }
     };
-    
-    
+
+
+
 
     //Handle search input changes
     const handleSearch = (event) => {
@@ -222,13 +260,12 @@ function ProductList() {
                             <div>
                                 <input
                                     type="text"
-                                    value={newName}
+                                    //value={newName}
                                     onChange={(e) => setNewName(e.target.value)}
                                     placeholder="Nytt Namn"
                                 />
                                 <input
                                     type="number"
-                                    value={newPrice}
                                     onChange={(e) =>
                                         setNewPrice(e.target.value)
                                     }
@@ -236,7 +273,6 @@ function ProductList() {
                                 />
                                 <input
                                     type="number"
-                                    value={newStock}
                                     onChange={(e) =>
                                         setNewStock(e.target.value)
                                     }
@@ -244,11 +280,10 @@ function ProductList() {
                                 />
                                 <input
                                     type="text"
-                                    value={newImages}
                                     onChange={(e) =>
                                         setNewImages(e.target.value)
                                     }
-                                    placeholder="Ny bildaddress"
+                                    placeholder="Lägg till ny bild med URL"
                                 />
                                 <button
                                     onClick={() =>
@@ -257,6 +292,7 @@ function ProductList() {
                                 >
                                     Uppdatera Produkten
                                 </button>
+                                <button onClick={() => setEditProductId(null)}>Ångra ändring</button>
                             </div>
                         ) : (
                             <div>
@@ -282,10 +318,10 @@ function ProductList() {
                                             prev.map((p) =>
                                                 p.id === product.id
                                                     ? {
-                                                          ...p,
-                                                          showImages:
-                                                              !p.showImages,
-                                                      }
+                                                        ...p,
+                                                        showImages:
+                                                            !p.showImages,
+                                                    }
                                                     : p
                                             )
                                         )
@@ -298,42 +334,35 @@ function ProductList() {
                                 {product.showImages && (
                                     <div className="image-gallery">
                                         {product.images.map((image, index) => (
-                                            <div
-                                                key={index}
-                                                className="image-item"
-                                            >
+                                            <div key={index} className="image-item">
                                                 <img
                                                     src={image}
                                                     style={{
                                                         width: "50px",
                                                         height: "50px",
-                                                        border:
-                                                            index === 0
-                                                                ? "2px solid blue"
-                                                                : "none", //Highlight the first image
+                                                        border: index === 0 ? "2px solid blue" : "none",
                                                     }}
+                                                    alt={`Produktbild ${index + 1}`}
                                                 />
                                                 <input
                                                     type="radio"
                                                     name={`firstImage-${product.id}`}
                                                     id={`firstImage-${index}`}
                                                     checked={index === 0}
-                                                    onChange={() =>
-                                                        handleSetAsFirst(
-                                                            product.id,
-                                                            index
-                                                        )
-                                                    }
+                                                    onChange={() => handleSetAsFirst(product.id, index)}
                                                 />
-                                                <label
-                                                    htmlFor={`firstImage-${index}`}
+                                                <label htmlFor={`firstImage-${index}`}>Huvudbild</label>
+                                                <button
+                                                    onClick={() => handleDeleteImage(product.id, index)}
+                                                    className="delete-image-button"
                                                 >
-                                                    Huvudbild
-                                                </label>
+                                                    Radera
+                                                </button>
                                             </div>
                                         ))}
                                     </div>
                                 )}
+
                             </div>
                         )}
                     </li>
