@@ -283,7 +283,7 @@ function ProductList() {
                                     onChange={(e) =>
                                         setNewImages(e.target.value)
                                     }
-                                    placeholder="Lägg till ny bild med URL"
+                                    placeholder="Lägg till ny bild med URL (max 5 bilder)"
                                 />
                                 <button
                                     onClick={() =>
