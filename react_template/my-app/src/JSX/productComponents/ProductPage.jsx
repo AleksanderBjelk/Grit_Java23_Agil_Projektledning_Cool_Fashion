@@ -33,7 +33,7 @@ function ProductPage() {
     if (!product) return <div>Laddar produkt...</div>;
 
     const getStock = () => {
-        if (product.stock === 0) {
+        if (product.stock <= 0) {
             return { text: "Tyvärr är denna produkten restad", color: "red" };
         } else if (product.stock === 1) {
             return { text: "En kvar i lager", color: "orange" };
